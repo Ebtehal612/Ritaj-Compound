@@ -179,7 +179,7 @@ class _YellowColors {
     this.shade100 = const Color(0xffffe8b0),
     this.shade200 = const Color(0xffffdd8a),
     this.shade300 = const Color(0xfffecd55),
-    this.shade400 = const Color(0xfffec334),
+    this.shade400 = const Color(0xffFBBF24),
     this.shade500 = const Color(0xfffeb401),
     this.shade600 = const Color(0xffe7a401),
     this.shade700 = const Color(0xffb48001),
@@ -208,9 +208,10 @@ class _GreenColors {
     this.shade400 = const Color(0xff35ddab),
     this.shade500 = const Color(0xff02d496),
     this.shade600 = const Color(0xff02c189),
-    this.shade700 = const Color(0xff01976b),
+    this.shade700 = const Color(0xff14B8A6),
     this.shade800 = const Color(0xff017553),
-    this.shade900 = const Color(0xff01593f),
+    this.shade900 = const Color(0xff0F766E),
+      
   });
 }
 
@@ -258,7 +259,7 @@ class _OrangeColors {
     this.shade200 = const Color(0xffffca8a),
     this.shade300 = const Color(0xffffb254),
     this.shade400 = const Color(0xffffa333),
-    this.shade500 = const Color(0xffff8c00),
+    this.shade500 = const Color(0xffFB923C),
     this.shade600 = const Color(0xffe87f00),
     this.shade700 = const Color(0xffb56300),
     this.shade800 = const Color(0xff8c4d00),

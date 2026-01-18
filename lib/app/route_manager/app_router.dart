@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ritaj_compound/presentation/home_page/pages/home_page_screen.dart';
 import 'package:ritaj_compound/presentation/splash/splash_screen.dart';
 import '../../core/shared_preferences/prefs_keys.dart';
 import '../../core/shared_preferences/shared_prefs.dart';
@@ -12,11 +13,13 @@ class AppRouter {
   GlobalKey<NavigatorState> get navigatorKey => _rootNavigatorKey;
 
   String get _initialLocation {
-    if (sl<SharedPrefs>().getBool(key: PrefsKeys.isLogged) ?? false) {
-      return '/'; // Replace with HomeScreen.routeName when available
+    final shared = sl<SharedPrefs>();
+    final user = shared.getSecuredValue(key: PrefsKeys.userDetails);
+    if (user != null) {
+      return SplashScreen.routeName;
     } else {
-      return '/'; // Replace with LoginScreen.routeName when available
-    }
+      return SplashScreen.routeName; // Always start with splash, splash decides where to go
+    } 
   }
 
   late final router = GoRouter(
@@ -28,6 +31,14 @@ class AppRouter {
         path: SplashScreen.routeName,
         pageBuilder: (_, state) => _buildPageWithTransition(
           const SplashScreen(),
+          state,
+        ),
+      ),
+      GoRoute(
+        name: HomePageScreen.routeName,
+        path: HomePageScreen.routeName,
+        pageBuilder: (_, state) => _buildPageWithTransition(
+           const HomePageScreen(),
           state,
         ),
       ),
