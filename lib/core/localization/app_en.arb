@@ -1,0 +1,98 @@
+{
+  "appTitle": "Ritaj Compound",
+  "choose": "Choose {item}",
+  "mustEnter": "You must enter {item}",
+  "comparingPhoto": "Comparing Photo",
+  "titlePrefixMrs": "Mrs.",
+  "date": "Date",
+  "password": "Password",
+  "nationalId": "National ID",
+  "identityNumberValidation": "Invalid National ID",
+  "email": "Email",
+  "invalidEmail": "Invalid Email",
+  "otpValidation": "OTP must be 4 digits",
+  "passwordRequired": "Password is required",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "explanation": "Explanation",
+  "homeworkSolution": "Homework Solution",
+  "practice": "Practice",
+  "revision": "Revision",
+  "other": "Other",
+  "successfullyDownloaded": "File downloaded successfully",
+  "downloading": "Downloading...",
+  "invalidPhoneNumber": "Invalid Phone Number",
+  "within": "Within",
+  "workingNow": "Working now",
+  "ended": "Ended",
+  "nSeconds": "{count, plural, =1{1 second} other{{count} seconds}}",
+  "nMinutes": "{count, plural, =1{1 minute} other{{count} minutes}}",
+  "nHours": "{count, plural, =1{1 hour} other{{count} hours}}",
+  "nDays": "{count, plural, =1{1 day} other{{count} days}}",
+  "nMonths": "{count, plural, =1{1 month} other{{count} months}}",
+  "nYears": "{count, plural, =1{1 year} other{{count} years}}",
+  "serverError": "Server Error",
+  "badCertificate": "Bad Certificate",
+  "requestCancelled": "Request Cancelled",
+  "connectionError": "No Internet Connection",
+  "connectionTimeout": "Connection Timeout",
+  "receiveTimeout": "Receive Timeout",
+  "sendTimeout": "Send Timeout",
+  "unknownError": "Unknown Error",
+  "@choose": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "@mustEnter": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "@nSeconds": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@nMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@nHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@nDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@nMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@nYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "welcome": "Welcome"
+}

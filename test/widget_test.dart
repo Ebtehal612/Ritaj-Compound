@@ -7,8 +7,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:ritaj_compound/app/app.dart';
 
-import 'package:ritaj_compound/main.dart';
+import 'package:ritaj_compound/app/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
