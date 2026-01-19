@@ -491,8 +491,182 @@ abstract class AppLocalizations {
   /// No description provided for @quickprocedures.
   ///
   /// In en, this message translates to:
-  /// **'Quick procedures'**
+  /// **'Quick Procedures'**
   String get quickprocedures;
+
+  /// No description provided for @inviteVisitor.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite Visitor'**
+  String get inviteVisitor;
+
+  /// No description provided for @deliveryPermit.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Permit'**
+  String get deliveryPermit;
+
+  /// No description provided for @reportComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'Report Complaint'**
+  String get reportComplaint;
+
+  /// No description provided for @payInstallment.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay Installment'**
+  String get payInstallment;
+
+  /// No description provided for @newsAndEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'News & Events'**
+  String get newsAndEvents;
+
+  /// No description provided for @viewAll.
+  ///
+  /// In en, this message translates to:
+  /// **'View All'**
+  String get viewAll;
+
+  /// No description provided for @activity.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity'**
+  String get activity;
+
+  /// No description provided for @twoHoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'2 hours ago'**
+  String get twoHoursAgo;
+
+  /// No description provided for @poolOpeningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New Pool Opening'**
+  String get poolOpeningTitle;
+
+  /// No description provided for @poolOpeningDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'We are happy to invite you to the new pool opening next Saturday at 10 AM'**
+  String get poolOpeningDesc;
+
+  /// No description provided for @shortcuts.
+  ///
+  /// In en, this message translates to:
+  /// **'Shortcuts'**
+  String get shortcuts;
+
+  /// No description provided for @unitMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit Map & Releases'**
+  String get unitMap;
+
+  /// No description provided for @exploreUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore available units'**
+  String get exploreUnits;
+
+  /// No description provided for @community.
+  ///
+  /// In en, this message translates to:
+  /// **'Community'**
+  String get community;
+
+  /// No description provided for @connectNeighbors.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with neighbors'**
+  String get connectNeighbors;
+
+  /// No description provided for @orderMall.
+  ///
+  /// In en, this message translates to:
+  /// **'Order from Mall'**
+  String get orderMall;
+
+  /// No description provided for @orderStores.
+  ///
+  /// In en, this message translates to:
+  /// **'Order from nearby stores'**
+  String get orderStores;
+
+  /// No description provided for @activeSubscriptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Subscriptions'**
+  String get activeSubscriptions;
+
+  /// No description provided for @gym.
+  ///
+  /// In en, this message translates to:
+  /// **'Gym'**
+  String get gym;
+
+  /// No description provided for @monthlyPackage.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Package'**
+  String get monthlyPackage;
+
+  /// No description provided for @active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// No description provided for @cleaningService.
+  ///
+  /// In en, this message translates to:
+  /// **'Cleaning Service'**
+  String get cleaningService;
+
+  /// No description provided for @weekly.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly'**
+  String get weekly;
+
+  /// No description provided for @expiresInDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires in {count} days'**
+  String expiresInDays(Object count);
+
+  /// No description provided for @nextSessionTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Next session: Tomorrow'**
+  String get nextSessionTomorrow;
+
+  /// No description provided for @manage.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage'**
+  String get manage;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @permits.
+  ///
+  /// In en, this message translates to:
+  /// **'Permits'**
+  String get permits;
+
+  /// No description provided for @more.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get more;
 }
 
 class _AppLocalizationsDelegate

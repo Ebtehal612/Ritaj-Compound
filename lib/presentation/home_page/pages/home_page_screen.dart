@@ -7,7 +7,7 @@ import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/utils/dimensions.dart';
 import 'package:ritaj_compound/core/widgets/app_bars/custom_app_bar.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
-import 'package:ritaj_compound/presentation/home_page/widgets/summary_card.dart';
+import 'package:ritaj_compound/presentation/home_page/widgets/home_sections.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
@@ -37,12 +37,14 @@ class _HomePageScreenState extends State<HomePageScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText.s18(AppLocalizations.of(context)!.helloUser("Ahmed")),
-                CustomText.s14(AppLocalizations.of(context)!.unitNumber("A-402")),
+                CustomText.s18(
+                    AppLocalizations.of(context)!.helloUser("Ahmed")),
+                CustomText.s14(
+                    AppLocalizations.of(context)!.unitNumber("A-402")),
               ],
             ),
-                const Spacer(),
-                const Icon(Icons.notifications),
+            const Spacer(),
+            const Icon(Icons.notifications),
             5.horizontalSpace,
             CircleAvatar(
               radius: 20.r,
@@ -71,7 +73,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 );
               },
             ),
-            
           ],
         ),
       ),
@@ -111,6 +112,15 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   value: '2,500 ${AppLocalizations.of(context)!.services}',
                 ),
               ),
+              20.verticalSpace,
+              const QuickProceduresSection(),
+              20.verticalSpace,
+              const NewsEventsSection(),
+              20.verticalSpace,
+              const ShortcutsSection(),
+              20.verticalSpace,
+              const ActiveSubscriptionsSection(),
+              50.verticalSpace, // Bottom padding
             ],
           ),
         ),

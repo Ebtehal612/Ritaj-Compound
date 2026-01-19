@@ -6,6 +6,11 @@ import 'package:ritaj_compound/presentation/login/verification_code_screen.dart'
 import 'package:ritaj_compound/presentation/splash/splash_screen.dart';
 import '../../core/shared_preferences/prefs_keys.dart';
 import '../../core/shared_preferences/shared_prefs.dart';
+import 'package:ritaj_compound/presentation/bottom_bar/bottom_bar.dart';
+import 'package:ritaj_compound/presentation/permits/pages/permits_screen.dart';
+import 'package:ritaj_compound/presentation/community/pages/community_screen.dart';
+import 'package:ritaj_compound/presentation/services/pages/services_screen.dart';
+import 'package:ritaj_compound/presentation/more/pages/more_screen.dart';
 import '../di/injection_container.dart';
 
 class AppRouter {
@@ -52,13 +57,67 @@ class AppRouter {
           state,
         ),
       ),
-      GoRoute(
-        name: HomePageScreen.routeName,
-        path: HomePageScreen.routeName,
-        pageBuilder: (_, state) => _buildPageWithTransition(
-           const HomePageScreen(),
-          state,
-        ),
+       StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return BottomBar(navigationShell: navigationShell);
+        },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: HomePageScreen.routeName,
+                path: HomePageScreen.routeName,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: HomePageScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: PermitsScreen.routeName,
+                path: PermitsScreen.routeName,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: PermitsScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: CommunityScreen.routeName,
+                path: CommunityScreen.routeName,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: CommunityScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: ServicesScreen.routeName,
+                path: ServicesScreen.routeName,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: ServicesScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: MoreScreen.routeName,
+                path: MoreScreen.routeName,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: MoreScreen(),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     ],
   );

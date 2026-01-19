@@ -261,5 +261,95 @@ class AppLocalizationsAr extends AppLocalizations {
   String get services => 'خدمات';
 
   @override
-  String get quickprocedures => 'الاجراءات السريعه';
+  String get quickprocedures => 'الإجراءات السريعة';
+
+  @override
+  String get inviteVisitor => 'دعوة زائر';
+
+  @override
+  String get deliveryPermit => 'تصريح توصيل';
+
+  @override
+  String get reportComplaint => 'بلاغ شكوى';
+
+  @override
+  String get payInstallment => 'دفع قسط';
+
+  @override
+  String get newsAndEvents => 'الأخبار والفعاليات';
+
+  @override
+  String get viewAll => 'عرض الكل';
+
+  @override
+  String get activity => 'فعالية';
+
+  @override
+  String get twoHoursAgo => 'منذ ساعتين';
+
+  @override
+  String get poolOpeningTitle => 'افتتاح المسبح الجديد';
+
+  @override
+  String get poolOpeningDesc =>
+      'يسعدنا دعوتكم لحضور افتتاح المسبح الجديد يوم السبت القادم في تمام الساعة 10 صباحاً';
+
+  @override
+  String get shortcuts => 'اختصارات';
+
+  @override
+  String get unitMap => 'خريطة الوحدات والإصدارات';
+
+  @override
+  String get exploreUnits => 'استكشف الوحدات المتاحة';
+
+  @override
+  String get community => 'المجتمع';
+
+  @override
+  String get connectNeighbors => 'تواصل مع الجيران';
+
+  @override
+  String get orderMall => 'طلب من المول';
+
+  @override
+  String get orderStores => 'اطلب من المتاجر المجاورة';
+
+  @override
+  String get activeSubscriptions => 'الاشتراكات النشطة';
+
+  @override
+  String get gym => 'الجيم';
+
+  @override
+  String get monthlyPackage => 'باقة شهرية';
+
+  @override
+  String get active => 'نشط';
+
+  @override
+  String get cleaningService => 'خدمة التنظيف';
+
+  @override
+  String get weekly => 'أسبوعي';
+
+  @override
+  String expiresInDays(Object count) {
+    return 'ينتهي في $count يوم';
+  }
+
+  @override
+  String get nextSessionTomorrow => 'الجلسة القادمة: غداً';
+
+  @override
+  String get manage => 'إدارة';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get permits => 'التصاريح';
+
+  @override
+  String get more => 'المزيد';
 }

@@ -261,5 +261,95 @@ class AppLocalizationsEn extends AppLocalizations {
   String get services => 'Services';
 
   @override
-  String get quickprocedures => 'Quick procedures';
+  String get quickprocedures => 'Quick Procedures';
+
+  @override
+  String get inviteVisitor => 'Invite Visitor';
+
+  @override
+  String get deliveryPermit => 'Delivery Permit';
+
+  @override
+  String get reportComplaint => 'Report Complaint';
+
+  @override
+  String get payInstallment => 'Pay Installment';
+
+  @override
+  String get newsAndEvents => 'News & Events';
+
+  @override
+  String get viewAll => 'View All';
+
+  @override
+  String get activity => 'Activity';
+
+  @override
+  String get twoHoursAgo => '2 hours ago';
+
+  @override
+  String get poolOpeningTitle => 'New Pool Opening';
+
+  @override
+  String get poolOpeningDesc =>
+      'We are happy to invite you to the new pool opening next Saturday at 10 AM';
+
+  @override
+  String get shortcuts => 'Shortcuts';
+
+  @override
+  String get unitMap => 'Unit Map & Releases';
+
+  @override
+  String get exploreUnits => 'Explore available units';
+
+  @override
+  String get community => 'Community';
+
+  @override
+  String get connectNeighbors => 'Connect with neighbors';
+
+  @override
+  String get orderMall => 'Order from Mall';
+
+  @override
+  String get orderStores => 'Order from nearby stores';
+
+  @override
+  String get activeSubscriptions => 'Active Subscriptions';
+
+  @override
+  String get gym => 'Gym';
+
+  @override
+  String get monthlyPackage => 'Monthly Package';
+
+  @override
+  String get active => 'Active';
+
+  @override
+  String get cleaningService => 'Cleaning Service';
+
+  @override
+  String get weekly => 'Weekly';
+
+  @override
+  String expiresInDays(Object count) {
+    return 'Expires in $count days';
+  }
+
+  @override
+  String get nextSessionTomorrow => 'Next session: Tomorrow';
+
+  @override
+  String get manage => 'Manage';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get permits => 'Permits';
+
+  @override
+  String get more => 'More';
 }
