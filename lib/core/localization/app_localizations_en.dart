@@ -179,4 +179,87 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcome => 'Welcome';
+
+  @override
+  String get loginTitle => 'Login';
+
+  @override
+  String get welcomeBack => 'Welcome Back';
+
+  @override
+  String get loginSubtitle =>
+      'Log in to access compound services and manage entry/exit permits';
+
+  @override
+  String get phoneNumber => 'Phone Number';
+
+  @override
+  String get weWillSendCode => 'We will send you a verification code';
+
+  @override
+  String get enterPhoneNumber => 'Phone Number';
+
+  @override
+  String get sendVerificationCode => 'Send Verification Code';
+
+  @override
+  String get or => 'Or';
+
+  @override
+  String get signInWithEmail => 'Sign in with Email';
+
+  @override
+  String get needHelp => 'Need Help?';
+
+  @override
+  String get contactAdministration => 'Contact Administration';
+
+  @override
+  String get whatsapp => 'WhatsApp';
+
+  @override
+  String get verificationCode => 'Verification Code';
+
+  @override
+  String get enterCode => 'Enter Code';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get resend => 'Resend';
+
+  @override
+  String helloUser(Object username) {
+    return 'Hello $username';
+  }
+
+  @override
+  String unitNumber(Object unit) {
+    return 'Unit $unit';
+  }
+
+  @override
+  String get expectedVisitor => 'Expected Visitor';
+
+  @override
+  String get dueInstallment => 'Due Installment';
+
+  @override
+  String get day => 'Today';
+
+  @override
+  String get tuesday => 'Tuesday';
+
+  @override
+  String get october => 'October';
+
+  @override
+  String get mohamedAli => 'Mohamed Ali';
+
+  @override
+  String get services => 'Services';
+
+  @override
+  String get quickprocedures => 'Quick procedures';
 }

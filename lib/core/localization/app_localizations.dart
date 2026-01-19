@@ -337,6 +337,162 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome'**
   String get welcome;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get loginTitle;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back'**
+  String get welcomeBack;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to access compound services and manage entry/exit permits'**
+  String get loginSubtitle;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @weWillSendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'We will send you a verification code'**
+  String get weWillSendCode;
+
+  /// No description provided for @enterPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get enterPhoneNumber;
+
+  /// No description provided for @sendVerificationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Verification Code'**
+  String get sendVerificationCode;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'Or'**
+  String get or;
+
+  /// No description provided for @signInWithEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Email'**
+  String get signInWithEmail;
+
+  /// No description provided for @needHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Need Help?'**
+  String get needHelp;
+
+  /// No description provided for @contactAdministration.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Administration'**
+  String get contactAdministration;
+
+  /// No description provided for @whatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get whatsapp;
+
+  /// No description provided for @verificationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification Code'**
+  String get verificationCode;
+
+  /// No description provided for @enterCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Code'**
+  String get enterCode;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @resend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resend;
+
+  /// No description provided for @helloUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello {username}'**
+  String helloUser(Object username);
+
+  /// No description provided for @unitNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit {unit}'**
+  String unitNumber(Object unit);
+
+  /// No description provided for @expectedVisitor.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected Visitor'**
+  String get expectedVisitor;
+
+  /// No description provided for @dueInstallment.
+  ///
+  /// In en, this message translates to:
+  /// **'Due Installment'**
+  String get dueInstallment;
+
+  /// No description provided for @day.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get day;
+
+  /// No description provided for @tuesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get tuesday;
+
+  /// No description provided for @october.
+  ///
+  /// In en, this message translates to:
+  /// **'October'**
+  String get october;
+
+  /// No description provided for @mohamedAli.
+  ///
+  /// In en, this message translates to:
+  /// **'Mohamed Ali'**
+  String get mohamedAli;
+
+  /// No description provided for @services.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get services;
+
+  /// No description provided for @quickprocedures.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick procedures'**
+  String get quickprocedures;
 }
 
 class _AppLocalizationsDelegate

@@ -8,7 +8,7 @@ AppLocalizations get lz =>
     AppLocalizations.of(sl<AppRouter>().navigatorKey.currentContext!)!;
 
 class LocaleCubit extends Cubit<Locale> {
-  LocaleCubit() : super(const Locale('en'));
+  LocaleCubit() : super(const Locale('ar'));
 
   void changeLocale(Locale locale) {
     emit(locale);

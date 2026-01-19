@@ -18,27 +18,29 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocaleCubit, Locale>(
-      bloc: sl<LocaleCubit>(),
-      builder: (context, state) {
-        return ScreenUtilInit(
-          minTextAdapt: true,
-          splitScreenMode: true,
-          designSize: const Size(393, 852),
-          builder: (context, child) => ToastificationWrapper(
-            child: MaterialApp.router(
-              key: ValueKey<String>(state.languageCode),
-              debugShowCheckedModeBanner: false,
-              title: 'Ritaj Compound',
-              theme: sl<AppTheme>().theme,
-              routerConfig: sl<AppRouter>().router,
-              locale: state,
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              supportedLocales: AppLocalizations.supportedLocales,
+    return BlocProvider.value(
+      value: sl<LocaleCubit>(),
+      child: BlocBuilder<LocaleCubit, Locale>(
+        builder: (context, state) {
+          return ScreenUtilInit(
+            minTextAdapt: true,
+            splitScreenMode: true,
+            designSize: const Size(393, 852),
+            builder: (context, child) => ToastificationWrapper(
+              child: MaterialApp.router(
+                key: ValueKey<String>(state.languageCode),
+                debugShowCheckedModeBanner: false,
+                title: 'Ritaj Compound',
+                theme: sl<AppTheme>().theme,
+                routerConfig: sl<AppRouter>().router,
+                locale: state,
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                supportedLocales: AppLocalizations.supportedLocales,
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

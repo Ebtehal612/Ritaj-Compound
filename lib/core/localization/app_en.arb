@@ -94,5 +94,31 @@
       }
     }
   },
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "loginTitle": "Login",
+  "welcomeBack": "Welcome Back",
+  "loginSubtitle": "Log in to access compound services and manage entry/exit permits",
+  "phoneNumber": "Phone Number",
+  "weWillSendCode": "We will send you a verification code",
+  "enterPhoneNumber": "Phone Number",
+  "sendVerificationCode": "Send Verification Code",
+  "or": "Or",
+  "signInWithEmail": "Sign in with Email",
+  "needHelp": "Need Help?",
+  "contactAdministration": "Contact Administration",
+  "whatsapp": "WhatsApp",
+  "verificationCode": "Verification Code",
+  "enterCode": "Enter Code",
+  "confirm": "Confirm",
+  "resend": "Resend",
+  "helloUser": "Hello {username}",
+  "unitNumber": "Unit {unit}",
+  "expectedVisitor": "Expected Visitor",
+  "dueInstallment": "Due Installment",
+  "day": "Today",
+  "tuesday": "Tuesday",
+  "october": "October",
+  "mohamedAli": "Mohamed Ali",
+  "services": "Services",
+  "quickprocedures":"Quick procedures"
 }

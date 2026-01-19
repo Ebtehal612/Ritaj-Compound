@@ -179,4 +179,87 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get welcome => 'مرحبا';
+
+  @override
+  String get loginTitle => 'تسجيل الدخول';
+
+  @override
+  String get welcomeBack => 'مرحباً بك';
+
+  @override
+  String get loginSubtitle =>
+      'سجل دخولك للوصول إلى خدمات المجمع السكني والتحكم في تصاريح الدخول والخروج';
+
+  @override
+  String get phoneNumber => 'رقم الهاتف';
+
+  @override
+  String get weWillSendCode => 'سنرسل لك رمز التحقق';
+
+  @override
+  String get enterPhoneNumber => 'رقم الهاتف';
+
+  @override
+  String get sendVerificationCode => 'إرسال رمز التحقق';
+
+  @override
+  String get or => 'أو';
+
+  @override
+  String get signInWithEmail => 'تسجيل الدخول بالبريد الإلكتروني';
+
+  @override
+  String get needHelp => 'بحاجة للمساعدة؟';
+
+  @override
+  String get contactAdministration => 'اتصل بالادارة';
+
+  @override
+  String get whatsapp => 'واتساب';
+
+  @override
+  String get verificationCode => 'رمز التحقق';
+
+  @override
+  String get enterCode => 'أدخل الرمز';
+
+  @override
+  String get confirm => 'تأكيد';
+
+  @override
+  String get resend => 'إعادة إرسال';
+
+  @override
+  String helloUser(Object username) {
+    return 'مرحبا $username';
+  }
+
+  @override
+  String unitNumber(Object unit) {
+    return 'وحدة $unit';
+  }
+
+  @override
+  String get expectedVisitor => 'زائر متوقع';
+
+  @override
+  String get dueInstallment => 'قسط مستحق';
+
+  @override
+  String get day => 'اليوم';
+
+  @override
+  String get tuesday => 'الثلاثاء';
+
+  @override
+  String get october => 'أكتوبر';
+
+  @override
+  String get mohamedAli => 'محمد علي';
+
+  @override
+  String get services => 'خدمات';
+
+  @override
+  String get quickprocedures => 'الاجراءات السريعه';
 }

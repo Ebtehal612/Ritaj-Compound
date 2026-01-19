@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/presentation/home_page/pages/home_page_screen.dart';
+import 'package:ritaj_compound/presentation/login/login_screen.dart';
+import 'package:ritaj_compound/presentation/login/verification_code_screen.dart';
 import 'package:ritaj_compound/presentation/splash/splash_screen.dart';
 import '../../core/shared_preferences/prefs_keys.dart';
 import '../../core/shared_preferences/shared_prefs.dart';
@@ -26,11 +28,27 @@ class AppRouter {
     navigatorKey: _rootNavigatorKey,
     initialLocation: _initialLocation,
     routes: [
-       GoRoute(
+      GoRoute(
         name: SplashScreen.routeName,
         path: SplashScreen.routeName,
         pageBuilder: (_, state) => _buildPageWithTransition(
           const SplashScreen(),
+          state,
+        ),
+      ),
+      GoRoute(
+        name: LoginScreen.routeName,
+        path: LoginScreen.routeName,
+        pageBuilder: (_, state) => _buildPageWithTransition(
+          const LoginScreen(),
+          state,
+        ),
+      ),
+      GoRoute(
+        name: VerificationCodeScreen.routeName,
+        path: VerificationCodeScreen.routeName,
+        pageBuilder: (_, state) => _buildPageWithTransition(
+          const VerificationCodeScreen(),
           state,
         ),
       ),

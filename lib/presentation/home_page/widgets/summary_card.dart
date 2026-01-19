@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/utils/dimensions.dart';
+import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
 
 
@@ -34,19 +35,21 @@ class SummaryCard extends StatelessWidget {
       child: Padding(
         padding: Dimensions.defaultPagePadding,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.end,
+          
           children: [
-             Row(
-               crossAxisAlignment: CrossAxisAlignment.center,
-               mainAxisAlignment: MainAxisAlignment.start,
-               children: [
-                    CustomText.s14("الثلاثاء, 15 اكتوبر ", color: Colors.white,),
-                    130.horizontalSpace,
-                 CustomText.s20("اليوم", color: Colors.white,),
-             
-               ],
-             ),
+            Row(
+              
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                    CustomText.s20(AppLocalizations.of(context)!.day, color: Colors.white,),
+                    Spacer(),
+                    CustomText.s14(
+                      "${AppLocalizations.of(context)!.tuesday}, 15 ${AppLocalizations.of(context)!.october}",
+                      color: Colors.white,
+                    ),        
+          ],
+          ),
             20.verticalSpace,
             _TransparentBox(item: firstItem),
             10.verticalSpace,
@@ -89,13 +92,15 @@ class _TransparentBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+            item.icon,
+            15.horizontalSpace,
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             
               CustomText.s16(
                 item.title,
                 color: Colors.white,
@@ -104,14 +109,8 @@ class _TransparentBox extends StatelessWidget {
                 item.value,
                 color: Colors.white,
               ),
-              
             ],
           ),
-          15.horizontalSpace,
-   
-            item.icon,
-           
-          
         ],
       ),
     );
