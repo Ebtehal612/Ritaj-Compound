@@ -352,4 +352,76 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get more => 'المزيد';
+
+  @override
+  String get visitormanagementanddelivery => 'إدارة الزوار والتوصيل';
+
+  @override
+  String get phonenumbernotregistered => 'رقم الهاتف غير مسجل';
+
+  @override
+  String get visitors => 'الزوار';
+
+  @override
+  String get delivery => 'التوصيل';
+
+  @override
+  String get history => 'السجل';
+
+  @override
+  String get createQuickPermit => 'إنشاء تصريح سريع';
+
+  @override
+  String get newVisitorPermit => 'تصريح زائر جديد';
+
+  @override
+  String get activePermits => 'التصاريح النشطة';
+
+  @override
+  String get previousVisitors => 'الزوار السابقون';
+
+  @override
+  String get tomorrow => 'غداً';
+
+  @override
+  String get scheduled => 'مجدول';
+
+  @override
+  String get inviteAgain => 'دعوة مرة أخرى';
+
+  @override
+  String get mainGate => 'البوابة الرئيسية';
+
+  @override
+  String get lastWeek => 'الأسبوع الماضي';
+
+  @override
+  String get yesterday => 'أمس';
+
+  @override
+  String get gate => 'البوابة';
+
+  @override
+  String get visitDate => 'تاريخ الزيارة';
+
+  @override
+  String get carNumber => 'رقم السيارة';
+
+  @override
+  String get extend => 'تمديد';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get share => 'مشاركة';
+
+  @override
+  String get qr => 'رمز QR';
+
+  @override
+  String get pm => 'م';
 }

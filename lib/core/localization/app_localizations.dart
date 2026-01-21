@@ -667,6 +667,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'More'**
   String get more;
+
+  /// No description provided for @visitormanagementanddelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Visitor Management and Delivery'**
+  String get visitormanagementanddelivery;
+
+  /// No description provided for @phonenumbernotregistered.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number not registered'**
+  String get phonenumbernotregistered;
+
+  /// No description provided for @visitors.
+  ///
+  /// In en, this message translates to:
+  /// **'Visitors'**
+  String get visitors;
+
+  /// No description provided for @delivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery'**
+  String get delivery;
+
+  /// No description provided for @history.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get history;
+
+  /// No description provided for @createQuickPermit.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Quick Permit'**
+  String get createQuickPermit;
+
+  /// No description provided for @newVisitorPermit.
+  ///
+  /// In en, this message translates to:
+  /// **'New Visitor Permit'**
+  String get newVisitorPermit;
+
+  /// No description provided for @activePermits.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Permits'**
+  String get activePermits;
+
+  /// No description provided for @previousVisitors.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Visitors'**
+  String get previousVisitors;
+
+  /// No description provided for @tomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow'**
+  String get tomorrow;
+
+  /// No description provided for @scheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduled'**
+  String get scheduled;
+
+  /// No description provided for @inviteAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite Again'**
+  String get inviteAgain;
+
+  /// No description provided for @mainGate.
+  ///
+  /// In en, this message translates to:
+  /// **'Main Gate'**
+  String get mainGate;
+
+  /// No description provided for @lastWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Week'**
+  String get lastWeek;
+
+  /// No description provided for @yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get yesterday;
+
+  /// No description provided for @gate.
+  ///
+  /// In en, this message translates to:
+  /// **'Gate'**
+  String get gate;
+
+  /// No description provided for @visitDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit Date'**
+  String get visitDate;
+
+  /// No description provided for @carNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Car Number'**
+  String get carNumber;
+
+  /// No description provided for @extend.
+  ///
+  /// In en, this message translates to:
+  /// **'Extend'**
+  String get extend;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
+  /// No description provided for @qr.
+  ///
+  /// In en, this message translates to:
+  /// **'QR'**
+  String get qr;
+
+  /// No description provided for @pm.
+  ///
+  /// In en, this message translates to:
+  /// **'PM'**
+  String get pm;
 }
 
 class _AppLocalizationsDelegate

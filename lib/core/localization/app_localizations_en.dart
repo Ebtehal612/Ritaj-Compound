@@ -352,4 +352,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get more => 'More';
+
+  @override
+  String get visitormanagementanddelivery => 'Visitor Management and Delivery';
+
+  @override
+  String get phonenumbernotregistered => 'Phone number not registered';
+
+  @override
+  String get visitors => 'Visitors';
+
+  @override
+  String get delivery => 'Delivery';
+
+  @override
+  String get history => 'History';
+
+  @override
+  String get createQuickPermit => 'Create Quick Permit';
+
+  @override
+  String get newVisitorPermit => 'New Visitor Permit';
+
+  @override
+  String get activePermits => 'Active Permits';
+
+  @override
+  String get previousVisitors => 'Previous Visitors';
+
+  @override
+  String get tomorrow => 'Tomorrow';
+
+  @override
+  String get scheduled => 'Scheduled';
+
+  @override
+  String get inviteAgain => 'Invite Again';
+
+  @override
+  String get mainGate => 'Main Gate';
+
+  @override
+  String get lastWeek => 'Last Week';
+
+  @override
+  String get yesterday => 'Yesterday';
+
+  @override
+  String get gate => 'Gate';
+
+  @override
+  String get visitDate => 'Visit Date';
+
+  @override
+  String get carNumber => 'Car Number';
+
+  @override
+  String get extend => 'Extend';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get share => 'Share';
+
+  @override
+  String get qr => 'QR';
+
+  @override
+  String get pm => 'PM';
 }

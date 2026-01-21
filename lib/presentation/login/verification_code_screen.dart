@@ -78,11 +78,15 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                               activeTrackColor: Palette.green.shade400,
                               inactiveThumbColor: Colors.white,
                               inactiveTrackColor: Palette.green.shade900,
-                              thumbIcon: MaterialStateProperty.resolveWith<Icon?>((states) {
-                                  if (state.languageCode == 'en') {
-                                    return Icon(Icons.language, color: Palette.green.shade700);
-                                  }
-                                  return Icon(Icons.language, color: Palette.green.shade700);
+                              thumbIcon:
+                                  MaterialStateProperty.resolveWith<Icon?>(
+                                      (states) {
+                                if (state.languageCode == 'en') {
+                                  return Icon(Icons.language,
+                                      color: Palette.green.shade700);
+                                }
+                                return Icon(Icons.language,
+                                    color: Palette.green.shade700);
                               }),
                               onChanged: (value) {
                                 if (value) {
@@ -99,69 +103,75 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                   ],
                 ),
               ),
-
             ),
             SizedBox(height: 40.h),
             Padding(
               padding: Dimensions.defaultPagePadding,
               child: Column(
                 children: [
-                   Text(
+                  Text(
                     AppLocalizations.of(context)!.enterCode,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Palette.neutral.color10
-                    ),
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Palette.neutral.color10),
                   ),
                   SizedBox(height: 20.h),
-                   // Pinput
-                   Directionality(
-                     textDirection: TextDirection.ltr,
-                     child: Pinput(
-                       controller: _pinController,
-                       length: 4,
-                       defaultPinTheme: PinTheme(
-                         width: 56.w,
-                         height: 56.h,
-                         textStyle: TextStyle(fontSize: 20.sp, color: Colors.black, fontWeight: FontWeight.w600),
-                         decoration: BoxDecoration(
-                           border: Border.all(color: Palette.neutral.color5),
-                           borderRadius: BorderRadius.circular(10.r),
-                           color: Colors.white,
-                         ),
-                       ),
-                       focusedPinTheme: PinTheme(
-                         width: 56.w,
-                         height: 56.h,
-                          textStyle: TextStyle(fontSize: 20.sp, color: Colors.black, fontWeight: FontWeight.w600),
-                         decoration: BoxDecoration(
-                           border: Border.all(color: Palette.green.shade700),
-                           borderRadius: BorderRadius.circular(10.r),
-                           color: Colors.white,
-                         ),
-                       ),
-                     ),
-                   ),
-                    SizedBox(height: 40.h),
-                   ElevatedButton(
+                  // Pinput
+                  Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Pinput(
+                      controller: _pinController,
+                      length: 4,
+                      defaultPinTheme: PinTheme(
+                        width: 56.w,
+                        height: 56.h,
+                        textStyle: TextStyle(
+                            fontSize: 20.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Palette.neutral.color5),
+                          borderRadius: BorderRadius.circular(10.r),
+                          color: Colors.white,
+                        ),
+                      ),
+                      focusedPinTheme: PinTheme(
+                        width: 56.w,
+                        height: 56.h,
+                        textStyle: TextStyle(
+                            fontSize: 20.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Palette.green.shade700),
+                          borderRadius: BorderRadius.circular(10.r),
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 40.h),
+                  ElevatedButton(
                     onPressed: () {
-                     context.goNamed(HomePageScreen.routeName);
+                      context.goNamed(HomePageScreen.routeName);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Palette.green.shade700,
-                      foregroundColor: Colors.white,
-                      padding: EdgeInsets.symmetric(vertical: 10.h),
-                      minimumSize: Size(double.infinity, 48.h)
-                    ),
+                        backgroundColor: Palette.green.shade700,
+                        foregroundColor: Colors.white,
+                        padding: EdgeInsets.symmetric(vertical: 10.h),
+                        minimumSize: Size(200.w, 48.h),
+                        shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20.r)) 
+                        ),
                     child: Text(AppLocalizations.of(context)!.confirm),
                   ),
-                   SizedBox(height: 20.h),
-                   TextButton(
-                     onPressed: (){},
-                     child: Text(AppLocalizations.of(context)!.resend, style: TextStyle(color: Palette.green.shade700)),
-                   )
+                  SizedBox(height: 20.h),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(AppLocalizations.of(context)!.resend,
+                        style: TextStyle(color: Palette.green.shade700)),
+                  )
                 ],
               ),
             )

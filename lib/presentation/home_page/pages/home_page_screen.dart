@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/localization/localization_manager.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
-import 'package:ritaj_compound/core/utils/dimensions.dart';
 import 'package:ritaj_compound/core/widgets/app_bars/custom_app_bar.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
 import 'package:ritaj_compound/presentation/home_page/widgets/home_sections.dart';
@@ -38,7 +37,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText.s18(
-                    AppLocalizations.of(context)!.helloUser("Ahmed")),
+                    AppLocalizations.of(context)!.helloUser("Ahmed"),bold: true,),
                 CustomText.s14(
                     AppLocalizations.of(context)!.unitNumber("A-402")),
               ],
@@ -78,7 +77,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: Dimensions.defaultPagePadding,
+          padding:EdgeInsets.all(18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -96,8 +95,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                     ),
                   ),
                   title: AppLocalizations.of(context)!.expectedVisitor,
-                  value: '${AppLocalizations.of(context)!.mohamedAli} - 2:30',
-                ),
+                  value: '${AppLocalizations.of(context)!.mohamedAli} - 2:30 ${AppLocalizations.of(context)!.pm}'),
                 secondItem: SummaryItem(
                   icon: CircleAvatar(
                     radius: 20.r,

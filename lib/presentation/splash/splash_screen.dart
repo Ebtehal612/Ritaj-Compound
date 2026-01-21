@@ -1,46 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ritaj_compound/core/assets/assets.gen.dart';
-import 'package:ritaj_compound/core/utils/dimensions.dart';
+import 'package:ritaj_compound/core/widgets/video_gif/video_gif.dart';
 import 'package:ritaj_compound/presentation/login/login_screen.dart';
 
-
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
   static const routeName = '/splash-screen';
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        context.goNamed(LoginScreen.routeName);
-      }
+    // Failsafe timer: navigate to login if video doesn't load/finish within 10 seconds
+    Future.delayed(const Duration(seconds: 20), () {
+      _navigateToLogin();
     });
+  }
+
+  void _navigateToLogin() {
+    if (mounted) {
+      context.goNamed(LoginScreen.routeName);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: Dimensions.defaultPagePadding,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Transform.scale(
-              scale: 1.5,
-              child: Assets.images.splash.image(
-                width: 1.sw,
-              ),
-            ),
-          ],
+      body: SizedBox.expand(
+        child: VideoGif(
+          onVideoEnd: _navigateToLogin,
         ),
       ),
     );

@@ -54,7 +54,6 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        maximumSize: WidgetStateProperty.all(Size.fromHeight(48.h)),
         padding: WidgetStateProperty.all(EdgeInsets.symmetric(
           vertical: 12.h,
           horizontal: 8.w,
@@ -64,7 +63,6 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: ButtonStyle(
-        maximumSize: WidgetStateProperty.all(Size.fromHeight(48.h)),
         padding: WidgetStateProperty.all(EdgeInsets.symmetric(
           vertical: 12.h,
           horizontal: 8.w,
@@ -100,13 +98,12 @@ class AppTheme {
         color: Palette.neutral.color5,
       ),
     ),
-    tabBarTheme: TabBarThemeData(
+  tabBarTheme: TabBarThemeData(
   indicator: BoxDecoration(
     borderRadius: 6.borderRadius,
     color: Palette.primary.color7,
   ),
   indicatorSize: TabBarIndicatorSize.tab,
-  tabAlignment: TabAlignment.start,
   labelColor: Colors.white,
   labelStyle: TextStyle(
     fontSize: 14.sp,

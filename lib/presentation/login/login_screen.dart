@@ -6,9 +6,11 @@ import 'package:ritaj_compound/core/localization/localization_manager.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/presentation/login/verification_code_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
+import 'package:toastification/toastification.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   static const String routeName = '/login-screen';
 
@@ -19,6 +21,33 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _phoneController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  CountryWithPhoneCode? _selectedCountry;
+
+  @override
+  void initState() {
+    super.initState();
+    _initCountryData();
+    _phoneController.clear();
+  }
+
+  Future<void> _initCountryData() async {
+    try {
+      final regions = await getAllSupportedRegions();
+      if (mounted) {
+        setState(() {
+          _selectedCountry = regions['EG'];
+        });
+      }
+    } catch (e) {
+      debugPrint('Error initializing country data: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,53 +81,57 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(height: 10.h),
-                            Text(
-                              AppLocalizations.of(context)!.loginTitle,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          Text(
+                            AppLocalizations.of(context)!.loginTitle,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.bold,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.w),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            // Language Toggle
-                            BlocBuilder<LocaleCubit, Locale>(
-                                builder: (context, state) {
-                              return Switch(
-                                value: state.languageCode == 'en',
-                                activeColor: Colors.white,
-                                activeTrackColor: Palette.green.shade400,
-                                inactiveThumbColor: Colors.white,
-                                inactiveTrackColor: Palette.green.shade900,
-                                thumbIcon: MaterialStateProperty.resolveWith<Icon?>((states) {
-                                  if (state.languageCode == 'en') {
-                                    return Icon(Icons.language, color: Palette.green.shade700);
-                                  }
-                                  return Icon(Icons.language, color: Palette.green.shade700);
-                                }),
-                                onChanged: (value) {
-                                  if (value) {
-                                    context.read<LocaleCubit>().toEnglish();
-                                  } else {
-                                    context.read<LocaleCubit>().toArabic();
-                                  }
-                                },
-                              );
-                            })
-                          ],
-                        ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          // Language Toggle
+                          BlocBuilder<LocaleCubit, Locale>(
+                              builder: (context, state) {
+                            return Switch(
+                              value: state.languageCode == 'en',
+                              activeColor: Colors.white,
+                              activeTrackColor: Palette.green.shade400,
+                              inactiveThumbColor: Colors.white,
+                              inactiveTrackColor: Palette.green.shade900,
+                              thumbIcon:
+                                  MaterialStateProperty.resolveWith<Icon?>(
+                                      (states) {
+                                if (state.languageCode == 'en') {
+                                  return Icon(Icons.language,
+                                      color: Palette.green.shade700);
+                                }
+                                return Icon(Icons.language,
+                                    color: Palette.green.shade700);
+                              }),
+                              onChanged: (value) {
+                                if (value) {
+                                  context.read<LocaleCubit>().toEnglish();
+                                } else {
+                                  context.read<LocaleCubit>().toArabic();
+                                }
+                              },
+                            );
+                          })
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
+            ),
 
             SizedBox(height: 20.h),
             Padding(
@@ -106,23 +139,20 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                   Text(
+                  Text(
                     AppLocalizations.of(context)!.welcomeBack,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Palette.neutral.color10
-                    ),
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Palette.neutral.color10),
                   ),
-                   SizedBox(height: 10.h),
-                   Text(
+                  SizedBox(height: 10.h),
+                  Text(
                     AppLocalizations.of(context)!.loginSubtitle,
                     textAlign: TextAlign.center,
-                     style: TextStyle(
-                      fontSize: 14.sp,
-                      color: Palette.neutral.color7
-                    ),
+                    style: TextStyle(
+                        fontSize: 14.sp, color: Palette.neutral.color7),
                   ),
                   SizedBox(height: 30.h),
                   // Phone Number Field
@@ -131,25 +161,59 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(AppLocalizations.of(context)!.phoneNumber, style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text(AppLocalizations.of(context)!.phoneNumber,
+                            style: TextStyle(fontWeight: FontWeight.bold)),
                         SizedBox(height: 8.h),
                         Directionality(
                           textDirection: TextDirection.ltr,
                           child: TextFormField(
                             controller: _phoneController,
                             keyboardType: TextInputType.phone,
+                            inputFormatters: [
+                              if (_selectedCountry != null)
+                                LibPhonenumberTextFormatter(
+                                  country: _selectedCountry!,
+                                  onFormatFinished: (val) {},
+                                ),
+                            ],
                             decoration: InputDecoration(
-                              hintText: '1234567890', 
+                              hintText: (_selectedCountry
+                                          ?.exampleNumberMobileNational
+                                          ?.startsWith('0') ??
+                                      false)
+                                  ? _selectedCountry!
+                                      .exampleNumberMobileNational
+                                      .substring(1)
+                                  : (_selectedCountry
+                                          ?.exampleNumberMobileNational ??
+                                      '1012345678'),
                               prefixIcon: Padding(
-                                padding: EdgeInsets.all(12.0),
-                                child: Text('+20', style: TextStyle(fontWeight: FontWeight.bold)), // Mock country code
+                                padding: const EdgeInsets.all(12.0),
+                                child: Text(
+                                    '+${_selectedCountry?.phoneCode ?? '20'}',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold)),
                               ),
-                               suffixIcon: Icon(Icons.keyboard_arrow_down), // Mock dropdown
+                              suffixIcon: const Icon(Icons.keyboard_arrow_down),
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return AppLocalizations.of(context)!.mustEnter(AppLocalizations.of(context)!.phoneNumber);
+                                return AppLocalizations.of(context)!.mustEnter(
+                                    AppLocalizations.of(context)!.phoneNumber);
                               }
+
+                              final cleanPhone = value.replaceAll(' ', '');
+
+                              if (!cleanPhone.startsWith('1')) {
+                                return AppLocalizations.of(context)!
+                                    .invalidPhoneNumber;
+                              }
+
+                              if (cleanPhone.length != 10) {
+                                return AppLocalizations.of(context)!
+                                    .invalidPhoneNumber;
+                              }
+
                               return null;
                             },
                           ),
@@ -158,23 +222,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(height: 20.h),
-                    Text(
+                  Text(
                     AppLocalizations.of(context)!.weWillSendCode,
                     textAlign: TextAlign.start, // Based on Arabic layout
-                      style: TextStyle(
-                      fontSize: 12.sp,
-                      color: Palette.neutral.color7
-                    ),
+                    style: TextStyle(
+                        fontSize: 12.sp, color: Palette.neutral.color7),
                   ),
                   SizedBox(height: 20.h),
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        if (_phoneController.text == '1012345678') {
+                        final cleanPhone =
+                            _phoneController.text.replaceAll(' ', '');
+
+                        if (cleanPhone == '1012345678') {
                           context.pushNamed(VerificationCodeScreen.routeName);
                         } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(AppLocalizations.of(context)!.invalidPhoneNumber)),
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                backgroundColor: Colors.red.shade700,
+                                content: Text(AppLocalizations.of(context)!
+                                    .phonenumbernotregistered)),
                           );
                         }
                       }
@@ -187,64 +255,74 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(AppLocalizations.of(context)!.sendVerificationCode),
+                        Text(
+                            AppLocalizations.of(context)!.sendVerificationCode),
                         SizedBox(width: 8.w),
                         Icon(Icons.send_rounded, size: 16.sp),
                       ],
                     ),
                   ),
-                    SizedBox(height: 20.h),
-                    Row(
+                  SizedBox(height: 20.h),
+                  Row(
+                    children: [
+                      Expanded(child: Divider()),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        child: Text(AppLocalizations.of(context)!.or),
+                      ),
+                      Expanded(child: Divider()),
+                    ],
+                  ),
+                  SizedBox(height: 20.h),
+                  OutlinedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.email_outlined),
+                    label: Text(AppLocalizations.of(context)!.signInWithEmail),
+                    style: OutlinedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      foregroundColor: Colors.black,
+                    ),
+                  ),
+
+                  SizedBox(height: 30.h),
+                  Center(
+                    child: Column(
                       children: [
-                        Expanded(child: Divider()),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 5.w),
-                          child: Text(AppLocalizations.of(context)!.or),
-                        ),
-                        Expanded(child: Divider()),
+                        Text(AppLocalizations.of(context)!.needHelp,
+                            style: TextStyle(color: Palette.neutral.color7)),
+                        SizedBox(height: 10.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Flexible(
+                              child: TextButton.icon(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.call,
+                                      color: Palette.green.shade700),
+                                  label: Text(
+                                      AppLocalizations.of(context)!
+                                          .contactAdministration,
+                                      style: TextStyle(
+                                          color: Palette.green.shade700))),
+                            ),
+                            Text("|",
+                                style:
+                                    TextStyle(color: Palette.neutral.color5)),
+                            Flexible(
+                              child: TextButton.icon(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.chat,
+                                      color: Palette.green.shade700),
+                                  label: Text(
+                                      AppLocalizations.of(context)!.whatsapp,
+                                      style: TextStyle(
+                                          color: Palette.green.shade700))),
+                            ),
+                          ],
+                        )
                       ],
                     ),
-                    SizedBox(height: 20.h),
-                    OutlinedButton.icon(
-                      onPressed: () {},
-                    
-                      icon: Icon(Icons.email_outlined),
-                      label: Text(AppLocalizations.of(context)!.signInWithEmail),
-                      style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 10.h),
-                        foregroundColor: Colors.black
-                      ),
-                    ),
-                  SizedBox(height: 30.h),
-                    Center(
-                      child: Column(
-                        children: [
-                          Text(AppLocalizations.of(context)!.needHelp, style: TextStyle(color: Palette.neutral.color7)),
-                          SizedBox(height: 10.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Flexible(           
-                                child: TextButton.icon(
-                              onPressed: (){}, 
-                            icon: Icon(Icons.call, color: Palette.green.shade700), 
-                                label: Text(AppLocalizations.of(context)!.contactAdministration, style: TextStyle(color: Palette.green.shade700))
-                                                      ),
-  
-                              ),
-                              Text("|", style: TextStyle(color: Palette.neutral.color5)),
-                              Flexible(
-                                child: TextButton.icon(
-                                  onPressed: (){}, 
-                                  icon: Icon(Icons.chat, color: Palette.green.shade700), 
-                                  label: Text(AppLocalizations.of(context)!.whatsapp, style: TextStyle(color: Palette.green.shade700))
-                                                            ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
+                  )
                 ],
               ),
             ),

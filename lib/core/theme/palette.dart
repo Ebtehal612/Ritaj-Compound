@@ -209,7 +209,7 @@ class _GreenColors {
     this.shade500 = const Color(0xff02d496),
     this.shade600 = const Color(0xff02c189),
     this.shade700 = const Color(0xff14B8A6),
-    this.shade800 = const Color(0xff017553),
+    this.shade800 = const Color(0xff166534),
     this.shade900 = const Color(0xff0F766E),
       
   });

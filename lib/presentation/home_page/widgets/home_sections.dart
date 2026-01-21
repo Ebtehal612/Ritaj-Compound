@@ -53,6 +53,7 @@ class QuickProceduresSection extends StatelessWidget {
     );
   }
 }
+
 class SummaryCard extends StatelessWidget {
   const SummaryCard({
     super.key,
@@ -66,7 +67,7 @@ class SummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 343.sw,
+      width: 343.w,
       height: 240.h,
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -83,20 +84,24 @@ class SummaryCard extends StatelessWidget {
         padding: Dimensions.defaultPagePadding,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
-          
           children: [
-            Row(
-              
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                    CustomText.s20(AppLocalizations.of(context)!.day, color: Colors.white,),
-                    Spacer(),
-                    CustomText.s14(
-                      "${AppLocalizations.of(context)!.tuesday}, 15 ${AppLocalizations.of(context)!.october}",
-                      color: Colors.white,
-                    ),        
-          ],
-          ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CustomText.s20(
+                    AppLocalizations.of(context)!.day,
+                    color: Colors.white,
+                  ),
+                  Spacer(),
+                  CustomText.s14(
+                    "${AppLocalizations.of(context)!.tuesday}, 15 ${AppLocalizations.of(context)!.october}",
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
             20.verticalSpace,
             _TransparentBox(item: firstItem),
             10.verticalSpace,
@@ -131,8 +136,8 @@ class _TransparentBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 70.h,
+      width: 295.w,
+      height: 68.h,
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.30),
@@ -142,8 +147,8 @@ class _TransparentBox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-            item.icon,
-            15.horizontalSpace,
+          item.icon,
+          15.horizontalSpace,
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -302,7 +307,7 @@ class _NewsCard extends StatelessWidget {
                           color: Colors.white),
                     ),
                     CustomText.s12(AppLocalizations.of(context)!.twoHoursAgo,
-                        color: Palette.neutral.color5),
+                        color: Palette.neutral.color6),
                   ],
                 ),
                 10.verticalSpace,
@@ -313,7 +318,7 @@ class _NewsCard extends StatelessWidget {
                 Text(
                   AppLocalizations.of(context)!.poolOpeningDesc,
                   style:
-                      TextStyle(fontSize: 12.sp, color: Palette.neutral.color5),
+                      TextStyle(fontSize: 12.sp, color: Palette.neutral.color7),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -403,7 +408,8 @@ class _ShortcutTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText.s16(title, bold: true),
-                CustomText.s12(subtitle, color: Palette.neutral.color5),
+                5.verticalSpace,
+                CustomText.s12(subtitle, color: Palette.neutral.color7),
               ],
             ),
           ),
@@ -494,35 +500,33 @@ class _SubscriptionCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 12.w, vertical: 6.h),
-                          decoration: BoxDecoration(
-                            color: color.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(20.r),
-                          ),
-                          child: CustomText.s12(status, color: color),
-                        ),
                         CircleAvatar(
                           radius: 20.r,
                           backgroundColor: color.withValues(alpha: 0.1),
                           child: Icon(icon, color: color, size: 20.sp),
                         ),
-                      ],
-                    ),
-                    10.verticalSpace,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+                        10.horizontalSpace,
                         Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText.s16(title, bold: true, center: false),
+                            4.verticalSpace,
                             CustomText.s12(subtitle,
-                                color: Palette.neutral.color5),
+                                color: Palette.neutral.color7),
                           ],
+                        ),
+                        Spacer(),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 6.h),
+                          decoration: BoxDecoration(
+                            color: Palette.green.shade50,
+                            borderRadius: BorderRadius.circular(20.r),
+                          ),
+                          child: CustomText.s12(status,
+                              color: Palette.green.shade800),
                         ),
                       ],
                     ),
@@ -532,21 +536,25 @@ class _SubscriptionCard extends StatelessWidget {
             ],
           ),
           15.verticalSpace,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                  minimumSize: Size.zero,
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CustomText.s12(details, color: Palette.neutral.color7),
+                const Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                  child:
+                      CustomText.s14(manageLabel, color: Palette.green.shade700),
                 ),
-                child:
-                    CustomText.s14(manageLabel, color: Palette.green.shade700),
-              ),
-              CustomText.s12(details, color: Palette.neutral.color5),
-            ],
+              ],
+            ),
           )
         ],
       ),
