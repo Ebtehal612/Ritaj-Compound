@@ -174,5 +174,10 @@
   "edit": "Edit",
   "share": "Share",
   "qr": "QR",
-  "pm":"PM"
+  "pm":"PM",
+  "visittime":"Visit time",
+  "entrancegate":"Entrance Gate",
+  "maingate":"Main Gate",
+  "cancelthepermit":"Cancel Permit",
+  "expire":"Expires in 4 hours"
 }

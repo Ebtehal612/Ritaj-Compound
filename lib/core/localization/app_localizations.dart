@@ -811,6 +811,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'PM'**
   String get pm;
+
+  /// No description provided for @visittime.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit time'**
+  String get visittime;
+
+  /// No description provided for @entrancegate.
+  ///
+  /// In en, this message translates to:
+  /// **'Entrance Gate'**
+  String get entrancegate;
+
+  /// No description provided for @maingate.
+  ///
+  /// In en, this message translates to:
+  /// **'Main Gate'**
+  String get maingate;
+
+  /// No description provided for @cancelthepermit.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel Permit'**
+  String get cancelthepermit;
+
+  /// No description provided for @expire.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires in 4 hours'**
+  String get expire;
 }
 
 class _AppLocalizationsDelegate

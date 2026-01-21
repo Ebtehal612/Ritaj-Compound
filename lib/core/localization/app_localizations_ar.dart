@@ -424,4 +424,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pm => 'م';
+
+  @override
+  String get visittime => 'وقت الزيارة';
+
+  @override
+  String get entrancegate => 'بوابة الدخول';
+
+  @override
+  String get maingate => 'البوابة الرئيسيه';
+
+  @override
+  String get cancelthepermit => 'إلغاء التصريح';
+
+  @override
+  String get expire => 'ينتهي في 4 ساعات';
 }

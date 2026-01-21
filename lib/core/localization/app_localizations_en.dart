@@ -424,4 +424,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pm => 'PM';
+
+  @override
+  String get visittime => 'Visit time';
+
+  @override
+  String get entrancegate => 'Entrance Gate';
+
+  @override
+  String get maingate => 'Main Gate';
+
+  @override
+  String get cancelthepermit => 'Cancel Permit';
+
+  @override
+  String get expire => 'Expires in 4 hours';
 }

@@ -86,17 +86,23 @@ class _PermitsScreenState extends State<PermitsScreen> {
           children: [
             TabBar(
               isScrollable: true,
-              tabAlignment: TabAlignment.start,
+              tabAlignment: TabAlignment.center,
               tabs: [
                 Tab(text: l10n.visitors),
+                16.horizontalSpace,
                 Tab(text: l10n.delivery),
+                16.horizontalSpace,
                 Tab(text: l10n.history),
               ],
               labelColor: Palette.green.shade700,
               unselectedLabelColor: Palette.neutral.color7,
-              indicatorColor: Palette.green.shade700,
-              indicatorSize: TabBarIndicatorSize.tab,
               dividerColor: Colors.transparent,
+              indicator: UnderlineTabIndicator(
+                borderSide: BorderSide(
+                  width: 2,
+                  color: Palette.green.shade700,
+                ),
+              ),
             ),
             Expanded(
               child: TabBarView(
@@ -147,22 +153,19 @@ class _VisitorsTabContent extends StatelessWidget {
             visitorName: 'Mohamed Ali',
             phone: '+20 100 123 4567',
             gate: 'Main Gate',
-            status: 'Active',
-            expiryTime: '4', // In hours
+            // In hours
           ),
           16.verticalSpace,
           const _ActivePermitCard(
-            visitorName: 'Fatimah Hassan',
+            visitorName: 'Fathi Hassan',
             phone: '+20 101 987 6543',
-            carNumber: 'A B C 1234',
-            status: 'Scheduled',
-            isScheduled: true,
           ),
           24.verticalSpace,
           CustomText.s16(l10n.previousVisitors, bold: true),
           16.verticalSpace,
-          _PreviousVisitorItem(name: 'Ahmed Mohamed', time: 'Yesterday 3:15 PM'),
-          _PreviousVisitorItem(name: 'Sarah Abdullah', time: 'Last Week'),
+          _PreviousVisitorItem(
+              name: 'Ahmed Mohamed', time: '${l10n.yesterday} 3:15 ${l10n.pm}'),
+          _PreviousVisitorItem(name: 'Sarah Abdullah', time: '${l10n.lastWeek}'),
         ],
       ),
     );
@@ -173,49 +176,51 @@ class _QuickPermitCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    return Container(
-      width:343.w,
-      padding: EdgeInsets.all(24.w),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Palette.green.shade700,
-            Palette.green.shade900,
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(16.r),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CustomText.s20(
-            l10n.createQuickPermit,
-            color: Colors.white,
-            bold: true,
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+        width: 343.w,
+        padding: EdgeInsets.all(24.w),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Palette.green.shade700,
+              Palette.green.shade900,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-          16.verticalSpace,
-          SizedBox(
-            width: 295.w,
-            child: ElevatedButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.person_add_alt_1),
-              label: Text(l10n.newVisitorPermit),
-              style: ElevatedButton.styleFrom(
-                
-                backgroundColor: Colors.white.withOpacity(0.2),
-                foregroundColor: Colors.white,
-                elevation: 0,
-                side: const BorderSide(color: Colors.white, width: 0.5),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CustomText.s20(
+              l10n.createQuickPermit,
+              color: Colors.white,
+              bold: true,
+            ),
+            16.verticalSpace,
+            SizedBox(
+              width: 295.w,
+              child: ElevatedButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.person_add_alt_1),
+                label: Text(l10n.newVisitorPermit),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white.withOpacity(0.2),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  side: const BorderSide(color: Colors.white, width: 0.5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 12.h),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 12.h),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -225,19 +230,11 @@ class _ActivePermitCard extends StatelessWidget {
   final String visitorName;
   final String phone;
   final String? gate;
-  final String? carNumber;
-  final String status;
-  final String? expiryTime;
-  final bool isScheduled;
 
   const _ActivePermitCard({
     required this.visitorName,
     required this.phone,
     this.gate,
-    this.carNumber,
-    required this.status,
-    this.expiryTime,
-    this.isScheduled = false,
   });
 
   @override
@@ -256,100 +253,90 @@ class _ActivePermitCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                radius: 24.r,
-                backgroundColor: isScheduled ? Colors.blue.shade50 : Palette.green.shade50,
-                child: Icon(
-                  Icons.person,
-                  color: isScheduled ? Colors.blue.shade400 : Palette.green.shade400,
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 24.r,
+                  backgroundColor: Palette.green.shade50,
+                  child: Icon(
+                    Icons.person,
+                    color: Palette.green.shade400,
+                  ),
                 ),
-              ),
-              12.horizontalSpace,
-              Expanded(
-                child: Column(
+                12.horizontalSpace,
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomText.s15(visitorName, bold: true),
+                      Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: CustomText.s12(phone,
+                              color: Palette.neutral.color7)),
+                    ],
+                  ),
+                ),
+                75.horizontalSpace,
+                const Icon(Icons.qr_code_scanner, color: Colors.teal, size: 20),
+                12.horizontalSpace,
+                const Icon(Icons.share, color: Colors.blueGrey, size: 20),
+              ],
+            ),
+            15.verticalSpace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText.s16(visitorName, bold: true),
-                    CustomText.s12(phone, color: Palette.neutral.color7),
+                    CustomText.s12(l10n.visittime,
+                        color: Palette.neutral.color7),
+                    CustomText.s14('2:30 ${AppLocalizations.of(context)!.pm}',
+                        bold: true),
                   ],
                 ),
-              ),
-              const Icon(Icons.qr_code_scanner, color: Colors.teal),
-              12.horizontalSpace,
-              const Icon(Icons.share, color: Colors.blueGrey),
-            ],
-          ),
-          16.verticalSpace,
-          Row(
-            children: [
-              if (gate != null) ...[
-                _InfoItem(label: l10n.gate, value: gate!),
-              ],
-              if (carNumber != null) ...[
-                _InfoItem(label: l10n.carNumber, value: carNumber!),
-              ],
               const Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  CustomText.s12(l10n.visitDate, color: Palette.neutral.color7),
-                  CustomText.s12(isScheduled ? l10n.tomorrow : l10n.day, bold: true),
-                ],
-              ),
-            ],
-          ),
-          16.verticalSpace,
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  color: isScheduled ? Colors.blue.shade50 : Palette.green.shade50,
-                  borderRadius: BorderRadius.circular(20.r),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText.s12(l10n.entrancegate,
+                        color: Palette.neutral.color7),
+                    CustomText.s14(l10n.mainGate, bold: true),
+                  ],
                 ),
-                child: CustomText.s12(
-                  status,
-                  color: isScheduled ? Colors.blue.shade700 : Palette.green.shade700,
-                ),
-              ),
-              8.horizontalSpace,
-              if (expiryTime != null)
+              ],
+            ),
+            10.verticalSpace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
                 CustomText.s11(
-                  'Expires in $expiryTime hours',
+                  l10n.expire,
                   color: Palette.neutral.color7,
                 ),
-              const Spacer(),
-              TextButton(onPressed: () {}, child: Text(isScheduled ? l10n.edit : l10n.extend)),
-              TextButton(
-                onPressed: () {},
-                child: Text(l10n.cancel, style: const TextStyle(color: Colors.red)),
-              ),
-            ],
-          ),
-        ],
+                const Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 14.w, vertical: 4.h),
+                    backgroundColor: Palette.red.shade50,
+                  ),
+                  child: CustomText.s11(
+                    l10n.cancelthepermit,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-    );
-  }
-}
-
-class _InfoItem extends StatelessWidget {
-  final String label;
-  final String value;
-
-  const _InfoItem({required this.label, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CustomText.s12(label, color: Palette.neutral.color7),
-        CustomText.s12(value, bold: true),
-      ],
     );
   }
 }

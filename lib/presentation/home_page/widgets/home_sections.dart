@@ -66,48 +66,52 @@ class SummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 343.w,
-      height: 240.h,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Palette.green.shade700,
-            Palette.green.shade900,
-          ],
+    return Padding(
+     padding: const EdgeInsets.all(10.0),
+      child: Container(
+        width: 343.w,
+        height: 240.h,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Palette.green.shade700,
+              Palette.green.shade900,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(24.r),
         ),
-        borderRadius: BorderRadius.circular(24.r),
-      ),
-      child: Padding(
-        padding: Dimensions.defaultPagePadding,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  CustomText.s20(
-                    AppLocalizations.of(context)!.day,
-                    color: Colors.white,
-                  ),
-                  Spacer(),
-                  CustomText.s14(
-                    "${AppLocalizations.of(context)!.tuesday}, 15 ${AppLocalizations.of(context)!.october}",
-                    color: Colors.white,
-                  ),
-                ],
+        child: Padding(
+          padding: Dimensions.defaultPagePadding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CustomText.s20(
+                      AppLocalizations.of(context)!.day,
+                      color: Colors.white,
+                    ),
+                    Spacer(),
+                    CustomText.s14(
+                      "${AppLocalizations.of(context)!.tuesday}, 15 ${AppLocalizations.of(context)!.october}",
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            20.verticalSpace,
-            _TransparentBox(item: firstItem),
-            10.verticalSpace,
-            _TransparentBox(item: secondItem),
-            10.verticalSpace,
-          ],
+              20.verticalSpace,
+              _TransparentBox(item: firstItem),
+              10.verticalSpace,
+              _TransparentBox(item: secondItem),
+              10.verticalSpace,
+            ],
+          ),
         ),
       ),
     );
