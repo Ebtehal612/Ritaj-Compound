@@ -14,6 +14,25 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/lost_cat.png
+  AssetGenImage get lostCat =>
+      const AssetGenImage('assets/images/lost_cat.png');
+
+  /// File path: assets/images/neighbors.jpg
+  AssetGenImage get neighbors =>
+      const AssetGenImage('assets/images/neighbors.jpg');
+
+  /// File path: assets/images/pool.jpg
+  AssetGenImage get pool => const AssetGenImage('assets/images/pool.jpg');
+
+  /// File path: assets/images/post_dining_table.png
+  AssetGenImage get postDiningTable =>
+      const AssetGenImage('assets/images/post_dining_table.png');
+
+  /// File path: assets/images/post_elevator.png
+  AssetGenImage get postElevator =>
+      const AssetGenImage('assets/images/post_elevator.png');
+
   /// File path: assets/images/profile.png
   AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
 
@@ -21,13 +40,35 @@ class $AssetsImagesGen {
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [profile, splash];
+  List<AssetGenImage> get values => [
+        lostCat,
+        neighbors,
+        pool,
+        postDiningTable,
+        postElevator,
+        profile,
+        splash
+      ];
+}
+
+class $AssetsVideosGen {
+  const $AssetsVideosGen();
+
+  /// File path: assets/videos/intro.mp4
+  String get intro => 'assets/videos/intro.mp4';
+
+  /// File path: assets/videos/splash_vid.mp4
+  String get splashVid => 'assets/videos/splash_vid.mp4';
+
+  /// List of all assets
+  List<String> get values => [intro, splashVid];
 }
 
 class Assets {
   const Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsVideosGen videos = $AssetsVideosGen();
 }
 
 class AssetGenImage {

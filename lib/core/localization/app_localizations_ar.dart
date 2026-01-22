@@ -439,4 +439,88 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get expire => 'ينتهي في 4 ساعات';
+
+  @override
+  String get contactneighbors => 'تواصل مع الجيران';
+
+  @override
+  String get groups => 'المجموعات';
+
+  @override
+  String get lost => 'مفقودات';
+
+  @override
+  String get writeyourposthere => 'اكتب منشورك هنا';
+
+  @override
+  String get pollQuestion =>
+      'ما رأيكم في إقامة فعالية شواء جماعي في الحديقة المركزية؟';
+
+  @override
+  String get pollOption1 => 'فكرة ممتازة، أؤيد';
+
+  @override
+  String get pollOption2 => 'محتاج أفكر فيها';
+
+  @override
+  String get pollOption3 => 'لا أستطيع المشاركة';
+
+  @override
+  String pollVotes(Object count) {
+    return '$count صوت';
+  }
+
+  @override
+  String get pollEndsIn => 'ينتهي خلال يومين';
+
+  @override
+  String get vote => 'صوّت';
+
+  @override
+  String get maintenancePost =>
+      'شكراً لفريق الصيانة على سرعة الاستجابة لإصلاح مشكلة المصعد! الخدمة ممتازة 👏';
+
+  @override
+  String get salePost =>
+      'طاولة طعام خشبية بحالة ممتازة للبيع. 6 كراسي، السعر 3000 ج.م قابل للتفاوض.';
+
+  @override
+  String get forSale => 'للبيع';
+
+  @override
+  String get contactSeller => 'تواصل مع البائع';
+
+  @override
+  String get loadMorePosts => 'تحميل المزيد من المنشورات';
+
+  @override
+  String get whatareyoulookingfor => 'ما الذي تبحث عنه؟';
+
+  @override
+  String get sarahAhmed => 'سارة أحمد';
+
+  @override
+  String get ahmedHassan => 'أحمد حسن';
+
+  @override
+  String get fatimaMohamed => 'فاطمة محمد';
+
+  @override
+  String get fourHoursAgo => 'منذ 4 ساعات';
+
+  @override
+  String get sixHoursAgo => 'منذ 6 ساعات';
+
+  @override
+  String get aDayAgo => 'منذ يوم';
+
+  @override
+  String get now => 'الآن';
+
+  @override
+  String get you => 'أنت';
+
+  @override
+  String get lostPost =>
+      'هل رأى أحد قطتي الصغيرة؟ اسمها لولو، لونها رمادي مع بقع بيضاء. اختفت منذ أمس من البلكونة.';
 }

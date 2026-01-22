@@ -841,6 +841,162 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Expires in 4 hours'**
   String get expire;
+
+  /// No description provided for @contactneighbors.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact neighbors'**
+  String get contactneighbors;
+
+  /// No description provided for @groups.
+  ///
+  /// In en, this message translates to:
+  /// **'Groups'**
+  String get groups;
+
+  /// No description provided for @lost.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost'**
+  String get lost;
+
+  /// No description provided for @writeyourposthere.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your post here'**
+  String get writeyourposthere;
+
+  /// No description provided for @pollQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you think about organizing a group BBQ in the central park?'**
+  String get pollQuestion;
+
+  /// No description provided for @pollOption1.
+  ///
+  /// In en, this message translates to:
+  /// **'Great idea, I support it'**
+  String get pollOption1;
+
+  /// No description provided for @pollOption2.
+  ///
+  /// In en, this message translates to:
+  /// **'I need to think about it'**
+  String get pollOption2;
+
+  /// No description provided for @pollOption3.
+  ///
+  /// In en, this message translates to:
+  /// **'I cannot participate'**
+  String get pollOption3;
+
+  /// No description provided for @pollVotes.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} votes'**
+  String pollVotes(Object count);
+
+  /// No description provided for @pollEndsIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends in 2 days'**
+  String get pollEndsIn;
+
+  /// No description provided for @vote.
+  ///
+  /// In en, this message translates to:
+  /// **'Vote'**
+  String get vote;
+
+  /// No description provided for @maintenancePost.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks to the maintenance team for the quick response in fixing the elevator issue! Excellent service 👏'**
+  String get maintenancePost;
+
+  /// No description provided for @salePost.
+  ///
+  /// In en, this message translates to:
+  /// **'Wooden dining table in excellent condition for sale. 6 chairs, price 3000 EGP, negotiable.'**
+  String get salePost;
+
+  /// No description provided for @forSale.
+  ///
+  /// In en, this message translates to:
+  /// **'For Sale'**
+  String get forSale;
+
+  /// No description provided for @contactSeller.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Seller'**
+  String get contactSeller;
+
+  /// No description provided for @loadMorePosts.
+  ///
+  /// In en, this message translates to:
+  /// **'Load more posts'**
+  String get loadMorePosts;
+
+  /// No description provided for @whatareyoulookingfor.
+  ///
+  /// In en, this message translates to:
+  /// **'What are you looking for?'**
+  String get whatareyoulookingfor;
+
+  /// No description provided for @sarahAhmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sarah Ahmed'**
+  String get sarahAhmed;
+
+  /// No description provided for @ahmedHassan.
+  ///
+  /// In en, this message translates to:
+  /// **'Ahmed Hassan'**
+  String get ahmedHassan;
+
+  /// No description provided for @fatimaMohamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Fatima Mohamed'**
+  String get fatimaMohamed;
+
+  /// No description provided for @fourHoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'4 hours ago'**
+  String get fourHoursAgo;
+
+  /// No description provided for @sixHoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'6 hours ago'**
+  String get sixHoursAgo;
+
+  /// No description provided for @aDayAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'A day ago'**
+  String get aDayAgo;
+
+  /// No description provided for @now.
+  ///
+  /// In en, this message translates to:
+  /// **'Now'**
+  String get now;
+
+  /// No description provided for @you.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get you;
+
+  /// No description provided for @lostPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Has anyone seen my little kitten? Her name is Lulu, grey with white spots. She disappeared yesterday from the balcony.'**
+  String get lostPost;
 }
 
 class _AppLocalizationsDelegate

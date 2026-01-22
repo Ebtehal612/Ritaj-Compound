@@ -439,4 +439,88 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get expire => 'Expires in 4 hours';
+
+  @override
+  String get contactneighbors => 'Contact neighbors';
+
+  @override
+  String get groups => 'Groups';
+
+  @override
+  String get lost => 'Lost';
+
+  @override
+  String get writeyourposthere => 'Write your post here';
+
+  @override
+  String get pollQuestion =>
+      'What do you think about organizing a group BBQ in the central park?';
+
+  @override
+  String get pollOption1 => 'Great idea, I support it';
+
+  @override
+  String get pollOption2 => 'I need to think about it';
+
+  @override
+  String get pollOption3 => 'I cannot participate';
+
+  @override
+  String pollVotes(Object count) {
+    return '$count votes';
+  }
+
+  @override
+  String get pollEndsIn => 'Ends in 2 days';
+
+  @override
+  String get vote => 'Vote';
+
+  @override
+  String get maintenancePost =>
+      'Thanks to the maintenance team for the quick response in fixing the elevator issue! Excellent service 👏';
+
+  @override
+  String get salePost =>
+      'Wooden dining table in excellent condition for sale. 6 chairs, price 3000 EGP, negotiable.';
+
+  @override
+  String get forSale => 'For Sale';
+
+  @override
+  String get contactSeller => 'Contact Seller';
+
+  @override
+  String get loadMorePosts => 'Load more posts';
+
+  @override
+  String get whatareyoulookingfor => 'What are you looking for?';
+
+  @override
+  String get sarahAhmed => 'Sarah Ahmed';
+
+  @override
+  String get ahmedHassan => 'Ahmed Hassan';
+
+  @override
+  String get fatimaMohamed => 'Fatima Mohamed';
+
+  @override
+  String get fourHoursAgo => '4 hours ago';
+
+  @override
+  String get sixHoursAgo => '6 hours ago';
+
+  @override
+  String get aDayAgo => 'A day ago';
+
+  @override
+  String get now => 'Now';
+
+  @override
+  String get you => 'You';
+
+  @override
+  String get lostPost =>
+      'Has anyone seen my little kitten? Her name is Lulu, grey with white spots. She disappeared yesterday from the balcony.';
 }

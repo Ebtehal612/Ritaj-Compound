@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ritaj_compound/core/assets/assets.gen.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/utils/dimensions.dart';
@@ -245,10 +246,14 @@ class NewsEventsSection extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              _NewsCard(),
+              _NewsCard(
+                image: Assets.images.pool,
+              ),
               15.horizontalSpace,
               _NewsCard(
-                  title: "Community Meeting"), // Placeholder for second item
+                title: AppLocalizations.of(context)!.connectNeighbors,
+                image: Assets.images.neighbors,
+              ),
             ],
           ),
         ),
@@ -259,7 +264,8 @@ class NewsEventsSection extends StatelessWidget {
 
 class _NewsCard extends StatelessWidget {
   final String? title;
-  const _NewsCard({this.title});
+  final AssetGenImage? image;
+  const _NewsCard({this.title, this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -282,14 +288,17 @@ class _NewsCard extends StatelessWidget {
             height: 150.h,
             width: double.infinity,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
-                color: Colors.grey.shade300, // Placeholder color
-                image: const DecorationImage(
-                  image: NetworkImage(
-                      "https://via.placeholder.com/600x300"), // Placeholder as requested to keep "same image" (visually similar logic)
-                  fit: BoxFit.cover,
-                )),
-            // Gradient overlay could be added here
+              borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
+              image: image != null
+                  ? DecorationImage(
+                      image: image!.provider(),
+                      fit: BoxFit.cover,
+                    )
+                  : const DecorationImage(
+                      image: NetworkImage("https://via.placeholder.com/600x300"),
+                      fit: BoxFit.cover,
+                    ),
+            ),
           ),
           Padding(
             padding: EdgeInsets.all(16.w),
