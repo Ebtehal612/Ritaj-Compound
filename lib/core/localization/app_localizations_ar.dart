@@ -523,4 +523,42 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get lostPost =>
       'هل رأى أحد قطتي الصغيرة؟ اسمها لولو، لونها رمادي مع بقع بيضاء. اختفت منذ أمس من البلكونة.';
+
+  @override
+  String get newDeliveryPermit => 'تصريح توصيل جديد';
+
+  @override
+  String get activeDeliveries => 'التوصيلات النشطة';
+
+  @override
+  String get previousDeliveries => 'التوصيلات السابقة';
+
+  @override
+  String get expectedArrival => 'الوصول المتوقع';
+
+  @override
+  String get within15Min => 'خلال 15 دقيقة';
+
+  @override
+  String get within30Min => 'خلال 30 دقيقة';
+
+  @override
+  String get talonOrder => 'طلبية تالون';
+
+  @override
+  String get amazon => 'امازون';
+
+  @override
+  String get noonOrder => 'طلبية نون';
+
+  @override
+  String get kosharyGeha => 'كشري جحا';
+
+  @override
+  String enteredYesterday(Object time) {
+    return 'دخلت أمس $time';
+  }
+
+  @override
+  String get enteredLastWeek => 'دخلت الأسبوع الماضي';
 }

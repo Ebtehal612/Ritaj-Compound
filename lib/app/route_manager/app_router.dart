@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/presentation/home_page/pages/home_page_screen.dart';
-import 'package:ritaj_compound/presentation/login/login_screen.dart';
-import 'package:ritaj_compound/presentation/login/verification_code_screen.dart';
+import 'package:ritaj_compound/presentation/login/pages/login_screen.dart';
+import 'package:ritaj_compound/presentation/login/pages/verification_code_screen.dart';
 import 'package:ritaj_compound/presentation/splash/splash_screen.dart';
 import '../../core/shared_preferences/prefs_keys.dart';
 import '../../core/shared_preferences/shared_prefs.dart';
@@ -12,6 +12,8 @@ import 'package:ritaj_compound/presentation/community/pages/community_screen.dar
 import 'package:ritaj_compound/presentation/services/pages/services_screen.dart';
 import 'package:ritaj_compound/presentation/more/pages/more_screen.dart';
 import '../di/injection_container.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../presentation/login/cubit/login_cubit.dart';
 
 class AppRouter {
   final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -45,7 +47,10 @@ class AppRouter {
         name: LoginScreen.routeName,
         path: LoginScreen.routeName,
         pageBuilder: (_, state) => _buildPageWithTransition(
-          const LoginScreen(),
+          BlocProvider(
+            create: (context) => sl<LoginCubit>(),
+            child: const LoginScreen(),
+          ),
           state,
         ),
       ),
@@ -53,7 +58,10 @@ class AppRouter {
         name: VerificationCodeScreen.routeName,
         path: VerificationCodeScreen.routeName,
         pageBuilder: (_, state) => _buildPageWithTransition(
-          const VerificationCodeScreen(),
+           BlocProvider(
+            create: (context) => sl<LoginCubit>(),
+            child: VerificationCodeScreen(phone: state.extra as String),
+          ),
           state,
         ),
       ),

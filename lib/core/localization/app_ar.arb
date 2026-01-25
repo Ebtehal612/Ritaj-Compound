@@ -151,5 +151,17 @@
   "now": "الآن",
   "you": "أنت",
   "lostPost": "هل رأى أحد قطتي الصغيرة؟ اسمها لولو، لونها رمادي مع بقع بيضاء. اختفت منذ أمس من البلكونة.",
-  "lost": "مفقودات"
+  "lost": "مفقودات",
+  "newDeliveryPermit": "تصريح توصيل جديد",
+  "activeDeliveries": "التوصيلات النشطة",
+  "previousDeliveries": "التوصيلات السابقة",
+  "expectedArrival": "الوصول المتوقع",
+  "within15Min": "خلال 15 دقيقة",
+  "within30Min": "خلال 30 دقيقة",
+  "talonOrder": "طلبية تالون",
+  "amazon": "امازون",
+  "noonOrder": "طلبية نون",
+  "kosharyGeha": "كشري جحا",
+  "enteredYesterday": "دخلت أمس {time}",
+  "enteredLastWeek": "دخلت الأسبوع الماضي"
 }

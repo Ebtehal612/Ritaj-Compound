@@ -4,10 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/localization/localization_manager.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
-import 'package:ritaj_compound/presentation/login/verification_code_screen.dart';
+import 'package:ritaj_compound/presentation/login/pages/verification_code_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
-import 'package:toastification/toastification.dart';
+import 'package:ritaj_compound/core/states/base_state.dart';
+import 'package:ritaj_compound/domain/auth/entities/user.dart';
+import 'package:ritaj_compound/presentation/login/cubit/login_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -74,61 +76,82 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               child: SafeArea(
-                child: Stack(
-                  children: [
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 10.h),
-                          Text(
-                            AppLocalizations.of(context)!.loginTitle,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                child: BlocListener<LoginCubit, BaseState<User>>(
+                  listener: (context, state) {
+                    state.whenOrNull(
+                      initial: () {
+                        // After sendOtp succeeds, we go to verification screen
+                         context.pushNamed(VerificationCodeScreen.routeName, extra: _phoneController.text.replaceAll(' ', ''));
+                      },
+                      loading: () {
+                        // Show loading indicator if needed, but we have child column
+                      },
+                      failure: (failure) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.red.shade700,
+                            content: Text(failure.message),
                           ),
-                        ],
+                        );
+                      },
+                    );
+                  },
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 10.h),
+                            Text(
+                              AppLocalizations.of(context)!.loginTitle,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 24.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          // Language Toggle
-                          BlocBuilder<LocaleCubit, Locale>(
-                              builder: (context, state) {
-                            return Switch(
-                              value: state.languageCode == 'en',
-                              activeColor: Colors.white,
-                              activeTrackColor: Palette.green.shade400,
-                              inactiveThumbColor: Colors.white,
-                              inactiveTrackColor: Palette.green.shade900,
-                              thumbIcon:
-                                  MaterialStateProperty.resolveWith<Icon?>(
-                                      (states) {
-                                if (state.languageCode == 'en') {
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            // Language Toggle
+                            BlocBuilder<LocaleCubit, Locale>(
+                                builder: (context, state) {
+                              return Switch(
+                                value: state.languageCode == 'en',
+                                activeColor: Colors.white,
+                                activeTrackColor: Palette.green.shade400,
+                                inactiveThumbColor: Colors.white,
+                                inactiveTrackColor: Palette.green.shade900,
+                                thumbIcon:
+                                    MaterialStateProperty.resolveWith<Icon?>(
+                                        (states) {
+                                  if (state.languageCode == 'en') {
+                                    return Icon(Icons.language,
+                                        color: Palette.green.shade700);
+                                  }
                                   return Icon(Icons.language,
                                       color: Palette.green.shade700);
-                                }
-                                return Icon(Icons.language,
-                                    color: Palette.green.shade700);
-                              }),
-                              onChanged: (value) {
-                                if (value) {
-                                  context.read<LocaleCubit>().toEnglish();
-                                } else {
-                                  context.read<LocaleCubit>().toArabic();
-                                }
-                              },
-                            );
-                          })
-                        ],
+                                }),
+                                onChanged: (value) {
+                                  if (value) {
+                                    context.read<LocaleCubit>().toEnglish();
+                                  } else {
+                                    context.read<LocaleCubit>().toArabic();
+                                  }
+                                },
+                              );
+                            })
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -234,17 +257,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (_formKey.currentState!.validate()) {
                         final cleanPhone =
                             _phoneController.text.replaceAll(' ', '');
-
-                        if (cleanPhone == '1012345678') {
-                          context.pushNamed(VerificationCodeScreen.routeName);
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                backgroundColor: Colors.red.shade700,
-                                content: Text(AppLocalizations.of(context)!
-                                    .phonenumbernotregistered)),
-                          );
-                        }
+                        
+                        context.read<LoginCubit>().sendOtp(phone: cleanPhone);
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -252,14 +266,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       foregroundColor: Colors.white,
                       padding: EdgeInsets.symmetric(vertical: 10.h),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                            AppLocalizations.of(context)!.sendVerificationCode),
-                        SizedBox(width: 8.w),
-                        Icon(Icons.send_rounded, size: 16.sp),
-                      ],
+                    child: BlocBuilder<LoginCubit, BaseState<User>>(
+                      builder: (context, state) {
+                        final isLoading = state.maybeWhen(
+                          loading: () => true,
+                          orElse: () => false,
+                        );
+                        if (isLoading) {
+                          return const Center(
+                              child: CircularProgressIndicator(
+                                  color: Colors.white));
+                        }
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                                AppLocalizations.of(context)!.sendVerificationCode),
+                            SizedBox(width: 8.w),
+                            Icon(Icons.send_rounded, size: 16.sp),
+                          ],
+                        );
+                      },
                     ),
                   ),
                   SizedBox(height: 20.h),

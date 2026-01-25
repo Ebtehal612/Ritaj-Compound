@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/media/use_cases/download_file_use_case.dart';
+import '../../domain/media/use_cases/download_params.dart';
 import '../states/base_state.dart';
 
 class DownloadAttachmentCubit extends Cubit<BaseState<Uint8List>> {

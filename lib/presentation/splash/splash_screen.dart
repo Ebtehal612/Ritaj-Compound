@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/core/widgets/video_gif/video_gif.dart';
-import 'package:ritaj_compound/presentation/login/login_screen.dart';
+import 'package:ritaj_compound/presentation/login/pages/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

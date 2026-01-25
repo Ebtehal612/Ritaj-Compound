@@ -207,5 +207,17 @@
   "now": "Now",
   "you": "You",
   "lostPost": "Has anyone seen my little kitten? Her name is Lulu, grey with white spots. She disappeared yesterday from the balcony.",
-  "lost": "Lost"
+  "lost": "Lost",
+  "newDeliveryPermit": "New Delivery Permit",
+  "activeDeliveries": "Active Deliveries",
+  "previousDeliveries": "Previous Deliveries",
+  "expectedArrival": "Expected Arrival",
+  "within15Min": "Within 15 mins",
+  "within30Min": "Within 30 mins",
+  "talonOrder": "Talon Order",
+  "amazon": "Amazon",
+  "noonOrder": "Noon Order",
+  "kosharyGeha": "Koshary Geha",
+  "enteredYesterday": "Entered yesterday {time}",
+  "enteredLastWeek": "Entered last week"
 }

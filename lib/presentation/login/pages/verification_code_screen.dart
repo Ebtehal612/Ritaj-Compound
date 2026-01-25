@@ -8,9 +8,14 @@ import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/utils/dimensions.dart';
 import 'package:ritaj_compound/presentation/home_page/pages/home_page_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ritaj_compound/core/states/base_state.dart';
+import 'package:ritaj_compound/domain/auth/entities/user.dart';
+import 'package:ritaj_compound/domain/auth/use_cases/login_use_case/login_use_case.dart';
+import 'package:ritaj_compound/presentation/login/cubit/login_cubit.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
-  const VerificationCodeScreen({Key? key}) : super(key: key);
+  final String phone;
+  const VerificationCodeScreen({required this.phone, Key? key}) : super(key: key);
 
   static const String routeName = '/verification-code-screen';
 
@@ -46,61 +51,78 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                 ),
               ),
               child: SafeArea(
-                child: Stack(
-                  children: [
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 10.h),
-                          Text(
-                            AppLocalizations.of(context)!.verificationCode,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                child: BlocListener<LoginCubit, BaseState<User>>(
+                  listener: (context, state) {
+                    state.whenOrNull(
+                      success: (user) {
+                        context.goNamed(HomePageScreen.routeName);
+                      },
+                      failure: (failure) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.red.shade700,
+                            content: Text(failure.message),
                           ),
-                        ],
+                        );
+                      },
+                    );
+                  },
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 10.h),
+                            Text(
+                              AppLocalizations.of(context)!.verificationCode,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 24.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          // Language Toggle
-                          BlocBuilder<LocaleCubit, Locale>(
-                              builder: (context, state) {
-                            return Switch(
-                              value: state.languageCode == 'en',
-                              activeColor: Colors.white,
-                              activeTrackColor: Palette.green.shade400,
-                              inactiveThumbColor: Colors.white,
-                              inactiveTrackColor: Palette.green.shade900,
-                              thumbIcon:
-                                  MaterialStateProperty.resolveWith<Icon?>(
-                                      (states) {
-                                if (state.languageCode == 'en') {
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            // Language Toggle
+                            BlocBuilder<LocaleCubit, Locale>(
+                                builder: (context, state) {
+                              return Switch(
+                                value: state.languageCode == 'en',
+                                activeColor: Colors.white,
+                                activeTrackColor: Palette.green.shade400,
+                                inactiveThumbColor: Colors.white,
+                                inactiveTrackColor: Palette.green.shade900,
+                                thumbIcon:
+                                    MaterialStateProperty.resolveWith<Icon?>(
+                                        (states) {
+                                  if (state.languageCode == 'en') {
+                                    return Icon(Icons.language,
+                                        color: Palette.green.shade700);
+                                  }
                                   return Icon(Icons.language,
                                       color: Palette.green.shade700);
-                                }
-                                return Icon(Icons.language,
-                                    color: Palette.green.shade700);
-                              }),
-                              onChanged: (value) {
-                                if (value) {
-                                  context.read<LocaleCubit>().toEnglish();
-                                } else {
-                                  context.read<LocaleCubit>().toArabic();
-                                }
-                              },
-                            );
-                          })
-                        ],
+                                }),
+                                onChanged: (value) {
+                                  if (value) {
+                                    context.read<LocaleCubit>().toEnglish();
+                                  } else {
+                                    context.read<LocaleCubit>().toArabic();
+                                  }
+                                },
+                              );
+                            })
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -155,16 +177,36 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                   SizedBox(height: 40.h),
                   ElevatedButton(
                     onPressed: () {
-                      context.goNamed(HomePageScreen.routeName);
+                      if (_pinController.text.length == 4) {
+                        context.read<LoginCubit>().login(
+                              params: LoginParams(
+                                phone: widget.phone,
+                                otp: _pinController.text,
+                              ),
+                            );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Palette.green.shade700,
                         foregroundColor: Colors.white,
                         padding: EdgeInsets.symmetric(vertical: 10.h),
                         minimumSize: Size(200.w, 48.h),
-                        shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20.r)) 
-                        ),
-                    child: Text(AppLocalizations.of(context)!.confirm),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.r))),
+                    child: BlocBuilder<LoginCubit, BaseState<User>>(
+                      builder: (context, state) {
+                        final isLoading = state.maybeWhen(
+                          loading: () => true,
+                          orElse: () => false,
+                        );
+                        if (isLoading) {
+                          return const Center(
+                              child: CircularProgressIndicator(
+                                  color: Colors.white));
+                        }
+                        return Text(AppLocalizations.of(context)!.confirm);
+                      },
+                    ),
                   ),
                   SizedBox(height: 20.h),
                   TextButton(

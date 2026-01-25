@@ -1,4 +1,4 @@
-/*import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/auth/models/user_model.dart';
 import '../../domain/auth/entities/user.dart';
 import '../shared_preferences/prefs_keys.dart';
@@ -10,8 +10,10 @@ class UserCubit extends Cubit<User?> {
   }
   Future<void> _init() async {
     final userJson = await _shared.getSecuredValue(key: PrefsKeys.userDetails);
-    final user = UserModel.fromJson(userJson).toEntity();
-    emit(user);
+    if (userJson != null) {
+      final user = UserModel.fromJson(userJson).toEntity();
+      emit(user);
+    }
   }
 
   final SharedPrefs _shared;
@@ -19,4 +21,3 @@ class UserCubit extends Cubit<User?> {
   void setUser(User? user) => emit(user);
   void deleteUser() => emit(null);
 }
-*/

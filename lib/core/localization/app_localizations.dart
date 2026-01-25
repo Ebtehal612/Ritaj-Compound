@@ -997,6 +997,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Has anyone seen my little kitten? Her name is Lulu, grey with white spots. She disappeared yesterday from the balcony.'**
   String get lostPost;
+
+  /// No description provided for @newDeliveryPermit.
+  ///
+  /// In en, this message translates to:
+  /// **'New Delivery Permit'**
+  String get newDeliveryPermit;
+
+  /// No description provided for @activeDeliveries.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Deliveries'**
+  String get activeDeliveries;
+
+  /// No description provided for @previousDeliveries.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Deliveries'**
+  String get previousDeliveries;
+
+  /// No description provided for @expectedArrival.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected Arrival'**
+  String get expectedArrival;
+
+  /// No description provided for @within15Min.
+  ///
+  /// In en, this message translates to:
+  /// **'Within 15 mins'**
+  String get within15Min;
+
+  /// No description provided for @within30Min.
+  ///
+  /// In en, this message translates to:
+  /// **'Within 30 mins'**
+  String get within30Min;
+
+  /// No description provided for @talonOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Talon Order'**
+  String get talonOrder;
+
+  /// No description provided for @amazon.
+  ///
+  /// In en, this message translates to:
+  /// **'Amazon'**
+  String get amazon;
+
+  /// No description provided for @noonOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Noon Order'**
+  String get noonOrder;
+
+  /// No description provided for @kosharyGeha.
+  ///
+  /// In en, this message translates to:
+  /// **'Koshary Geha'**
+  String get kosharyGeha;
+
+  /// No description provided for @enteredYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Entered yesterday {time}'**
+  String enteredYesterday(Object time);
+
+  /// No description provided for @enteredLastWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Entered last week'**
+  String get enteredLastWeek;
 }
 
 class _AppLocalizationsDelegate
