@@ -561,4 +561,190 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enteredLastWeek => 'Entered last week';
+
+  @override
+  String get complaintsAndReports => 'Complaints & Proposals';
+
+  @override
+  String get reportingProblem => 'Report a problem';
+
+  @override
+  String get financialoutlook => 'Financial Outlook';
+
+  @override
+  String get installmentsAndPayment => 'Installments and Payment';
+
+  @override
+  String get availableUnits => 'Available Units';
+
+  @override
+  String get unitsStore => 'Units Store';
+
+  @override
+  String get mallOrdering => 'Mall Ordering';
+
+  @override
+  String get nearbyMall => 'Nearby Mall';
+
+  @override
+  String get searchForProducts => 'Search for products...';
+
+  @override
+  String get grocery => 'Grocery';
+
+  @override
+  String get pharmacy => 'Pharmacy';
+
+  @override
+  String get restaurants => 'Restaurants';
+
+  @override
+  String get electronics => 'Electronics';
+
+  @override
+  String get featuredOffers => 'Featured Offers';
+
+  @override
+  String get discount20 => '20% Discount';
+
+  @override
+  String get onAllGrocery => 'On all grocery products';
+
+  @override
+  String get endsIn3Days => 'Ends in 3 days';
+
+  @override
+  String get availableStores => 'Available Stores';
+
+  @override
+  String get goodMarket => 'Good Market';
+
+  @override
+  String get freeDelivery => 'Free delivery for orders + 100 EGP';
+
+  @override
+  String get shopNow => 'Shop Now';
+
+  @override
+  String get alNaharPharmacy => 'Al-Nahar Pharmacy';
+
+  @override
+  String get medsAndPrescriptions => 'Meds & Prescriptions';
+
+  @override
+  String get alAsalaRestaurant => 'Al-Asala Restaurant';
+
+  @override
+  String get easternWesternFood => 'Eastern & Western Food';
+
+  @override
+  String get orderNow => 'Order Now';
+
+  @override
+  String get busy => 'Busy';
+
+  @override
+  String get techStore => 'Tech Store';
+
+  @override
+  String get opensTomorrow => 'Opens at 8:00 AM tomorrow';
+
+  @override
+  String get closed => 'Closed';
+
+  @override
+  String get open => 'Open';
+
+  @override
+  String get inProgress => 'In Progress';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get createNewComplaint => 'Create New Complaint';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get electricityOutage => 'Repeated Electricity Outage';
+
+  @override
+  String get electricityOutageDesc =>
+      'Continuous power outage on the fourth floor since yesterday';
+
+  @override
+  String get facilities => 'Facilities';
+
+  @override
+  String get sinceTwoDays => '2 days ago';
+
+  @override
+  String get buildingA => 'Building A';
+
+  @override
+  String get viewDetails => 'View Details';
+
+  @override
+  String get lateNoise => 'Late Night Noise';
+
+  @override
+  String get lateNoiseDesc =>
+      'Disturbance from the neighboring unit after midnight';
+
+  @override
+  String get security => 'Security';
+
+  @override
+  String get since3Days => '3 days ago';
+
+  @override
+  String get latestUpdateSecurity => 'Latest update from Security Team';
+
+  @override
+  String get contactedOwner =>
+      'Owner contacted, issue will be resolved within 24 hours';
+
+  @override
+  String get since2Hours => '2 hours ago';
+
+  @override
+  String get cleanHallways => 'Clean Hallways';
+
+  @override
+  String get cleanHallwaysDesc =>
+      'Request for extra cleaning of building hallways';
+
+  @override
+  String get cleanliness => 'Cleanliness';
+
+  @override
+  String get sinceWeek => 'A week ago';
+
+  @override
+  String get solvedSuccessfully => 'Solved Successfully';
+
+  @override
+  String get excellentRate => 'Excellent Rating';
+
+  @override
+  String get fastService =>
+      'Fast and distinguished service, thanks to the team';
+
+  @override
+  String get solvedInTwoDays => 'Solved in 2 days';
+
+  @override
+  String attachments(Object count) {
+    return '$count attachments';
+  }
+
+  @override
+  String comments(Object count) {
+    return '$count comments';
+  }
+
+  @override
+  String get minutes => 'minutes';
 }

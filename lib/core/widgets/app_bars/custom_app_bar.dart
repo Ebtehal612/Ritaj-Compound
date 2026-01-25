@@ -12,6 +12,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showBackButton = false,
     this.onBack,
     this.height = kToolbarHeight,
+    this.automaticallyImplyLeading = true,
   }) : assert(!(title != null && child != null));
   final String? title;
   final Widget? child;
@@ -19,10 +20,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool center;
   final double height;
   final bool showBackButton;
+  final bool automaticallyImplyLeading;
   final void Function()? onBack;
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: automaticallyImplyLeading,
       actions: actions,
       centerTitle: center,
       title: Builder(builder: (context) {

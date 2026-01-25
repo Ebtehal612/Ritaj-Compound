@@ -258,7 +258,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mohamedAli => 'محمد علي';
 
   @override
-  String get services => 'خدمات';
+  String get services => 'الخدمات';
 
   @override
   String get quickprocedures => 'الإجراءات السريعة';
@@ -561,4 +561,187 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get enteredLastWeek => 'دخلت الأسبوع الماضي';
+
+  @override
+  String get complaintsAndReports => 'الشكاوى والمقترحات';
+
+  @override
+  String get reportingProblem => 'الابلاغ عن مشكلة';
+
+  @override
+  String get financialoutlook => 'النظرة المالية';
+
+  @override
+  String get installmentsAndPayment => 'الاقساط والدفع';
+
+  @override
+  String get availableUnits => 'الوحدات المتاحة';
+
+  @override
+  String get unitsStore => 'متجر الوحدات';
+
+  @override
+  String get mallOrdering => 'طلب من المول';
+
+  @override
+  String get nearbyMall => 'المول المجاور';
+
+  @override
+  String get searchForProducts => 'ابحث عن المنتجات...';
+
+  @override
+  String get grocery => 'بقالة';
+
+  @override
+  String get pharmacy => 'صيدلية';
+
+  @override
+  String get restaurants => 'مطاعم';
+
+  @override
+  String get electronics => 'إلكترونيات';
+
+  @override
+  String get featuredOffers => 'العروض المميزة';
+
+  @override
+  String get discount20 => 'خصم 20 %';
+
+  @override
+  String get onAllGrocery => 'على جميع منتجات البقالة';
+
+  @override
+  String get endsIn3Days => 'ينتهي خلال 3 أيام';
+
+  @override
+  String get availableStores => 'المتاجر المتاحة';
+
+  @override
+  String get goodMarket => 'سوبر ماركت الخير';
+
+  @override
+  String get freeDelivery => 'توصيل مجاني للطلبات + 100 ج.م';
+
+  @override
+  String get shopNow => 'تسوق الآن';
+
+  @override
+  String get alNaharPharmacy => 'صيدلية النهار';
+
+  @override
+  String get medsAndPrescriptions => 'أدوية بوصفة وبدون وصفة';
+
+  @override
+  String get alAsalaRestaurant => 'مطعم الأصالة';
+
+  @override
+  String get easternWesternFood => 'مأكولات شرقية وغربية';
+
+  @override
+  String get orderNow => 'اطلب الآن';
+
+  @override
+  String get busy => 'مشغول';
+
+  @override
+  String get techStore => 'متجر التقنية';
+
+  @override
+  String get opensTomorrow => 'يفتح في 8:00 ص غداً';
+
+  @override
+  String get closed => 'مغلق';
+
+  @override
+  String get open => 'مفتوح';
+
+  @override
+  String get inProgress => 'قيد المعالجة';
+
+  @override
+  String get completed => 'مكتملة';
+
+  @override
+  String get createNewComplaint => 'إنشاء شكوى جديدة';
+
+  @override
+  String get all => 'الكل';
+
+  @override
+  String get electricityOutage => 'انقطاع الكهرباء المتكرر';
+
+  @override
+  String get electricityOutageDesc =>
+      'انقطاع مستمر في التيار الكهربائي في الطابق الرابع منذ أمس';
+
+  @override
+  String get facilities => 'مرافق';
+
+  @override
+  String get sinceTwoDays => 'منذ يومين';
+
+  @override
+  String get buildingA => 'مبنى A';
+
+  @override
+  String get viewDetails => 'عرض التفاصيل';
+
+  @override
+  String get lateNoise => 'ضوضاء في ساعات متأخرة';
+
+  @override
+  String get lateNoiseDesc => 'إزعاج من الوحدة المجاورة بعد منتصف الليل';
+
+  @override
+  String get security => 'أمن';
+
+  @override
+  String get since3Days => 'منذ 3 أيام';
+
+  @override
+  String get latestUpdateSecurity => 'آخر تحديث من فريق الأمن';
+
+  @override
+  String get contactedOwner =>
+      'تم التواصل مع المالك وسيتم حل المشكلة خلال 24 ساعة';
+
+  @override
+  String get since2Hours => 'منذ ساعتين';
+
+  @override
+  String get cleanHallways => 'تنظيف الممرات';
+
+  @override
+  String get cleanHallwaysDesc => 'طلب تنظيف إضافي للممرات في المبنى';
+
+  @override
+  String get cleanliness => 'نظافة';
+
+  @override
+  String get sinceWeek => 'منذ أسبوع';
+
+  @override
+  String get solvedSuccessfully => 'تم الحل بنجاح';
+
+  @override
+  String get excellentRate => 'تقييم ممتاز';
+
+  @override
+  String get fastService => 'خدمة سريعة ومميزة، شكراً للفريق';
+
+  @override
+  String get solvedInTwoDays => 'تم الحل في يومين';
+
+  @override
+  String attachments(Object count) {
+    return '$count مرفقات';
+  }
+
+  @override
+  String comments(Object count) {
+    return '$count تعليقات';
+  }
+
+  @override
+  String get minutes => 'دقيقة';
 }

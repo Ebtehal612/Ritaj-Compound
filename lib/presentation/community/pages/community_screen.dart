@@ -6,8 +6,8 @@ import 'package:ritaj_compound/core/localization/localization_manager.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/app_bars/custom_app_bar.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
-import 'package:ritaj_compound/presentation/community/widgits/groups_tab_content.dart';
-import 'package:ritaj_compound/presentation/community/widgits/lost_tab_content.dart';
+import 'package:ritaj_compound/presentation/community/widgets/groups_tab_content.dart';
+import 'package:ritaj_compound/presentation/community/widgets/lost_tab_content.dart';
 
 class CommunityScreen extends StatefulWidget {
   static const routeName = '/community';

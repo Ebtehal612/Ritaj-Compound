@@ -1069,6 +1069,360 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Entered last week'**
   String get enteredLastWeek;
+
+  /// No description provided for @complaintsAndReports.
+  ///
+  /// In en, this message translates to:
+  /// **'Complaints & Proposals'**
+  String get complaintsAndReports;
+
+  /// No description provided for @reportingProblem.
+  ///
+  /// In en, this message translates to:
+  /// **'Report a problem'**
+  String get reportingProblem;
+
+  /// No description provided for @financialoutlook.
+  ///
+  /// In en, this message translates to:
+  /// **'Financial Outlook'**
+  String get financialoutlook;
+
+  /// No description provided for @installmentsAndPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Installments and Payment'**
+  String get installmentsAndPayment;
+
+  /// No description provided for @availableUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Units'**
+  String get availableUnits;
+
+  /// No description provided for @unitsStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Units Store'**
+  String get unitsStore;
+
+  /// No description provided for @mallOrdering.
+  ///
+  /// In en, this message translates to:
+  /// **'Mall Ordering'**
+  String get mallOrdering;
+
+  /// No description provided for @nearbyMall.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby Mall'**
+  String get nearbyMall;
+
+  /// No description provided for @searchForProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for products...'**
+  String get searchForProducts;
+
+  /// No description provided for @grocery.
+  ///
+  /// In en, this message translates to:
+  /// **'Grocery'**
+  String get grocery;
+
+  /// No description provided for @pharmacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Pharmacy'**
+  String get pharmacy;
+
+  /// No description provided for @restaurants.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants'**
+  String get restaurants;
+
+  /// No description provided for @electronics.
+  ///
+  /// In en, this message translates to:
+  /// **'Electronics'**
+  String get electronics;
+
+  /// No description provided for @featuredOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured Offers'**
+  String get featuredOffers;
+
+  /// No description provided for @discount20.
+  ///
+  /// In en, this message translates to:
+  /// **'20% Discount'**
+  String get discount20;
+
+  /// No description provided for @onAllGrocery.
+  ///
+  /// In en, this message translates to:
+  /// **'On all grocery products'**
+  String get onAllGrocery;
+
+  /// No description provided for @endsIn3Days.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends in 3 days'**
+  String get endsIn3Days;
+
+  /// No description provided for @availableStores.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Stores'**
+  String get availableStores;
+
+  /// No description provided for @goodMarket.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Market'**
+  String get goodMarket;
+
+  /// No description provided for @freeDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Free delivery for orders + 100 EGP'**
+  String get freeDelivery;
+
+  /// No description provided for @shopNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop Now'**
+  String get shopNow;
+
+  /// No description provided for @alNaharPharmacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Al-Nahar Pharmacy'**
+  String get alNaharPharmacy;
+
+  /// No description provided for @medsAndPrescriptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Meds & Prescriptions'**
+  String get medsAndPrescriptions;
+
+  /// No description provided for @alAsalaRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Al-Asala Restaurant'**
+  String get alAsalaRestaurant;
+
+  /// No description provided for @easternWesternFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Eastern & Western Food'**
+  String get easternWesternFood;
+
+  /// No description provided for @orderNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Now'**
+  String get orderNow;
+
+  /// No description provided for @busy.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy'**
+  String get busy;
+
+  /// No description provided for @techStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Tech Store'**
+  String get techStore;
+
+  /// No description provided for @opensTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Opens at 8:00 AM tomorrow'**
+  String get opensTomorrow;
+
+  /// No description provided for @closed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get closed;
+
+  /// No description provided for @open.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get open;
+
+  /// No description provided for @inProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get inProgress;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @createNewComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'Create New Complaint'**
+  String get createNewComplaint;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @electricityOutage.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeated Electricity Outage'**
+  String get electricityOutage;
+
+  /// No description provided for @electricityOutageDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Continuous power outage on the fourth floor since yesterday'**
+  String get electricityOutageDesc;
+
+  /// No description provided for @facilities.
+  ///
+  /// In en, this message translates to:
+  /// **'Facilities'**
+  String get facilities;
+
+  /// No description provided for @sinceTwoDays.
+  ///
+  /// In en, this message translates to:
+  /// **'2 days ago'**
+  String get sinceTwoDays;
+
+  /// No description provided for @buildingA.
+  ///
+  /// In en, this message translates to:
+  /// **'Building A'**
+  String get buildingA;
+
+  /// No description provided for @viewDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'View Details'**
+  String get viewDetails;
+
+  /// No description provided for @lateNoise.
+  ///
+  /// In en, this message translates to:
+  /// **'Late Night Noise'**
+  String get lateNoise;
+
+  /// No description provided for @lateNoiseDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Disturbance from the neighboring unit after midnight'**
+  String get lateNoiseDesc;
+
+  /// No description provided for @security.
+  ///
+  /// In en, this message translates to:
+  /// **'Security'**
+  String get security;
+
+  /// No description provided for @since3Days.
+  ///
+  /// In en, this message translates to:
+  /// **'3 days ago'**
+  String get since3Days;
+
+  /// No description provided for @latestUpdateSecurity.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest update from Security Team'**
+  String get latestUpdateSecurity;
+
+  /// No description provided for @contactedOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'Owner contacted, issue will be resolved within 24 hours'**
+  String get contactedOwner;
+
+  /// No description provided for @since2Hours.
+  ///
+  /// In en, this message translates to:
+  /// **'2 hours ago'**
+  String get since2Hours;
+
+  /// No description provided for @cleanHallways.
+  ///
+  /// In en, this message translates to:
+  /// **'Clean Hallways'**
+  String get cleanHallways;
+
+  /// No description provided for @cleanHallwaysDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Request for extra cleaning of building hallways'**
+  String get cleanHallwaysDesc;
+
+  /// No description provided for @cleanliness.
+  ///
+  /// In en, this message translates to:
+  /// **'Cleanliness'**
+  String get cleanliness;
+
+  /// No description provided for @sinceWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'A week ago'**
+  String get sinceWeek;
+
+  /// No description provided for @solvedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Solved Successfully'**
+  String get solvedSuccessfully;
+
+  /// No description provided for @excellentRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Excellent Rating'**
+  String get excellentRate;
+
+  /// No description provided for @fastService.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast and distinguished service, thanks to the team'**
+  String get fastService;
+
+  /// No description provided for @solvedInTwoDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Solved in 2 days'**
+  String get solvedInTwoDays;
+
+  /// No description provided for @attachments.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} attachments'**
+  String attachments(Object count);
+
+  /// No description provided for @comments.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} comments'**
+  String comments(Object count);
+
+  /// No description provided for @minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'minutes'**
+  String get minutes;
 }
 
 class _AppLocalizationsDelegate

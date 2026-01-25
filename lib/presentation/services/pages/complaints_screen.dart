@@ -6,46 +6,46 @@ import 'package:ritaj_compound/core/localization/localization_manager.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/app_bars/custom_app_bar.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
-import 'package:ritaj_compound/presentation/services/widgets/services_dashboard.dart';
+import 'package:ritaj_compound/presentation/services/widgets/complaints_content.dart';
 
-class ServicesScreen extends StatefulWidget {
-  static const routeName = '/services';
-  const ServicesScreen({super.key});
+class ComplaintsScreen extends StatelessWidget {
+  const ComplaintsScreen({super.key});
 
-  @override
-  State<ServicesScreen> createState() => _ServicesScreenState();
-}
-
-class _ServicesScreenState extends State<ServicesScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: CustomAppBar(
         height: 60.h,
+        automaticallyImplyLeading: false,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Icon(Icons.arrow_back_ios),
-            10.horizontalSpace,
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText.s18(
-                  l10n.services,
-                  bold: true,
-                ),
-                SizedBox(
-                  width: 100.w,
-                  child: CustomText.s14(
-                    l10n.unitNumber('A-305'),
-                  ),
-                ),
-              ],
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: const Icon(Icons.arrow_back_ios),
             ),
-            const Spacer(),
+            10.horizontalSpace,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText.s18(
+                    l10n.complaintsAndReports,
+                    bold: true,
+                    overflow: true,
+                  ),
+                  SizedBox(
+                    width: 100.w,
+                    child: CustomText.s14(
+                      l10n.unitNumber('A-305'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             const Icon(Icons.notifications),
             5.horizontalSpace,
             CircleAvatar(
@@ -78,7 +78,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
           ],
         ),
       ),
-      body: const ServicesDashboard(),
+      body: const ComplaintsContent(),
     );
   }
 }
