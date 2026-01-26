@@ -42,10 +42,11 @@ class _PermitsScreenState extends State<PermitsScreen> {
                   5.verticalSpace,
                   SizedBox(
                     width: 100.w,
-                    child: CustomText.s11(
+                    child: CustomText.s12(
                       l10n.visitormanagementanddelivery,
                       maxLines: 1,
                       overflow: true,
+                      color: Palette.neutral.color7
                     ),
                   ),
                 ],

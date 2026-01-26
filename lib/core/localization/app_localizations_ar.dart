@@ -744,4 +744,260 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get minutes => 'دقيقة';
+
+  @override
+  String get medicalServices => 'الخدمات الطبية';
+
+  @override
+  String get clinicAndPharmacy => 'عيادات وصيدليات';
+
+  @override
+  String get technicalSupport => 'الدعم الفني';
+
+  @override
+  String get maintenanceRequest => 'طلب صيانة';
+
+  @override
+  String get overviewOfInstallments => 'نظرة على الأقساط';
+
+  @override
+  String get paid => 'مدفوعة';
+
+  @override
+  String get pending => 'معلقة';
+
+  @override
+  String needsPayment(Object count) {
+    return '$count تحتاج دفع';
+  }
+
+  @override
+  String fromTotalInstallments(Object count) {
+    return 'من أصل $count قسط';
+  }
+
+  @override
+  String get servicesInstallment => 'قسط الخدمات';
+
+  @override
+  String get dueToday => 'مستحق اليوم';
+
+  @override
+  String get payNow => 'ادفع الآن';
+
+  @override
+  String get maintenanceInstallment => 'قسط الصيانة';
+
+  @override
+  String lateDays(Object count) {
+    return 'متأخر $count أيام';
+  }
+
+  @override
+  String get payImmediately => 'ادفع فوراً';
+
+  @override
+  String lateFees(Object amount) {
+    return '+ $amount ج.م رسوم تأخير';
+  }
+
+  @override
+  String get paymentMethods => 'طرق الدفع';
+
+  @override
+  String get addCard => 'إضافة بطاقة';
+
+  @override
+  String get virtualCard => 'بطاقة افتراضية';
+
+  @override
+  String get paymentFromWallet => 'الدفع من المحفظة';
+
+  @override
+  String get recentTransactions => 'المعاملات الأخيرة';
+
+  @override
+  String get gymSubscription => 'اشتراك الجيم';
+
+  @override
+  String get mallOrder => 'طلب من المول';
+
+  @override
+  String get electricityBill => 'فاتورة الكهرباء';
+
+  @override
+  String get due => 'مستحق';
+
+  @override
+  String get late => 'متأخر';
+
+  @override
+  String get defaultLabel => 'افتراضي';
+
+  @override
+  String yesterdayAt(Object time) {
+    return 'أمس، $time';
+  }
+
+  @override
+  String daysAgo(Object count) {
+    return 'منذ $count أيام';
+  }
+
+  @override
+  String get egp => 'ج.م';
+
+  @override
+  String get paymentDetail => 'عرض التفاصيل';
+
+  @override
+  String unitsFound(Object count) {
+    return 'تم العثور على $count وحدة';
+  }
+
+  @override
+  String get sortByPrice => 'ترتيب حسب السعر';
+
+  @override
+  String unit(Object name) {
+    return 'وحدة $name';
+  }
+
+  @override
+  String tower(Object name) {
+    return 'البرج $name';
+  }
+
+  @override
+  String floor(Object name) {
+    return 'الدور $name';
+  }
+
+  @override
+  String rooms(Object count) {
+    return '$count غرف';
+  }
+
+  @override
+  String bathrooms(Object count) {
+    return '$count حمام';
+  }
+
+  @override
+  String area(Object size) {
+    return '$size م²';
+  }
+
+  @override
+  String pricePerMeter(Object amount) {
+    return 'للمتر $amount ج.م';
+  }
+
+  @override
+  String get gardenView => 'إطلالة على الحديقة';
+
+  @override
+  String get balcony => 'بلكونة';
+
+  @override
+  String get corner => 'ركنية';
+
+  @override
+  String get bookNow => 'احجز الآن';
+
+  @override
+  String get waitingList => 'قائمة الانتظار';
+
+  @override
+  String reservedUntil(Object date) {
+    return 'محجوزة حتى $date';
+  }
+
+  @override
+  String get unitNotAvailable => 'هذه الوحدة غير متاحة';
+
+  @override
+  String get joinWaitingList => 'انضم لقائمة الانتظار';
+
+  @override
+  String get viewMoreUnits => 'عرض المزيد من الوحدات';
+
+  @override
+  String get featured => 'مميزة';
+
+  @override
+  String get reserved => 'محجوزة';
+
+  @override
+  String get sold => 'مباعة';
+
+  @override
+  String get doctors => 'أطباء';
+
+  @override
+  String get clinics => 'عيادات';
+
+  @override
+  String get lab => 'معامل طبية';
+
+  @override
+  String get pharmacies => 'صيدليات';
+
+  @override
+  String get medicalCenters => 'مراكز طبية';
+
+  @override
+  String get searchMedical => 'ابحث عن طبيب أو خدمة..';
+
+  @override
+  String get topDoctors => 'الأطباء الأعلى تقييماً';
+
+  @override
+  String get bookSelection => 'حجز موعد';
+
+  @override
+  String get specialtyCardio => 'اخصائي قلب';
+
+  @override
+  String get specialtyDento => 'اخصائي أسنان';
+
+  @override
+  String get specialtyNeuro => 'اخصائي أعصاب';
+
+  @override
+  String get specialtyPediatrics => 'اخصائي أطفال';
+
+  @override
+  String distance(Object amount) {
+    return 'على بعد $amount كم';
+  }
+
+  @override
+  String rating(Object count, Object score) {
+    return '$score ($count تقييم)';
+  }
+
+  @override
+  String get electrician => 'فني كهرباء';
+
+  @override
+  String get plumber => 'سباك';
+
+  @override
+  String get carpenter => 'نجار';
+
+  @override
+  String get acTechnician => 'فني تكييف';
+
+  @override
+  String get painter => 'نقاش';
+
+  @override
+  String get specialist => 'فني متخصص';
+
+  @override
+  String get bookService => 'حجز خدمة';
+
+  @override
+  String get technicalSupportDesc => 'صيانة وإصلاحات';
 }

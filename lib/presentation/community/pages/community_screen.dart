@@ -42,11 +42,10 @@ class _CommunityScreenState extends State<CommunityScreen> {
                   5.verticalSpace,
                   SizedBox(
                     width: 100.w,
-                    child: CustomText.s11(
-                      l10n.contactneighbors,
-                      maxLines: 1,
-                      overflow: true,
-                    ),
+                    child: CustomText.s12(l10n.contactneighbors,
+                        maxLines: 1,
+                        overflow: true,
+                        color: Palette.neutral.color7),
                   ),
                 ],
               ),

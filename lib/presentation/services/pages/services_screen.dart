@@ -37,10 +37,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   l10n.services,
                   bold: true,
                 ),
+                5.verticalSpace,
                 SizedBox(
                   width: 100.w,
-                  child: CustomText.s14(
+                  child: CustomText.s12(
                     l10n.unitNumber('A-305'),
+                    color: Palette.neutral.color7
                   ),
                 ),
               ],

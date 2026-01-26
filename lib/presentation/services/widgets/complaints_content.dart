@@ -14,6 +14,13 @@ class ComplaintsContent extends StatefulWidget {
 class _ComplaintsContentState extends State<ComplaintsContent> {
   int _selectedFilterIndex = 0; // 0: All, 1: Open, 2: InProgress, 3: Completed
 
+  @override
+  void initState() {
+    super.initState();
+    // Reset to default filter (All) when widget is created
+    _selectedFilterIndex = 0;
+  }
+
   void _onFilterSelected(int index) {
     setState(() {
       _selectedFilterIndex = index;

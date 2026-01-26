@@ -90,7 +90,7 @@ class _QuickPermitCard extends StatelessWidget {
               width: 295.w,
               child: ElevatedButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.person_add_alt_1),
+                icon: const Icon(Icons.person_add_alt_1,size: 25,),
                 label: Text(l10n.newVisitorPermit),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white.withOpacity(0.2),

@@ -747,4 +747,260 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get minutes => 'minutes';
+
+  @override
+  String get medicalServices => 'Medical Services';
+
+  @override
+  String get clinicAndPharmacy => 'Clinics & Pharmacy';
+
+  @override
+  String get technicalSupport => 'Technical Support';
+
+  @override
+  String get maintenanceRequest => 'Maintenance Request';
+
+  @override
+  String get overviewOfInstallments => 'Overview of Installments';
+
+  @override
+  String get paid => 'Paid';
+
+  @override
+  String get pending => 'Pending';
+
+  @override
+  String needsPayment(Object count) {
+    return '$count Needs payment';
+  }
+
+  @override
+  String fromTotalInstallments(Object count) {
+    return 'from $count installments';
+  }
+
+  @override
+  String get servicesInstallment => 'Services Installment';
+
+  @override
+  String get dueToday => 'Due Today';
+
+  @override
+  String get payNow => 'Pay Now';
+
+  @override
+  String get maintenanceInstallment => 'Maintenance Installment';
+
+  @override
+  String lateDays(Object count) {
+    return 'Late $count days';
+  }
+
+  @override
+  String get payImmediately => 'Pay Immediately';
+
+  @override
+  String lateFees(Object amount) {
+    return '+ $amount EGP Late fees';
+  }
+
+  @override
+  String get paymentMethods => 'Payment Methods';
+
+  @override
+  String get addCard => 'Add Card';
+
+  @override
+  String get virtualCard => 'Virtual Card';
+
+  @override
+  String get paymentFromWallet => 'Payment from Wallet';
+
+  @override
+  String get recentTransactions => 'Recent Transactions';
+
+  @override
+  String get gymSubscription => 'Gym Subscription';
+
+  @override
+  String get mallOrder => 'Mall Order';
+
+  @override
+  String get electricityBill => 'Electricity Bill';
+
+  @override
+  String get due => 'Due';
+
+  @override
+  String get late => 'Late';
+
+  @override
+  String get defaultLabel => 'Default';
+
+  @override
+  String yesterdayAt(Object time) {
+    return 'Yesterday, $time';
+  }
+
+  @override
+  String daysAgo(Object count) {
+    return '$count days ago';
+  }
+
+  @override
+  String get egp => 'EGP';
+
+  @override
+  String get paymentDetail => 'Payment Detail';
+
+  @override
+  String unitsFound(Object count) {
+    return '$count units found';
+  }
+
+  @override
+  String get sortByPrice => 'Sort by Price';
+
+  @override
+  String unit(Object name) {
+    return 'Unit $name';
+  }
+
+  @override
+  String tower(Object name) {
+    return 'Tower $name';
+  }
+
+  @override
+  String floor(Object name) {
+    return 'Floor $name';
+  }
+
+  @override
+  String rooms(Object count) {
+    return '$count Rooms';
+  }
+
+  @override
+  String bathrooms(Object count) {
+    return '$count Bathrooms';
+  }
+
+  @override
+  String area(Object size) {
+    return '$size m²';
+  }
+
+  @override
+  String pricePerMeter(Object amount) {
+    return '$amount / m²';
+  }
+
+  @override
+  String get gardenView => 'Garden View';
+
+  @override
+  String get balcony => 'Balcony';
+
+  @override
+  String get corner => 'Corner';
+
+  @override
+  String get bookNow => 'Book Now';
+
+  @override
+  String get waitingList => 'Waiting List';
+
+  @override
+  String reservedUntil(Object date) {
+    return 'Reserved until $date';
+  }
+
+  @override
+  String get unitNotAvailable => 'This unit is not available';
+
+  @override
+  String get joinWaitingList => 'Join Waiting List';
+
+  @override
+  String get viewMoreUnits => 'View more units';
+
+  @override
+  String get featured => 'Featured';
+
+  @override
+  String get reserved => 'Reserved';
+
+  @override
+  String get sold => 'Sold';
+
+  @override
+  String get doctors => 'Doctors';
+
+  @override
+  String get clinics => 'Clinics';
+
+  @override
+  String get lab => 'Medical Lab';
+
+  @override
+  String get pharmacies => 'Pharmacies';
+
+  @override
+  String get medicalCenters => 'Medical Centers';
+
+  @override
+  String get searchMedical => 'Search for doctors or services';
+
+  @override
+  String get topDoctors => 'Top Rated Doctors';
+
+  @override
+  String get bookSelection => 'Book Now';
+
+  @override
+  String get specialtyCardio => 'Cardiologist';
+
+  @override
+  String get specialtyDento => 'Dentist';
+
+  @override
+  String get specialtyNeuro => 'Neurologist';
+
+  @override
+  String get specialtyPediatrics => 'Pediatrician';
+
+  @override
+  String distance(Object amount) {
+    return '$amount km away';
+  }
+
+  @override
+  String rating(Object count, Object score) {
+    return '$score ($count reviews)';
+  }
+
+  @override
+  String get electrician => 'Electrician';
+
+  @override
+  String get plumber => 'Plumber';
+
+  @override
+  String get carpenter => 'Carpenter';
+
+  @override
+  String get acTechnician => 'AC Technician';
+
+  @override
+  String get painter => 'Painter';
+
+  @override
+  String get specialist => 'Specialist';
+
+  @override
+  String get bookService => 'Book Service';
+
+  @override
+  String get technicalSupportDesc => 'Maintenance & Repairs';
 }

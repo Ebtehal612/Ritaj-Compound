@@ -38,8 +38,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
               children: [
                 CustomText.s18(
                     AppLocalizations.of(context)!.helloUser("Ahmed"),bold: true,),
-                CustomText.s14(
-                    AppLocalizations.of(context)!.unitNumber("A-402")),
+                    5.verticalSpace,
+                CustomText.s12(
+                    AppLocalizations.of(context)!.unitNumber("A-402"),color: Palette.neutral.color7),
               ],
             ),
             const Spacer(),

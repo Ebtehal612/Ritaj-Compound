@@ -100,7 +100,7 @@ class _QuickDeliveryPermitCard extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.person_add_alt_1),
+                icon: const Icon(Icons.delivery_dining,size: 25,),
                 label: Text(l10n.newDeliveryPermit),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white.withOpacity(0.2),

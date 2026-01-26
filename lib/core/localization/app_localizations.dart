@@ -1423,6 +1423,450 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'minutes'**
   String get minutes;
+
+  /// No description provided for @medicalServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical Services'**
+  String get medicalServices;
+
+  /// No description provided for @clinicAndPharmacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinics & Pharmacy'**
+  String get clinicAndPharmacy;
+
+  /// No description provided for @technicalSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Technical Support'**
+  String get technicalSupport;
+
+  /// No description provided for @maintenanceRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintenance Request'**
+  String get maintenanceRequest;
+
+  /// No description provided for @overviewOfInstallments.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview of Installments'**
+  String get overviewOfInstallments;
+
+  /// No description provided for @paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get paid;
+
+  /// No description provided for @pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get pending;
+
+  /// No description provided for @needsPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Needs payment'**
+  String needsPayment(Object count);
+
+  /// No description provided for @fromTotalInstallments.
+  ///
+  /// In en, this message translates to:
+  /// **'from {count} installments'**
+  String fromTotalInstallments(Object count);
+
+  /// No description provided for @servicesInstallment.
+  ///
+  /// In en, this message translates to:
+  /// **'Services Installment'**
+  String get servicesInstallment;
+
+  /// No description provided for @dueToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Due Today'**
+  String get dueToday;
+
+  /// No description provided for @payNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay Now'**
+  String get payNow;
+
+  /// No description provided for @maintenanceInstallment.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintenance Installment'**
+  String get maintenanceInstallment;
+
+  /// No description provided for @lateDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Late {count} days'**
+  String lateDays(Object count);
+
+  /// No description provided for @payImmediately.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay Immediately'**
+  String get payImmediately;
+
+  /// No description provided for @lateFees.
+  ///
+  /// In en, this message translates to:
+  /// **'+ {amount} EGP Late fees'**
+  String lateFees(Object amount);
+
+  /// No description provided for @paymentMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Methods'**
+  String get paymentMethods;
+
+  /// No description provided for @addCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Card'**
+  String get addCard;
+
+  /// No description provided for @virtualCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Virtual Card'**
+  String get virtualCard;
+
+  /// No description provided for @paymentFromWallet.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment from Wallet'**
+  String get paymentFromWallet;
+
+  /// No description provided for @recentTransactions.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Transactions'**
+  String get recentTransactions;
+
+  /// No description provided for @gymSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Gym Subscription'**
+  String get gymSubscription;
+
+  /// No description provided for @mallOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Mall Order'**
+  String get mallOrder;
+
+  /// No description provided for @electricityBill.
+  ///
+  /// In en, this message translates to:
+  /// **'Electricity Bill'**
+  String get electricityBill;
+
+  /// No description provided for @due.
+  ///
+  /// In en, this message translates to:
+  /// **'Due'**
+  String get due;
+
+  /// No description provided for @late.
+  ///
+  /// In en, this message translates to:
+  /// **'Late'**
+  String get late;
+
+  /// No description provided for @defaultLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get defaultLabel;
+
+  /// No description provided for @yesterdayAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday, {time}'**
+  String yesterdayAt(Object time);
+
+  /// No description provided for @daysAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days ago'**
+  String daysAgo(Object count);
+
+  /// No description provided for @egp.
+  ///
+  /// In en, this message translates to:
+  /// **'EGP'**
+  String get egp;
+
+  /// No description provided for @paymentDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Detail'**
+  String get paymentDetail;
+
+  /// No description provided for @unitsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} units found'**
+  String unitsFound(Object count);
+
+  /// No description provided for @sortByPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by Price'**
+  String get sortByPrice;
+
+  /// No description provided for @unit.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit {name}'**
+  String unit(Object name);
+
+  /// No description provided for @tower.
+  ///
+  /// In en, this message translates to:
+  /// **'Tower {name}'**
+  String tower(Object name);
+
+  /// No description provided for @floor.
+  ///
+  /// In en, this message translates to:
+  /// **'Floor {name}'**
+  String floor(Object name);
+
+  /// No description provided for @rooms.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Rooms'**
+  String rooms(Object count);
+
+  /// No description provided for @bathrooms.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Bathrooms'**
+  String bathrooms(Object count);
+
+  /// No description provided for @area.
+  ///
+  /// In en, this message translates to:
+  /// **'{size} m²'**
+  String area(Object size);
+
+  /// No description provided for @pricePerMeter.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} / m²'**
+  String pricePerMeter(Object amount);
+
+  /// No description provided for @gardenView.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden View'**
+  String get gardenView;
+
+  /// No description provided for @balcony.
+  ///
+  /// In en, this message translates to:
+  /// **'Balcony'**
+  String get balcony;
+
+  /// No description provided for @corner.
+  ///
+  /// In en, this message translates to:
+  /// **'Corner'**
+  String get corner;
+
+  /// No description provided for @bookNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Book Now'**
+  String get bookNow;
+
+  /// No description provided for @waitingList.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting List'**
+  String get waitingList;
+
+  /// No description provided for @reservedUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved until {date}'**
+  String reservedUntil(Object date);
+
+  /// No description provided for @unitNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This unit is not available'**
+  String get unitNotAvailable;
+
+  /// No description provided for @joinWaitingList.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Waiting List'**
+  String get joinWaitingList;
+
+  /// No description provided for @viewMoreUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'View more units'**
+  String get viewMoreUnits;
+
+  /// No description provided for @featured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get featured;
+
+  /// No description provided for @reserved.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved'**
+  String get reserved;
+
+  /// No description provided for @sold.
+  ///
+  /// In en, this message translates to:
+  /// **'Sold'**
+  String get sold;
+
+  /// No description provided for @doctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctors'**
+  String get doctors;
+
+  /// No description provided for @clinics.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinics'**
+  String get clinics;
+
+  /// No description provided for @lab.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical Lab'**
+  String get lab;
+
+  /// No description provided for @pharmacies.
+  ///
+  /// In en, this message translates to:
+  /// **'Pharmacies'**
+  String get pharmacies;
+
+  /// No description provided for @medicalCenters.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical Centers'**
+  String get medicalCenters;
+
+  /// No description provided for @searchMedical.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for doctors or services'**
+  String get searchMedical;
+
+  /// No description provided for @topDoctors.
+  ///
+  /// In en, this message translates to:
+  /// **'Top Rated Doctors'**
+  String get topDoctors;
+
+  /// No description provided for @bookSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'Book Now'**
+  String get bookSelection;
+
+  /// No description provided for @specialtyCardio.
+  ///
+  /// In en, this message translates to:
+  /// **'Cardiologist'**
+  String get specialtyCardio;
+
+  /// No description provided for @specialtyDento.
+  ///
+  /// In en, this message translates to:
+  /// **'Dentist'**
+  String get specialtyDento;
+
+  /// No description provided for @specialtyNeuro.
+  ///
+  /// In en, this message translates to:
+  /// **'Neurologist'**
+  String get specialtyNeuro;
+
+  /// No description provided for @specialtyPediatrics.
+  ///
+  /// In en, this message translates to:
+  /// **'Pediatrician'**
+  String get specialtyPediatrics;
+
+  /// No description provided for @distance.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} km away'**
+  String distance(Object amount);
+
+  /// No description provided for @rating.
+  ///
+  /// In en, this message translates to:
+  /// **'{score} ({count} reviews)'**
+  String rating(Object count, Object score);
+
+  /// No description provided for @electrician.
+  ///
+  /// In en, this message translates to:
+  /// **'Electrician'**
+  String get electrician;
+
+  /// No description provided for @plumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Plumber'**
+  String get plumber;
+
+  /// No description provided for @carpenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Carpenter'**
+  String get carpenter;
+
+  /// No description provided for @acTechnician.
+  ///
+  /// In en, this message translates to:
+  /// **'AC Technician'**
+  String get acTechnician;
+
+  /// No description provided for @painter.
+  ///
+  /// In en, this message translates to:
+  /// **'Painter'**
+  String get painter;
+
+  /// No description provided for @specialist.
+  ///
+  /// In en, this message translates to:
+  /// **'Specialist'**
+  String get specialist;
+
+  /// No description provided for @bookService.
+  ///
+  /// In en, this message translates to:
+  /// **'Book Service'**
+  String get bookService;
+
+  /// No description provided for @technicalSupportDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintenance & Repairs'**
+  String get technicalSupportDesc;
 }
 
 class _AppLocalizationsDelegate

@@ -6,10 +6,10 @@ import 'package:ritaj_compound/core/localization/localization_manager.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/app_bars/custom_app_bar.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
-import 'package:ritaj_compound/presentation/services/widgets/complaints_content.dart';
+import 'package:ritaj_compound/presentation/services/widgets/financial_overview_content.dart';
 
-class ComplaintsScreen extends StatelessWidget {
-  const ComplaintsScreen({super.key});
+class FinancialOverviewScreen extends StatelessWidget {
+  const FinancialOverviewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,6 @@ class ComplaintsScreen extends StatelessWidget {
         height: 60.h,
         automaticallyImplyLeading: false,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             GestureDetector(
               onTap: () => Navigator.pop(context),
@@ -33,29 +31,19 @@ class ComplaintsScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText.s18(
-                    l10n.complaintsAndReports,
+                    l10n.financialoutlook,
                     bold: true,
+                    maxLines: 1,
                     overflow: true,
                   ),
                   5.verticalSpace,
-                  SizedBox(
-                    width: 100.w,
-                    child: CustomText.s12(
-                      l10n.unitNumber('A-305'),
-                      color: Palette.neutral.color7
-                    ),
+                  CustomText.s12(
+                    l10n.installmentsAndPayment,
+                    color: Palette.neutral.color7,
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.notifications),
-            5.horizontalSpace,
-            CircleAvatar(
-              radius: 20.r,
-              backgroundColor: Palette.green.shade700,
-              child: const Icon(Icons.person, color: Colors.white),
-            ),
-            5.horizontalSpace,
             BlocBuilder<LocaleCubit, Locale>(
               builder: (context, state) {
                 return Switch(
@@ -80,7 +68,7 @@ class ComplaintsScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: const ComplaintsContent(),
+      body: const FinancialOverviewContent(),
     );
   }
 }

@@ -3,8 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
+import 'package:ritaj_compound/presentation/services/pages/medical_services_screen.dart';
+import 'package:ritaj_compound/presentation/services/pages/available_units_screen.dart';
 import 'package:ritaj_compound/presentation/services/pages/complaints_screen.dart';
+import 'package:ritaj_compound/presentation/services/pages/financial_overview_screen.dart';
 import 'package:ritaj_compound/presentation/services/pages/mall_ordering_screen.dart';
+import 'package:ritaj_compound/presentation/services/pages/technical_support_screen.dart';
 
 class ServicesDashboard extends StatelessWidget {
   const ServicesDashboard({super.key});
@@ -27,7 +31,11 @@ class ServicesDashboard extends StatelessWidget {
                   iconColor: Palette.lightBlue.shade500, // Using blue shade
                   iconBgColor: Palette.lightBlue.shade50,
                   onTap: () {
-                    // Navigate to Financial Outlook if needed
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const FinancialOverviewScreen(),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -77,7 +85,51 @@ class ServicesDashboard extends StatelessWidget {
                   icon: Icons.apartment,
                   iconColor: Palette.purple.shade500,
                   iconBgColor: Palette.purple.shade50,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AvailableUnitsScreen(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+          20.verticalSpace,
+          Row(
+            children: [
+              Expanded(
+                child: _ServiceCard(
+                  title: l10n.medicalServices,
+                  subtitle: l10n.clinicAndPharmacy,
+                  icon: Icons.medical_services,
+                  iconColor: Palette.green.shade500,
+                  iconBgColor: Palette.green.shade50,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const MedicalServicesScreen(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              20.horizontalSpace,
+              Expanded(
+                child: _ServiceCard(
+                  title: l10n.technicalSupport,
+                  subtitle: l10n.technicalSupportDesc,
+                  icon: Icons.construction,
+                  iconColor: Palette.fayrouz.shade500,
+                  iconBgColor: Palette.fayrouz.shade50,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const TechnicalSupportScreen(),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
@@ -146,7 +198,6 @@ class _ServiceCard extends StatelessWidget {
                 overflow: true,
               ),
               4.verticalSpace,
-
               Expanded(
                 child: CustomText.s12(
                   subtitle,
