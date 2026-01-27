@@ -309,7 +309,7 @@ class PostCard extends StatelessWidget {
                   children: [
                     CustomText.s14(post.author, bold: true),
                     CustomText.s12(
-                      '${l10n.unitNumber(post.unit)}  •  ${post.time}',
+                      '${l10n.unitLabel(post.unit)}  •  ${post.time}',
                       color: Palette.neutral.color5,
                     ),
                   ],

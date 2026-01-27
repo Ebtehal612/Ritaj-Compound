@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
+import 'package:ritaj_compound/presentation/permits/pages/quick_visitors_permit.dart';
 
 class VisitorsTabContent extends StatelessWidget {
   @override
@@ -89,7 +91,9 @@ class _QuickPermitCard extends StatelessWidget {
             SizedBox(
               width: 295.w,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  context.push(QuickVisitorsPermit.routeName);
+                },
                 icon: const Icon(Icons.person_add_alt_1,size: 25,),
                 label: Text(l10n.newVisitorPermit),
                 style: ElevatedButton.styleFrom(

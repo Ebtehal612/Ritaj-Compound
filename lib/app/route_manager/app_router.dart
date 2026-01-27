@@ -3,6 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/presentation/home_page/pages/home_page_screen.dart';
 import 'package:ritaj_compound/presentation/login/pages/login_screen.dart';
 import 'package:ritaj_compound/presentation/login/pages/verification_code_screen.dart';
+import 'package:ritaj_compound/presentation/more/pages/rentals_and_guests_screen.dart';
+import 'package:ritaj_compound/presentation/permits/pages/quick_delivery_permit.dart';
+import 'package:ritaj_compound/presentation/permits/pages/quick_visitors_permit.dart';
 import 'package:ritaj_compound/presentation/splash/splash_screen.dart';
 import '../../core/shared_preferences/prefs_keys.dart';
 import '../../core/shared_preferences/shared_prefs.dart';
@@ -27,8 +30,9 @@ class AppRouter {
     if (user != null) {
       return SplashScreen.routeName;
     } else {
-      return SplashScreen.routeName; // Always start with splash, splash decides where to go
-    } 
+      return SplashScreen
+          .routeName; // Always start with splash, splash decides where to go
+    }
   }
 
   late final router = GoRouter(
@@ -58,14 +62,14 @@ class AppRouter {
         name: VerificationCodeScreen.routeName,
         path: VerificationCodeScreen.routeName,
         pageBuilder: (_, state) => _buildPageWithTransition(
-           BlocProvider(
+          BlocProvider(
             create: (context) => sl<LoginCubit>(),
             child: VerificationCodeScreen(phone: state.extra as String),
           ),
           state,
         ),
       ),
-       StatefulShellRoute.indexedStack(
+      StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return BottomBar(navigationShell: navigationShell);
         },
@@ -121,6 +125,40 @@ class AppRouter {
                 path: MoreScreen.routeName,
                 pageBuilder: (context, state) => const NoTransitionPage(
                   child: MoreScreen(),
+                ),
+                routes: [
+                  GoRoute(
+                    name: RentalsAndGuestsScreen.routeName,
+                    path: 'rentals-guests',
+                    pageBuilder: (context, state) => _buildPageWithTransition(
+                      const RentalsAndGuestsScreen(),
+                      state,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: QuickVisitorsPermit.routeName,
+                path: QuickVisitorsPermit.routeName,
+                pageBuilder: (context, state) => _buildPageWithTransition(
+                  const QuickVisitorsPermit(),
+                  state,
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: QuickDeliveryPermit.routeName,
+                path: QuickDeliveryPermit.routeName,
+                pageBuilder: (context, state) => _buildPageWithTransition(
+                  const QuickDeliveryPermit(),
+                  state,
                 ),
               ),
             ],

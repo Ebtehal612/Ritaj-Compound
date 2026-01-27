@@ -440,11 +440,11 @@ abstract class AppLocalizations {
   /// **'Hello {username}'**
   String helloUser(Object username);
 
-  /// No description provided for @unitNumber.
+  /// No description provided for @unitLabel.
   ///
   /// In en, this message translates to:
   /// **'Unit {unit}'**
-  String unitNumber(Object unit);
+  String unitLabel(Object unit);
 
   /// No description provided for @expectedVisitor.
   ///
@@ -1867,6 +1867,462 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Maintenance & Repairs'**
   String get technicalSupportDesc;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @personalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get personalInfo;
+
+  /// No description provided for @unitDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit Details'**
+  String get unitDetails;
+
+  /// No description provided for @familyMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Family Members'**
+  String get familyMembers;
+
+  /// No description provided for @vehicles.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicles'**
+  String get vehicles;
+
+  /// No description provided for @ownedApartments.
+  ///
+  /// In en, this message translates to:
+  /// **'Owned Apartments'**
+  String get ownedApartments;
+
+  /// No description provided for @issues.
+  ///
+  /// In en, this message translates to:
+  /// **'Issues'**
+  String get issues;
+
+  /// No description provided for @serviceRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Service Requests'**
+  String get serviceRequests;
+
+  /// No description provided for @unitOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit Owner'**
+  String get unitOwner;
+
+  /// No description provided for @emailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get emailAddress;
+
+  /// No description provided for @nationalIdNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'National ID Number'**
+  String get nationalIdNumber;
+
+  /// No description provided for @birthDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Birth Date'**
+  String get birthDate;
+
+  /// No description provided for @unitNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit Number'**
+  String get unitNumber;
+
+  /// No description provided for @floorNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Floor'**
+  String get floorNumber;
+
+  /// No description provided for @unitArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Area'**
+  String get unitArea;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// No description provided for @handoverDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Handover Date'**
+  String get handoverDate;
+
+  /// No description provided for @fourthFloor.
+  ///
+  /// In en, this message translates to:
+  /// **'Fourth Floor'**
+  String get fourthFloor;
+
+  /// No description provided for @squareMeters.
+  ///
+  /// In en, this message translates to:
+  /// **'square meters'**
+  String get squareMeters;
+
+  /// No description provided for @riyadh.
+  ///
+  /// In en, this message translates to:
+  /// **'Riyadh'**
+  String get riyadh;
+
+  /// No description provided for @wife.
+  ///
+  /// In en, this message translates to:
+  /// **'Wife'**
+  String get wife;
+
+  /// No description provided for @son.
+  ///
+  /// In en, this message translates to:
+  /// **'Son'**
+  String get son;
+
+  /// No description provided for @years.
+  ///
+  /// In en, this message translates to:
+  /// **'years'**
+  String get years;
+
+  /// No description provided for @toyota.
+  ///
+  /// In en, this message translates to:
+  /// **'Toyota Camry 2020'**
+  String get toyota;
+
+  /// No description provided for @motorcycle.
+  ///
+  /// In en, this message translates to:
+  /// **'Honda Motorcycle'**
+  String get motorcycle;
+
+  /// No description provided for @rentalsAndGuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Rentals & Guests'**
+  String get rentalsAndGuests;
+
+  /// No description provided for @rentalStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Rental Status'**
+  String get rentalStatus;
+
+  /// No description provided for @startDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Date'**
+  String get startDate;
+
+  /// No description provided for @endDate.
+  ///
+  /// In en, this message translates to:
+  /// **'End Date'**
+  String get endDate;
+
+  /// No description provided for @rentPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'Rental Period'**
+  String get rentPeriod;
+
+  /// No description provided for @contractExpiry.
+  ///
+  /// In en, this message translates to:
+  /// **'Contract Expiry'**
+  String get contractExpiry;
+
+  /// No description provided for @contractDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'View Details'**
+  String get contractDetails;
+
+  /// No description provided for @tenantInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Tenant Information'**
+  String get tenantInfo;
+
+  /// No description provided for @mainTenant.
+  ///
+  /// In en, this message translates to:
+  /// **'Main Tenant'**
+  String get mainTenant;
+
+  /// No description provided for @ownerData.
+  ///
+  /// In en, this message translates to:
+  /// **'Owner Data'**
+  String get ownerData;
+
+  /// No description provided for @khaledAhmedAli.
+  ///
+  /// In en, this message translates to:
+  /// **'Khaled Ahmed Ali'**
+  String get khaledAhmedAli;
+
+  /// No description provided for @unitOwnerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit Owner'**
+  String get unitOwnerTitle;
+
+  /// No description provided for @contractNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Contract Number'**
+  String get contractNumber;
+
+  /// No description provided for @nationalIdShort.
+  ///
+  /// In en, this message translates to:
+  /// **'National ID'**
+  String get nationalIdShort;
+
+  /// No description provided for @contactOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Owner'**
+  String get contactOwner;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @changeLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Language'**
+  String get changeLanguage;
+
+  /// No description provided for @selectLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Language'**
+  String get selectLanguage;
+
+  /// No description provided for @arabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get arabic;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @logoutConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout Confirmation'**
+  String get logoutConfirmation;
+
+  /// No description provided for @logoutMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logoutMessage;
+
+  /// No description provided for @yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get no;
+
+  /// No description provided for @ahmadMohammadAli.
+  ///
+  /// In en, this message translates to:
+  /// **'Ahmad Mohammad Ali'**
+  String get ahmadMohammadAli;
+
+  /// No description provided for @fatimaAhmadAli.
+  ///
+  /// In en, this message translates to:
+  /// **'Fatima Ahmad Ali'**
+  String get fatimaAhmadAli;
+
+  /// No description provided for @mohammadAhmadAli.
+  ///
+  /// In en, this message translates to:
+  /// **'Mohammad Ahmad Ali'**
+  String get mohammadAhmadAli;
+
+  /// No description provided for @mainTenantTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Main Tenant'**
+  String get mainTenantTitle;
+
+  /// No description provided for @nationalIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'National ID'**
+  String get nationalIdLabel;
+
+  /// No description provided for @call.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get call;
+
+  /// No description provided for @contractExpiryMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The rental contract will expire in 3 months. Contact the owner to renew the contract.'**
+  String get contractExpiryMessage;
+
+  /// No description provided for @january.
+  ///
+  /// In en, this message translates to:
+  /// **'January'**
+  String get january;
+
+  /// No description provided for @march.
+  ///
+  /// In en, this message translates to:
+  /// **'March'**
+  String get march;
+
+  /// No description provided for @january15.
+  ///
+  /// In en, this message translates to:
+  /// **'January 15, 1990'**
+  String get january15;
+
+  /// No description provided for @march15.
+  ///
+  /// In en, this message translates to:
+  /// **'March 15, 2022'**
+  String get march15;
+
+  /// No description provided for @january15_2024.
+  ///
+  /// In en, this message translates to:
+  /// **'January 15, 2024'**
+  String get january15_2024;
+
+  /// No description provided for @january14_2025.
+  ///
+  /// In en, this message translates to:
+  /// **'January 14, 2025'**
+  String get january14_2025;
+
+  /// No description provided for @threeMonthsTwoWeeks.
+  ///
+  /// In en, this message translates to:
+  /// **'3 months and 2 weeks'**
+  String get threeMonthsTwoWeeks;
+
+  /// No description provided for @phoneNumberValue.
+  ///
+  /// In en, this message translates to:
+  /// **'+20 100 123 4567'**
+  String get phoneNumberValue;
+
+  /// No description provided for @emailValue.
+  ///
+  /// In en, this message translates to:
+  /// **'ahmed.ali@email.com'**
+  String get emailValue;
+
+  /// No description provided for @nationalIdValue.
+  ///
+  /// In en, this message translates to:
+  /// **'29012345678901'**
+  String get nationalIdValue;
+
+  /// No description provided for @unitValue.
+  ///
+  /// In en, this message translates to:
+  /// **'A-402'**
+  String get unitValue;
+
+  /// No description provided for @areaValue.
+  ///
+  /// In en, this message translates to:
+  /// **'120 square meters'**
+  String get areaValue;
+
+  /// No description provided for @sonAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Son - 16 years old'**
+  String get sonAge;
+
+  /// No description provided for @toyotaCamry.
+  ///
+  /// In en, this message translates to:
+  /// **'Toyota Camry 2020'**
+  String get toyotaCamry;
+
+  /// No description provided for @hondaMotorcycle.
+  ///
+  /// In en, this message translates to:
+  /// **'Honda Motorcycle'**
+  String get hondaMotorcycle;
+
+  /// No description provided for @plateNumber1.
+  ///
+  /// In en, this message translates to:
+  /// **'ABC 123'**
+  String get plateNumber1;
+
+  /// No description provided for @plateNumber2.
+  ///
+  /// In en, this message translates to:
+  /// **'DEF 456'**
+  String get plateNumber2;
+
+  /// No description provided for @inactive.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get inactive;
+
+  /// No description provided for @contractIdValue.
+  ///
+  /// In en, this message translates to:
+  /// **'CMT-2024-001'**
+  String get contractIdValue;
 }
 
 class _AppLocalizationsDelegate

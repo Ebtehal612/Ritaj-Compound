@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
-import 'package:ritaj_compound/core/localization/localization_manager.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/app_bars/custom_app_bar.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
@@ -42,12 +40,10 @@ class _PermitsScreenState extends State<PermitsScreen> {
                   5.verticalSpace,
                   SizedBox(
                     width: 100.w,
-                    child: CustomText.s12(
-                      l10n.visitormanagementanddelivery,
-                      maxLines: 1,
-                      overflow: true,
-                      color: Palette.neutral.color7
-                    ),
+                    child: CustomText.s12(l10n.visitormanagementanddelivery,
+                        maxLines: 1,
+                        overflow: true,
+                        color: Palette.neutral.color7),
                   ),
                 ],
               ),
@@ -58,29 +54,6 @@ class _PermitsScreenState extends State<PermitsScreen> {
                 radius: 20.r,
                 backgroundColor: Palette.green.shade700,
                 child: const Icon(Icons.person, color: Colors.white),
-              ),
-              5.horizontalSpace,
-              BlocBuilder<LocaleCubit, Locale>(
-                builder: (context, state) {
-                  return Switch(
-                    value: state.languageCode == 'en',
-                    activeThumbColor: Colors.white,
-                    activeTrackColor: Palette.green.shade400,
-                    inactiveThumbColor: Colors.white,
-                    inactiveTrackColor: Palette.green.shade900,
-                    thumbIcon: WidgetStateProperty.resolveWith<Icon?>((states) {
-                      return Icon(Icons.language,
-                          color: Palette.green.shade700);
-                    }),
-                    onChanged: (value) {
-                      if (value) {
-                        context.read<LocaleCubit>().toEnglish();
-                      } else {
-                        context.read<LocaleCubit>().toArabic();
-                      }
-                    },
-                  );
-                },
               ),
             ],
           ),
@@ -98,6 +71,16 @@ class _PermitsScreenState extends State<PermitsScreen> {
               ],
               labelColor: Palette.green.shade700,
               unselectedLabelColor: Palette.neutral.color7,
+              labelStyle: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+                color: Palette.green.shade700,
+              ),
+              unselectedLabelStyle: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+                color: Palette.neutral.color7,
+              ),
               dividerColor: Colors.transparent,
               indicator: UnderlineTabIndicator(
                 borderSide: BorderSide(

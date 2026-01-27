@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/core/assets/assets.gen.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/utils/dimensions.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
+import 'package:ritaj_compound/presentation/permits/pages/quick_delivery_permit.dart';
+import 'package:ritaj_compound/presentation/permits/pages/quick_visitors_permit.dart';
 
 // ================== SECTION: QUICK PROCEDURES ==================
 class QuickProceduresSection extends StatelessWidget {
@@ -23,12 +26,18 @@ class QuickProceduresSection extends StatelessWidget {
           children: [
             _ProcedureCard(
                 icon: Icons.person_add_alt_1,
-                label: AppLocalizations.of(context)!.inviteVisitor),
+                label: AppLocalizations.of(context)!.inviteVisitor,
+                onTap: () {
+                  context.push(QuickVisitorsPermit.routeName);
+                }),
             _ProcedureCard(
               icon: Icons.local_shipping,
               label: AppLocalizations.of(context)!.deliveryPermit,
               iconColor: Colors.blue,
               bgColor: Colors.blue.shade50,
+              onTap: () {
+                context.push(QuickDeliveryPermit.routeName);
+              },
             ),
           ],
         ),
@@ -68,7 +77,7 @@ class SummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-     padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Container(
         width: 343.w,
         height: 240.h,
@@ -180,41 +189,50 @@ class _ProcedureCard extends StatelessWidget {
   final String label;
   final Color iconColor;
   final Color bgColor;
+  final VoidCallback? onTap;
 
   const _ProcedureCard({
     required this.icon,
     required this.label,
     this.iconColor = Colors.teal,
-    this.bgColor = const Color(0xFFE0F2F1), // Teal 50ish
+    this.bgColor = const Color(0xFFE0F2F1),
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    // Width calculation: (Screen width - padding) / 2 - gap spacing
-    // Roughly (375 - 32) / 2 = 170. Let's use flexible or explicit width.
-    return Container(
-      width: 165.w,
-      padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16.r),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              offset: const Offset(0, 4),
-              blurRadius: 10,
-            ),
-          ]),
-      child: Column(
-        children: [
-          CircleAvatar(
-            radius: 25.r,
-            backgroundColor: bgColor,
-            child: Icon(icon, color: iconColor, size: 24.sp),
+    return Material(
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(16.r),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16.r),
+        onTap: onTap,
+        child: Container(
+          width: 165.w,
+          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16.r),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.05),
+                offset: const Offset(0, 4),
+                blurRadius: 10,
+              ),
+            ],
           ),
-          10.verticalSpace,
-          CustomText.s14(label, center: true),
-        ],
+          child: Column(
+            children: [
+              CircleAvatar(
+                radius: 25.r,
+                backgroundColor: bgColor,
+                child: Icon(icon, color: iconColor, size: 24.sp),
+              ),
+              10.verticalSpace,
+              CustomText.s14(label, center: true),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -295,7 +313,8 @@ class _NewsCard extends StatelessWidget {
                       fit: BoxFit.cover,
                     )
                   : const DecorationImage(
-                      image: NetworkImage("https://via.placeholder.com/600x300"),
+                      image:
+                          NetworkImage("https://via.placeholder.com/600x300"),
                       fit: BoxFit.cover,
                     ),
             ),
@@ -563,8 +582,8 @@ class _SubscriptionCard extends StatelessWidget {
                     minimumSize: Size.zero,
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
-                  child:
-                      CustomText.s14(manageLabel, color: Palette.green.shade700),
+                  child: CustomText.s14(manageLabel,
+                      color: Palette.green.shade700),
                 ),
               ],
             ),

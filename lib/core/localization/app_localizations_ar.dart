@@ -235,7 +235,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String unitNumber(Object unit) {
+  String unitLabel(Object unit) {
     return 'وحدة $unit';
   }
 
@@ -1000,4 +1000,233 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get technicalSupportDesc => 'صيانة وإصلاحات';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
+  String get personalInfo => 'المعلومات الشخصية';
+
+  @override
+  String get unitDetails => 'تفاصيل الوحدة';
+
+  @override
+  String get familyMembers => 'أفراد الأسرة';
+
+  @override
+  String get vehicles => 'المركبات';
+
+  @override
+  String get ownedApartments => 'الشقق المملوكة';
+
+  @override
+  String get issues => 'المشاكل';
+
+  @override
+  String get serviceRequests => 'طلبات الخدمة';
+
+  @override
+  String get unitOwner => 'مالك الوحدة';
+
+  @override
+  String get emailAddress => 'البريد الإلكتروني';
+
+  @override
+  String get nationalIdNumber => 'الرقم القومي';
+
+  @override
+  String get birthDate => 'تاريخ الميلاد';
+
+  @override
+  String get unitNumber => 'رقم الوحدة';
+
+  @override
+  String get floorNumber => 'الدور';
+
+  @override
+  String get unitArea => 'المساحة';
+
+  @override
+  String get location => 'المنطقة';
+
+  @override
+  String get handoverDate => 'تاريخ الاستلام';
+
+  @override
+  String get fourthFloor => 'الدور الرابع';
+
+  @override
+  String get squareMeters => 'متر مربع';
+
+  @override
+  String get riyadh => 'الرياض';
+
+  @override
+  String get wife => 'الزوجة';
+
+  @override
+  String get son => 'الابن';
+
+  @override
+  String get years => 'سنة';
+
+  @override
+  String get toyota => 'تويوتا كامري 2020';
+
+  @override
+  String get motorcycle => 'دراجة أبو هندا';
+
+  @override
+  String get rentalsAndGuests => 'التأجير والضيوف';
+
+  @override
+  String get rentalStatus => 'حالة الإيجار';
+
+  @override
+  String get startDate => 'تاريخ البداية';
+
+  @override
+  String get endDate => 'تاريخ الانتهاء';
+
+  @override
+  String get rentPeriod => 'المدة الإيجارية';
+
+  @override
+  String get contractExpiry => 'انتهاء العقد';
+
+  @override
+  String get contractDetails => 'عرض التفاصيل';
+
+  @override
+  String get tenantInfo => 'معلومات المستأجر';
+
+  @override
+  String get mainTenant => 'المستأجر الرئيسي';
+
+  @override
+  String get ownerData => 'بيانات المالك';
+
+  @override
+  String get khaledAhmedAli => 'خالد أحمد السيد';
+
+  @override
+  String get unitOwnerTitle => 'مالك الوحدة';
+
+  @override
+  String get contractNumber => 'رقم العقد';
+
+  @override
+  String get nationalIdShort => 'رقم قومي';
+
+  @override
+  String get contactOwner => 'تواصل مع المالك';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get changeLanguage => 'تغيير اللغة';
+
+  @override
+  String get selectLanguage => 'اختر اللغة';
+
+  @override
+  String get arabic => 'العربية';
+
+  @override
+  String get english => 'الإنجليزية';
+
+  @override
+  String get logoutConfirmation => 'تأكيد تسجيل الخروج';
+
+  @override
+  String get logoutMessage => 'هل أنت متأكد من أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get yes => 'نعم';
+
+  @override
+  String get no => 'لا';
+
+  @override
+  String get ahmadMohammadAli => 'أحمد محمد علي';
+
+  @override
+  String get fatimaAhmadAli => 'فاطمة أحمد علي';
+
+  @override
+  String get mohammadAhmadAli => 'محمد أحمد علي';
+
+  @override
+  String get mainTenantTitle => 'المستأجر الرئيسي';
+
+  @override
+  String get nationalIdLabel => 'رقم قومي';
+
+  @override
+  String get call => 'اتصال';
+
+  @override
+  String get contractExpiryMessage =>
+      'سينتهي عقد الإيجار خلال 3 أشهر. تواصل مع المالك لتجديد العقد.';
+
+  @override
+  String get january => 'يناير';
+
+  @override
+  String get march => 'مارس';
+
+  @override
+  String get january15 => '15 يناير 1990';
+
+  @override
+  String get march15 => '15 مارس 2022';
+
+  @override
+  String get january15_2024 => '15 يناير 2024';
+
+  @override
+  String get january14_2025 => '14 يناير 2025';
+
+  @override
+  String get threeMonthsTwoWeeks => '3 أشهر و 2 أسابيع';
+
+  @override
+  String get phoneNumberValue => '+20 100 123 4567';
+
+  @override
+  String get emailValue => 'ahmed.ali@email.com';
+
+  @override
+  String get nationalIdValue => '29012345678901';
+
+  @override
+  String get unitValue => 'A-402';
+
+  @override
+  String get areaValue => '120 متر مربع';
+
+  @override
+  String get sonAge => 'الابن - 16 سنة';
+
+  @override
+  String get toyotaCamry => 'تويوتا كامري 2020';
+
+  @override
+  String get hondaMotorcycle => 'دراجة أبو هندا';
+
+  @override
+  String get plateNumber1 => 'أ ب ج 123';
+
+  @override
+  String get plateNumber2 => 'د ه و 456';
+
+  @override
+  String get inactive => 'غير نشط';
+
+  @override
+  String get contractIdValue => 'CMT-2024-001';
 }

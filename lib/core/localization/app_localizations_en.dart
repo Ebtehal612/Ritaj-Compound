@@ -235,7 +235,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String unitNumber(Object unit) {
+  String unitLabel(Object unit) {
     return 'Unit $unit';
   }
 
@@ -1003,4 +1003,233 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get technicalSupportDesc => 'Maintenance & Repairs';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get personalInfo => 'Personal Information';
+
+  @override
+  String get unitDetails => 'Unit Details';
+
+  @override
+  String get familyMembers => 'Family Members';
+
+  @override
+  String get vehicles => 'Vehicles';
+
+  @override
+  String get ownedApartments => 'Owned Apartments';
+
+  @override
+  String get issues => 'Issues';
+
+  @override
+  String get serviceRequests => 'Service Requests';
+
+  @override
+  String get unitOwner => 'Unit Owner';
+
+  @override
+  String get emailAddress => 'Email Address';
+
+  @override
+  String get nationalIdNumber => 'National ID Number';
+
+  @override
+  String get birthDate => 'Birth Date';
+
+  @override
+  String get unitNumber => 'Unit Number';
+
+  @override
+  String get floorNumber => 'Floor';
+
+  @override
+  String get unitArea => 'Area';
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get handoverDate => 'Handover Date';
+
+  @override
+  String get fourthFloor => 'Fourth Floor';
+
+  @override
+  String get squareMeters => 'square meters';
+
+  @override
+  String get riyadh => 'Riyadh';
+
+  @override
+  String get wife => 'Wife';
+
+  @override
+  String get son => 'Son';
+
+  @override
+  String get years => 'years';
+
+  @override
+  String get toyota => 'Toyota Camry 2020';
+
+  @override
+  String get motorcycle => 'Honda Motorcycle';
+
+  @override
+  String get rentalsAndGuests => 'Rentals & Guests';
+
+  @override
+  String get rentalStatus => 'Rental Status';
+
+  @override
+  String get startDate => 'Start Date';
+
+  @override
+  String get endDate => 'End Date';
+
+  @override
+  String get rentPeriod => 'Rental Period';
+
+  @override
+  String get contractExpiry => 'Contract Expiry';
+
+  @override
+  String get contractDetails => 'View Details';
+
+  @override
+  String get tenantInfo => 'Tenant Information';
+
+  @override
+  String get mainTenant => 'Main Tenant';
+
+  @override
+  String get ownerData => 'Owner Data';
+
+  @override
+  String get khaledAhmedAli => 'Khaled Ahmed Ali';
+
+  @override
+  String get unitOwnerTitle => 'Unit Owner';
+
+  @override
+  String get contractNumber => 'Contract Number';
+
+  @override
+  String get nationalIdShort => 'National ID';
+
+  @override
+  String get contactOwner => 'Contact Owner';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get changeLanguage => 'Change Language';
+
+  @override
+  String get selectLanguage => 'Select Language';
+
+  @override
+  String get arabic => 'Arabic';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get logoutConfirmation => 'Logout Confirmation';
+
+  @override
+  String get logoutMessage => 'Are you sure you want to logout?';
+
+  @override
+  String get yes => 'Yes';
+
+  @override
+  String get no => 'No';
+
+  @override
+  String get ahmadMohammadAli => 'Ahmad Mohammad Ali';
+
+  @override
+  String get fatimaAhmadAli => 'Fatima Ahmad Ali';
+
+  @override
+  String get mohammadAhmadAli => 'Mohammad Ahmad Ali';
+
+  @override
+  String get mainTenantTitle => 'Main Tenant';
+
+  @override
+  String get nationalIdLabel => 'National ID';
+
+  @override
+  String get call => 'Call';
+
+  @override
+  String get contractExpiryMessage =>
+      'The rental contract will expire in 3 months. Contact the owner to renew the contract.';
+
+  @override
+  String get january => 'January';
+
+  @override
+  String get march => 'March';
+
+  @override
+  String get january15 => 'January 15, 1990';
+
+  @override
+  String get march15 => 'March 15, 2022';
+
+  @override
+  String get january15_2024 => 'January 15, 2024';
+
+  @override
+  String get january14_2025 => 'January 14, 2025';
+
+  @override
+  String get threeMonthsTwoWeeks => '3 months and 2 weeks';
+
+  @override
+  String get phoneNumberValue => '+20 100 123 4567';
+
+  @override
+  String get emailValue => 'ahmed.ali@email.com';
+
+  @override
+  String get nationalIdValue => '29012345678901';
+
+  @override
+  String get unitValue => 'A-402';
+
+  @override
+  String get areaValue => '120 square meters';
+
+  @override
+  String get sonAge => 'Son - 16 years old';
+
+  @override
+  String get toyotaCamry => 'Toyota Camry 2020';
+
+  @override
+  String get hondaMotorcycle => 'Honda Motorcycle';
+
+  @override
+  String get plateNumber1 => 'ABC 123';
+
+  @override
+  String get plateNumber2 => 'DEF 456';
+
+  @override
+  String get inactive => 'Inactive';
+
+  @override
+  String get contractIdValue => 'CMT-2024-001';
 }

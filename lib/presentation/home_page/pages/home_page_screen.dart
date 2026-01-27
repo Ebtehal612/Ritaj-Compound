@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
-import 'package:ritaj_compound/core/localization/localization_manager.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/app_bars/custom_app_bar.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
@@ -37,10 +35,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText.s18(
-                    AppLocalizations.of(context)!.helloUser("Ahmed"),bold: true,),
-                    5.verticalSpace,
-                CustomText.s12(
-                    AppLocalizations.of(context)!.unitNumber("A-402"),color: Palette.neutral.color7),
+                  AppLocalizations.of(context)!.helloUser("Ahmed"),
+                  bold: true,
+                ),
+                5.verticalSpace,
+                CustomText.s12(AppLocalizations.of(context)!.unitLabel("A-402"),
+                    color: Palette.neutral.color7),
               ],
             ),
             const Spacer(),
@@ -51,34 +51,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
               backgroundColor: Palette.green.shade700,
               child: const Icon(Icons.person, color: Colors.white),
             ),
-            5.horizontalSpace,
-            BlocBuilder<LocaleCubit, Locale>(
-              builder: (context, state) {
-                return Switch(
-                  value: state.languageCode == 'en',
-                  activeColor: Colors.white,
-                  activeTrackColor: Palette.green.shade400,
-                  inactiveThumbColor: Colors.white,
-                  inactiveTrackColor: Palette.green.shade900,
-                  thumbIcon: MaterialStateProperty.resolveWith<Icon?>((states) {
-                    return Icon(Icons.language, color: Palette.green.shade700);
-                  }),
-                  onChanged: (value) {
-                    if (value) {
-                      context.read<LocaleCubit>().toEnglish();
-                    } else {
-                      context.read<LocaleCubit>().toArabic();
-                    }
-                  },
-                );
-              },
-            ),
           ],
         ),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding:EdgeInsets.all(18),
+          padding: EdgeInsets.all(18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -86,17 +64,18 @@ class _HomePageScreenState extends State<HomePageScreen> {
               30.verticalSpace,
               SummaryCard(
                 firstItem: SummaryItem(
-                  icon: CircleAvatar(
-                    radius: 20.r,
-                    backgroundColor: Palette.yellow.shade400,
-                    child: Icon(
-                      Icons.person_add,
-                      size: 20.sp,
-                      color: Colors.white,
+                    icon: CircleAvatar(
+                      radius: 20.r,
+                      backgroundColor: Palette.yellow.shade400,
+                      child: Icon(
+                        Icons.person_add,
+                        size: 20.sp,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  title: AppLocalizations.of(context)!.expectedVisitor,
-                  value: '${AppLocalizations.of(context)!.mohamedAli} - 2:30 ${AppLocalizations.of(context)!.pm}'),
+                    title: AppLocalizations.of(context)!.expectedVisitor,
+                    value:
+                        '${AppLocalizations.of(context)!.mohamedAli} - 2:30 ${AppLocalizations.of(context)!.pm}'),
                 secondItem: SummaryItem(
                   icon: CircleAvatar(
                     radius: 20.r,

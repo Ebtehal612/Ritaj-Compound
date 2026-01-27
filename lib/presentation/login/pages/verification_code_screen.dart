@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
-import 'package:ritaj_compound/core/localization/localization_manager.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/utils/dimensions.dart';
 import 'package:ritaj_compound/presentation/home_page/pages/home_page_screen.dart';
@@ -15,7 +14,8 @@ import 'package:ritaj_compound/presentation/login/cubit/login_cubit.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
   final String phone;
-  const VerificationCodeScreen({required this.phone, Key? key}) : super(key: key);
+  const VerificationCodeScreen({required this.phone, Key? key})
+      : super(key: key);
 
   static const String routeName = '/verification-code-screen';
 
@@ -82,42 +82,6 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.w),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            // Language Toggle
-                            BlocBuilder<LocaleCubit, Locale>(
-                                builder: (context, state) {
-                              return Switch(
-                                value: state.languageCode == 'en',
-                                activeColor: Colors.white,
-                                activeTrackColor: Palette.green.shade400,
-                                inactiveThumbColor: Colors.white,
-                                inactiveTrackColor: Palette.green.shade900,
-                                thumbIcon:
-                                    MaterialStateProperty.resolveWith<Icon?>(
-                                        (states) {
-                                  if (state.languageCode == 'en') {
-                                    return Icon(Icons.language,
-                                        color: Palette.green.shade700);
-                                  }
-                                  return Icon(Icons.language,
-                                      color: Palette.green.shade700);
-                                }),
-                                onChanged: (value) {
-                                  if (value) {
-                                    context.read<LocaleCubit>().toEnglish();
-                                  } else {
-                                    context.read<LocaleCubit>().toArabic();
-                                  }
-                                },
-                              );
-                            })
                           ],
                         ),
                       ),

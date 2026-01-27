@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
+import 'package:ritaj_compound/presentation/permits/pages/quick_delivery_permit.dart';
 
 class DeliveryTabContent extends StatelessWidget {
   const DeliveryTabContent({super.key});
@@ -99,8 +101,13 @@ class _QuickDeliveryPermitCard extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.delivery_dining,size: 25,),
+                onPressed: () {
+                  context.push(QuickDeliveryPermit.routeName);
+                },
+                icon: const Icon(
+                  Icons.delivery_dining,
+                  size: 25,
+                ),
                 label: Text(l10n.newDeliveryPermit),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white.withOpacity(0.2),
