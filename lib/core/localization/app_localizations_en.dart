@@ -288,7 +288,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get twoHoursAgo => '2 hours ago';
 
   @override
-  String get poolOpeningTitle => 'New Pool Opening';
+  String get poolOpeningTitle => 'New Pool Opening Celebration';
 
   @override
   String get poolOpeningDesc =>
@@ -1232,4 +1232,237 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get contractIdValue => 'CMT-2024-001';
+
+  @override
+  String get importantAnnouncement => 'Important Announcement';
+
+  @override
+  String get compoundRulesMessage =>
+      'Please adhere to compound rules and review the scheduled times for events.';
+
+  @override
+  String get event => 'Event';
+
+  @override
+  String get saturday19October => 'Saturday, October 19';
+
+  @override
+  String get tenAM => '10:00 AM';
+
+  @override
+  String get poolOpeningDescription =>
+      'Join us for the new pool opening with recreational activities, special segments, and surprises for all family members.';
+
+  @override
+  String get willAttend => 'I will attend';
+
+  @override
+  String get wontAttend => 'I won\'t attend';
+
+  @override
+  String get free => 'Free';
+
+  @override
+  String get childrenFunDay => 'Children\'s Fun Day';
+
+  @override
+  String get friday25October => 'Friday, October 25';
+
+  @override
+  String get fourPM => '4:00 PM';
+
+  @override
+  String get childrenFunDescription =>
+      'A recreational event for children including group games, competitions, and activities suitable for ages 5 to 12.';
+
+  @override
+  String get registerChildNow => 'Register your child now';
+
+  @override
+  String get announcement => 'Announcement';
+
+  @override
+  String get threeHoursAgo => '3 hours ago';
+
+  @override
+  String get elevatorMaintenanceTitle =>
+      'Routine Elevator Maintenance - Building A';
+
+  @override
+  String get elevatorMaintenanceDescription =>
+      'We inform you that routine maintenance will be performed on all elevators in Building A on Thursday, October 17 from 9:00 AM to 12:00 PM. We apologize in advance for any inconvenience.';
+
+  @override
+  String get readMore => 'Read More';
+
+  @override
+  String get subscriptionManagement => 'Subscription Management';
+
+  @override
+  String get monthlyCost => 'Monthly Cost';
+
+  @override
+  String get thisMonthSavings => 'This Month\'s Savings';
+
+  @override
+  String get bookSession => 'Book Session';
+
+  @override
+  String get newSubscription => 'New Subscription';
+
+  @override
+  String get manageAll => 'Manage All';
+
+  @override
+  String get fitnessClub => 'Fitness Club';
+
+  @override
+  String get monthlyPackageOpen => 'Monthly Package - Open';
+
+  @override
+  String get expiresIn15Days => 'Expires in 15 days';
+
+  @override
+  String get houseCleaning => 'House Cleaning Service';
+
+  @override
+  String get weeklyThreeHours => 'Weekly - 3 hours';
+
+  @override
+  String get tomorrowTenAM => 'Tomorrow - 10:00 AM';
+
+  @override
+  String get availableServices => 'Available Services';
+
+  @override
+  String get pool => 'Pool';
+
+  @override
+  String get poolAndSauna => 'Swimming pool and sauna';
+
+  @override
+  String get save600 => 'Save 600';
+
+  @override
+  String get modernEquipmentTrainers => 'Modern equipment and trainers';
+
+  @override
+  String get mostPopular => 'Most Popular';
+
+  @override
+  String get monthly => 'Monthly';
+
+  @override
+  String get yearly => 'Yearly';
+
+  @override
+  String get openAccess => 'Open Access';
+
+  @override
+  String get saunaUse => 'Sauna Use';
+
+  @override
+  String get personalLockers => 'Personal Lockers';
+
+  @override
+  String get subscribeNow => 'Subscribe Now';
+
+  @override
+  String get createInvitation => 'Create Invitation';
+
+  @override
+  String get entityData => 'Entity Data';
+
+  @override
+  String get entityName => 'Entity Name';
+
+  @override
+  String get enterName => 'Enter Name';
+
+  @override
+  String get phoneNumberOptional => 'Phone Number - Optional';
+
+  @override
+  String get details => 'Details';
+
+  @override
+  String get expectedArrivalWithin => 'Expected arrival within';
+
+  @override
+  String get selectGate => 'Select Gate';
+
+  @override
+  String get gate2 => 'Gate 2';
+
+  @override
+  String get gate3 => 'Gate 3';
+
+  @override
+  String get additionalNotes => 'Additional Notes';
+
+  @override
+  String get visitSpecialNotes => 'Any special notes about the visit';
+
+  @override
+  String get createInvitationButton => 'Create Invitation';
+
+  @override
+  String get pleaseEnterEntityName => 'Please enter entity name';
+
+  @override
+  String get pleaseEnterValidPhone => 'Please enter a valid phone number';
+
+  @override
+  String get pleaseSelectArrivalTime => 'Please select expected arrival time';
+
+  @override
+  String get pleaseSelectValidDate => 'Please select a valid date';
+
+  @override
+  String get fifteenMinutes => '15 minutes';
+
+  @override
+  String get thirtyMinutes => '30 minutes';
+
+  @override
+  String get fortyFiveMinutes => '45 minutes';
+
+  @override
+  String get sixtyMinutes => '60 minutes';
+
+  @override
+  String get visitorData => 'Visitor Data';
+
+  @override
+  String get visitorName => 'Visitor Name';
+
+  @override
+  String get visitDetails => 'Visit Details';
+
+  @override
+  String get time => 'Time';
+
+  @override
+  String get visitOptions => 'Visit Options';
+
+  @override
+  String get multipleEntry => 'Multiple Entry';
+
+  @override
+  String get multipleEntryDescription => 'Allow entry and exit multiple times';
+
+  @override
+  String get longTermVisit => 'Long-term Visit';
+
+  @override
+  String get longTermVisitDescription => 'Valid for several days';
+
+  @override
+  String get pleaseEnterVisitorName => 'Please enter visitor name';
+
+  @override
+  String get pleaseEnterPhoneNumber => 'Please enter phone number';
+
+  @override
+  String get pleaseSelectTime => 'Please select time';
 }

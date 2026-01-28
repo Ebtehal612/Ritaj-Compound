@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
 
@@ -26,8 +27,9 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -37,7 +39,7 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
           ),
           10.horizontalSpace,
           CustomText.s18(
-            "إنشاء دعوة",
+            l10n.createInvitation,
             bold: true,
           ),
           const Spacer(),
@@ -53,25 +55,25 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _sectionTitle('بيانات الزائر'),
+            _sectionTitle(l10n.visitorData),
             _inputField(
-              label: 'اسم الزائر',
+              label: l10n.visitorName,
               controller: _nameController,
-              hint: 'أدخل الاسم',
+              hint: l10n.enterName,
             ),
             _inputField(
-              label: 'رقم الهاتف',
+              label: l10n.phoneNumber,
               controller: _phoneController,
               hint: '01012345678',
               keyboardType: TextInputType.phone,
             ),
             20.verticalSpace,
-            _sectionTitle('تفاصيل الزيارة'),
+            _sectionTitle(l10n.visitDetails),
             Row(
               children: [
                 Expanded(
                   child: _pickerField(
-                    label: 'الوقت',
+                    label: l10n.time,
                     value: selectedTime.format(context),
                     icon: Icons.access_time,
                     onTap: _pickTime,
@@ -80,7 +82,7 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
                 12.horizontalSpace,
                 Expanded(
                   child: _pickerField(
-                    label: 'تاريخ الزيارة',
+                    label: l10n.visitDate,
                     value: DateFormat('yyyy-MM-dd').format(selectedDate),
                     icon: Icons.calendar_today,
                     onTap: _pickDate,
@@ -89,26 +91,26 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
               ],
             ),
             16.verticalSpace,
-            _dropdownField(),
+            _dropdownField(l10n),
             24.verticalSpace,
-            _sectionTitle('خيارات الزيارة'),
+            _sectionTitle(l10n.visitOptions),
             _switchTile(
-              title: 'دخول متعدد',
-              subtitle: 'السماح بالدخول والخروج عدة مرات',
+              title: l10n.multipleEntry,
+              subtitle: l10n.multipleEntryDescription,
               value: multipleEntry,
               onChanged: (v) => setState(() => multipleEntry = v),
             ),
             _switchTile(
-              title: 'زيارة طويلة المدى',
-              subtitle: 'صالحة لعدة ايام',
+              title: l10n.longTermVisit,
+              subtitle: l10n.longTermVisitDescription,
               value: allowVehicle,
               onChanged: (v) => setState(() => allowVehicle = v),
             ),
             20.verticalSpace,
-            _sectionTitle('ملاحظات إضافية'),
-            _notesField(),
+            _sectionTitle(l10n.additionalNotes),
+            _notesField(l10n),
             30.verticalSpace,
-            _submitButton(),
+            _submitButton(l10n),
           ],
         ),
       ),
@@ -188,7 +190,7 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
     );
   }
 
-  Widget _dropdownField() {
+  Widget _dropdownField(AppLocalizations l10n) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
       decoration: BoxDecoration(
@@ -198,10 +200,10 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
-          hint: const Text('اختر البوابة'),
+          hint: Text(l10n.selectGate),
           value: selectedGate,
           isExpanded: true,
-          items: ['البوابة الرئيسية', 'بوابة 2', 'بوابة 3']
+          items: [l10n.mainGate, l10n.gate2, l10n.gate3]
               .map(
                 (e) => DropdownMenuItem(
                   value: e,
@@ -229,12 +231,12 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
     );
   }
 
-  Widget _notesField() {
+  Widget _notesField(AppLocalizations l10n) {
     return TextField(
       controller: _notesController,
       maxLines: 3,
       decoration: InputDecoration(
-        hintText: 'أي ملاحظات خاصة بالزيارة',
+        hintText: l10n.visitSpecialNotes,
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(
@@ -244,7 +246,7 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
     );
   }
 
-  Widget _submitButton() {
+  Widget _submitButton(AppLocalizations l10n) {
     return SizedBox(
       width: double.infinity,
       height: 50.h,
@@ -255,9 +257,9 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
 
           if (name.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
+              SnackBar(
                 backgroundColor: Colors.red,
-                content: Text('من فضلك أدخل اسم الزائر'),
+                content: Text(l10n.pleaseEnterVisitorName),
               ),
             );
             return;
@@ -265,9 +267,9 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
 
           if (phone.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
+              SnackBar(
                 backgroundColor: Colors.red,
-                content: Text('من فضلك أدخل رقم الهاتف'),
+                content: Text(l10n.pleaseEnterPhoneNumber),
               ),
             );
             return;
@@ -275,8 +277,8 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
 
           if (phone.length < 11) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('من فضلك أدخل رقم هاتف صحيح'),
+              SnackBar(
+                content: Text(l10n.pleaseEnterValidPhone),
                 backgroundColor: Colors.red,
               ),
             );
@@ -284,9 +286,9 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
           }
           if (selectedTime == null) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
+              SnackBar(
                 backgroundColor: Colors.red,
-                content: Text('من فضلك اختر الوقت  '),
+                content: Text(l10n.pleaseSelectTime),
               ),
             );
             return;
@@ -295,9 +297,9 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
             DateTime.now().subtract(const Duration(days: 1)),
           )) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
+              SnackBar(
                 backgroundColor: Colors.red,
-                content: Text('من فضلك اختر تاريخ '),
+                content: Text(l10n.pleaseSelectValidDate),
               ),
             );
             return;
@@ -307,7 +309,7 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
           debugPrint('Phone: $phone');
         },
         icon: const Icon(Icons.send, color: Colors.white),
-        label: CustomText.s16('إنشاء الدعوة', color: Colors.white),
+        label: CustomText.s16(l10n.createInvitationButton, color: Colors.white),
         style: ElevatedButton.styleFrom(
           backgroundColor: Palette.green.shade700,
           shape: RoundedRectangleBorder(

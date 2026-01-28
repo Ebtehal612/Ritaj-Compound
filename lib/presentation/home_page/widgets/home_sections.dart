@@ -6,8 +6,12 @@ import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/utils/dimensions.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
+import 'package:ritaj_compound/presentation/home_page/pages/news_events_screen.dart';
+import 'package:ritaj_compound/presentation/home_page/pages/subscription_management_screen.dart';
 import 'package:ritaj_compound/presentation/permits/pages/quick_delivery_permit.dart';
 import 'package:ritaj_compound/presentation/permits/pages/quick_visitors_permit.dart';
+import 'package:ritaj_compound/presentation/services/pages/complaints_screen.dart';
+import 'package:ritaj_compound/presentation/services/pages/financial_overview_screen.dart' show FinancialOverviewScreen;
 
 // ================== SECTION: QUICK PROCEDURES ==================
 class QuickProceduresSection extends StatelessWidget {
@@ -50,12 +54,16 @@ class QuickProceduresSection extends StatelessWidget {
               label: AppLocalizations.of(context)!.reportComplaint,
               iconColor: Colors.red,
               bgColor: Colors.red.shade50,
+              onTap: () {
+                context.push(ComplaintsScreen.routeName);
+              },
             ),
             _ProcedureCard(
               icon: Icons.payment,
               label: AppLocalizations.of(context)!.payInstallment,
               iconColor: Colors.green,
               bgColor: Colors.green.shade50,
+              onTap: () {context.push(FinancialOverviewScreen.routeName);},
             ),
           ],
         ),
@@ -107,7 +115,7 @@ class SummaryCard extends StatelessWidget {
                       AppLocalizations.of(context)!.day,
                       color: Colors.white,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     CustomText.s14(
                       "${AppLocalizations.of(context)!.tuesday}, 15 ${AppLocalizations.of(context)!.october}",
                       color: Colors.white,
@@ -253,7 +261,9 @@ class NewsEventsSection extends StatelessWidget {
             CustomText.s18(AppLocalizations.of(context)!.newsAndEvents,
                 color: Palette.neutral.color9),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.push(NewsAndEventsScreen.routeName);
+              },
               child: CustomText.s14(AppLocalizations.of(context)!.viewAll,
                   color: Palette.green.shade700),
             )
@@ -462,8 +472,20 @@ class ActiveSubscriptionsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomText.s18(AppLocalizations.of(context)!.activeSubscriptions,
-            color: Palette.neutral.color9),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomText.s18(AppLocalizations.of(context)!.activeSubscriptions,
+                color: Palette.neutral.color9),
+            TextButton(
+              onPressed: () {
+                context.push(SubscriptionsScreen.routeName);
+              },
+              child: CustomText.s14(AppLocalizations.of(context)!.viewAll,
+                  color: Palette.green.shade700),
+            ),
+          ],
+        ),
         15.verticalSpace,
         _SubscriptionCard(
           icon: Icons.fitness_center,

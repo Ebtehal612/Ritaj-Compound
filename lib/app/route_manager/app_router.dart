@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/presentation/home_page/pages/home_page_screen.dart';
+import 'package:ritaj_compound/presentation/home_page/pages/news_events_screen.dart';
+import 'package:ritaj_compound/presentation/home_page/pages/subscription_management_screen.dart';
 import 'package:ritaj_compound/presentation/login/pages/login_screen.dart';
 import 'package:ritaj_compound/presentation/login/pages/verification_code_screen.dart';
 import 'package:ritaj_compound/presentation/more/pages/rentals_and_guests_screen.dart';
 import 'package:ritaj_compound/presentation/permits/pages/quick_delivery_permit.dart';
 import 'package:ritaj_compound/presentation/permits/pages/quick_visitors_permit.dart';
+import 'package:ritaj_compound/presentation/services/pages/complaints_screen.dart';
+import 'package:ritaj_compound/presentation/services/pages/financial_overview_screen.dart';
 import 'package:ritaj_compound/presentation/splash/splash_screen.dart';
 import '../../core/shared_preferences/prefs_keys.dart';
 import '../../core/shared_preferences/shared_prefs.dart';
@@ -163,6 +167,53 @@ class AppRouter {
               ),
             ],
           ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: SubscriptionsScreen.routeName,
+                path: SubscriptionsScreen.routeName,
+                pageBuilder: (context, state) => _buildPageWithTransition(
+                  const SubscriptionsScreen(),
+                  state,
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: NewsAndEventsScreen.routeName,
+                path: NewsAndEventsScreen.routeName,
+                pageBuilder: (context, state) => _buildPageWithTransition(
+                  const NewsAndEventsScreen(),
+                  state,
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: ComplaintsScreen.routeName,
+                path: ComplaintsScreen.routeName,
+                pageBuilder: (context, state) => _buildPageWithTransition(
+                  const ComplaintsScreen(),
+                  state,
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(routes: 
+          [
+            GoRoute(
+              name: FinancialOverviewScreen.routeName,
+              path: FinancialOverviewScreen.routeName,
+              pageBuilder: (context, state) => _buildPageWithTransition(
+                const FinancialOverviewScreen(),
+                state,
+              ),
+            ),
+          ])
         ],
       ),
     ],

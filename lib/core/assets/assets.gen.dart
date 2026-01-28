@@ -14,9 +14,24 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/doctor_female.png
+  AssetGenImage get doctorFemale =>
+      const AssetGenImage('assets/images/doctor_female.png');
+
+  /// File path: assets/images/doctor_male.png
+  AssetGenImage get doctorMale =>
+      const AssetGenImage('assets/images/doctor_male.png');
+
+  /// File path: assets/images/funday.jpg
+  AssetGenImage get funday => const AssetGenImage('assets/images/funday.jpg');
+
   /// File path: assets/images/lost_cat.png
   AssetGenImage get lostCat =>
       const AssetGenImage('assets/images/lost_cat.png');
+
+  /// File path: assets/images/medical_lab.png
+  AssetGenImage get medicalLab =>
+      const AssetGenImage('assets/images/medical_lab.png');
 
   /// File path: assets/images/neighbors.jpg
   AssetGenImage get neighbors =>
@@ -39,15 +54,34 @@ class $AssetsImagesGen {
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
+  /// File path: assets/images/unit_a501.png
+  AssetGenImage get unitA501 =>
+      const AssetGenImage('assets/images/unit_a501.png');
+
+  /// File path: assets/images/unit_b302.png
+  AssetGenImage get unitB302 =>
+      const AssetGenImage('assets/images/unit_b302.png');
+
+  /// File path: assets/images/unit_c201.png
+  AssetGenImage get unitC201 =>
+      const AssetGenImage('assets/images/unit_c201.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
+        doctorFemale,
+        doctorMale,
+        funday,
         lostCat,
+        medicalLab,
         neighbors,
         pool,
         postDiningTable,
         postElevator,
         profile,
-        splash
+        splash,
+        unitA501,
+        unitB302,
+        unitC201
       ];
 }
 

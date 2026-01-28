@@ -7,6 +7,7 @@ import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
 import 'package:ritaj_compound/presentation/services/widgets/financial_overview_content.dart';
 
 class FinancialOverviewScreen extends StatelessWidget {
+  static const routeName = '/financial-overview-screen';
   const FinancialOverviewScreen({super.key});
 
   @override

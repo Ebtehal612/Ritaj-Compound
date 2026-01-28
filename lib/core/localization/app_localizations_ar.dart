@@ -288,7 +288,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get twoHoursAgo => 'منذ ساعتين';
 
   @override
-  String get poolOpeningTitle => 'افتتاح المسبح الجديد';
+  String get poolOpeningTitle => 'احتفالية افتتاح المسبح الجديد';
 
   @override
   String get poolOpeningDesc =>
@@ -1229,4 +1229,236 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get contractIdValue => 'CMT-2024-001';
+
+  @override
+  String get importantAnnouncement => 'إعلان هام';
+
+  @override
+  String get compoundRulesMessage =>
+      'يرجى الالتزام بقوانين المجمع ومراجعة المواعيد المحددة للفعاليات.';
+
+  @override
+  String get event => 'فعالية';
+
+  @override
+  String get saturday19October => 'السبت 19 أكتوبر';
+
+  @override
+  String get tenAM => '10:00 ص';
+
+  @override
+  String get poolOpeningDescription =>
+      'انضموا إلينا في افتتاح المسبح الجديد مع أنشطة ترفيهية، فقرات خاصة، ومفاجآت لجميع أفراد الأسرة.';
+
+  @override
+  String get willAttend => 'سأحضر';
+
+  @override
+  String get wontAttend => 'لن أحضر';
+
+  @override
+  String get free => 'مجاني';
+
+  @override
+  String get childrenFunDay => 'يوم ترفيهي للأطفال';
+
+  @override
+  String get friday25October => 'الجمعة 25 أكتوبر';
+
+  @override
+  String get fourPM => '4:00 م';
+
+  @override
+  String get childrenFunDescription =>
+      'فعالية ترفيهية مخصصة للأطفال تشمل ألعاب جماعية، مسابقات، وأنشطة مناسبة للأعمار من 5 إلى 12 سنة.';
+
+  @override
+  String get registerChildNow => 'سجل طفلك الآن';
+
+  @override
+  String get announcement => 'إعلان';
+
+  @override
+  String get threeHoursAgo => 'منذ 3 ساعات';
+
+  @override
+  String get elevatorMaintenanceTitle => 'صيانة دورية للمصاعد - المبنى A';
+
+  @override
+  String get elevatorMaintenanceDescription =>
+      'نعلمكم بأنه سيتم إجراء صيانة دورية لجميع المصاعد في المبنى A يوم الخميس 17 أكتوبر من الساعة 9:00 صباحًا حتى 12:00 ظهرًا. نعتذر مسبقًا عن أي إزعاج.';
+
+  @override
+  String get readMore => 'اقرأ المزيد';
+
+  @override
+  String get subscriptionManagement => 'إدارة الاشتراكات';
+
+  @override
+  String get monthlyCost => 'التكلفة الشهرية';
+
+  @override
+  String get thisMonthSavings => 'توفير هذا الشهر';
+
+  @override
+  String get bookSession => 'حجز جلسة';
+
+  @override
+  String get newSubscription => 'اشتراك جديد';
+
+  @override
+  String get manageAll => 'إدارة الكل';
+
+  @override
+  String get fitnessClub => 'نادي اللياقة البدنية';
+
+  @override
+  String get monthlyPackageOpen => 'باقة شهرية - مفتوحة';
+
+  @override
+  String get expiresIn15Days => 'ينتهي في 15 يوم';
+
+  @override
+  String get houseCleaning => 'خدمة التنظيف المنزلي';
+
+  @override
+  String get weeklyThreeHours => 'أسبوعي - 3 ساعات';
+
+  @override
+  String get tomorrowTenAM => 'غداً - 10:00 ص';
+
+  @override
+  String get availableServices => 'الخدمات المتاحة';
+
+  @override
+  String get pool => 'المسبح';
+
+  @override
+  String get poolAndSauna => 'حمام سباحة وساونا';
+
+  @override
+  String get save600 => 'وفر 600';
+
+  @override
+  String get modernEquipmentTrainers => 'أجهزة حديثة ومدربين';
+
+  @override
+  String get mostPopular => 'الأكثر شيوعًا';
+
+  @override
+  String get monthly => 'شهري';
+
+  @override
+  String get yearly => 'سنوي';
+
+  @override
+  String get openAccess => 'دخول مفتوح';
+
+  @override
+  String get saunaUse => 'استخدام الساونا';
+
+  @override
+  String get personalLockers => 'خزائن شخصية';
+
+  @override
+  String get subscribeNow => 'اشترك الآن';
+
+  @override
+  String get createInvitation => 'إنشاء دعوة';
+
+  @override
+  String get entityData => 'بيانات الجهة';
+
+  @override
+  String get entityName => 'اسم الجهة';
+
+  @override
+  String get enterName => 'أدخل الاسم';
+
+  @override
+  String get phoneNumberOptional => 'رقم الهاتف - اختياري';
+
+  @override
+  String get details => 'تفاصيل';
+
+  @override
+  String get expectedArrivalWithin => 'الوصول المتوقع خلال';
+
+  @override
+  String get selectGate => 'اختر البوابة';
+
+  @override
+  String get gate2 => 'بوابة 2';
+
+  @override
+  String get gate3 => 'بوابة 3';
+
+  @override
+  String get additionalNotes => 'ملاحظات إضافية';
+
+  @override
+  String get visitSpecialNotes => 'أي ملاحظات خاصة بالزيارة';
+
+  @override
+  String get createInvitationButton => 'إنشاء الدعوة';
+
+  @override
+  String get pleaseEnterEntityName => 'من فضلك أدخل اسم الجهة';
+
+  @override
+  String get pleaseEnterValidPhone => 'من فضلك أدخل رقم هاتف صحيح';
+
+  @override
+  String get pleaseSelectArrivalTime => 'من فضلك اختر وقت الوصول المتوقع';
+
+  @override
+  String get pleaseSelectValidDate => 'من فضلك اختر تاريخ';
+
+  @override
+  String get fifteenMinutes => '15 دقيقة';
+
+  @override
+  String get thirtyMinutes => '30 دقيقة';
+
+  @override
+  String get fortyFiveMinutes => '45 دقيقة';
+
+  @override
+  String get sixtyMinutes => '60 دقيقة';
+
+  @override
+  String get visitorData => 'بيانات الزائر';
+
+  @override
+  String get visitorName => 'اسم الزائر';
+
+  @override
+  String get visitDetails => 'تفاصيل الزيارة';
+
+  @override
+  String get time => 'الوقت';
+
+  @override
+  String get visitOptions => 'خيارات الزيارة';
+
+  @override
+  String get multipleEntry => 'دخول متعدد';
+
+  @override
+  String get multipleEntryDescription => 'السماح بالدخول والخروج عدة مرات';
+
+  @override
+  String get longTermVisit => 'زيارة طويلة المدى';
+
+  @override
+  String get longTermVisitDescription => 'صالحة لعدة ايام';
+
+  @override
+  String get pleaseEnterVisitorName => 'من فضلك أدخل اسم الزائر';
+
+  @override
+  String get pleaseEnterPhoneNumber => 'من فضلك أدخل رقم الهاتف';
+
+  @override
+  String get pleaseSelectTime => 'من فضلك اختر الوقت';
 }

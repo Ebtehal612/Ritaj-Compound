@@ -545,7 +545,7 @@ abstract class AppLocalizations {
   /// No description provided for @poolOpeningTitle.
   ///
   /// In en, this message translates to:
-  /// **'New Pool Opening'**
+  /// **'New Pool Opening Celebration'**
   String get poolOpeningTitle;
 
   /// No description provided for @poolOpeningDesc.
@@ -2323,6 +2323,462 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'CMT-2024-001'**
   String get contractIdValue;
+
+  /// No description provided for @importantAnnouncement.
+  ///
+  /// In en, this message translates to:
+  /// **'Important Announcement'**
+  String get importantAnnouncement;
+
+  /// No description provided for @compoundRulesMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please adhere to compound rules and review the scheduled times for events.'**
+  String get compoundRulesMessage;
+
+  /// No description provided for @event.
+  ///
+  /// In en, this message translates to:
+  /// **'Event'**
+  String get event;
+
+  /// No description provided for @saturday19October.
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday, October 19'**
+  String get saturday19October;
+
+  /// No description provided for @tenAM.
+  ///
+  /// In en, this message translates to:
+  /// **'10:00 AM'**
+  String get tenAM;
+
+  /// No description provided for @poolOpeningDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Join us for the new pool opening with recreational activities, special segments, and surprises for all family members.'**
+  String get poolOpeningDescription;
+
+  /// No description provided for @willAttend.
+  ///
+  /// In en, this message translates to:
+  /// **'I will attend'**
+  String get willAttend;
+
+  /// No description provided for @wontAttend.
+  ///
+  /// In en, this message translates to:
+  /// **'I won\'t attend'**
+  String get wontAttend;
+
+  /// No description provided for @free.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get free;
+
+  /// No description provided for @childrenFunDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Children\'s Fun Day'**
+  String get childrenFunDay;
+
+  /// No description provided for @friday25October.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday, October 25'**
+  String get friday25October;
+
+  /// No description provided for @fourPM.
+  ///
+  /// In en, this message translates to:
+  /// **'4:00 PM'**
+  String get fourPM;
+
+  /// No description provided for @childrenFunDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A recreational event for children including group games, competitions, and activities suitable for ages 5 to 12.'**
+  String get childrenFunDescription;
+
+  /// No description provided for @registerChildNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Register your child now'**
+  String get registerChildNow;
+
+  /// No description provided for @announcement.
+  ///
+  /// In en, this message translates to:
+  /// **'Announcement'**
+  String get announcement;
+
+  /// No description provided for @threeHoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'3 hours ago'**
+  String get threeHoursAgo;
+
+  /// No description provided for @elevatorMaintenanceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Routine Elevator Maintenance - Building A'**
+  String get elevatorMaintenanceTitle;
+
+  /// No description provided for @elevatorMaintenanceDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'We inform you that routine maintenance will be performed on all elevators in Building A on Thursday, October 17 from 9:00 AM to 12:00 PM. We apologize in advance for any inconvenience.'**
+  String get elevatorMaintenanceDescription;
+
+  /// No description provided for @readMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Read More'**
+  String get readMore;
+
+  /// No description provided for @subscriptionManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription Management'**
+  String get subscriptionManagement;
+
+  /// No description provided for @monthlyCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Cost'**
+  String get monthlyCost;
+
+  /// No description provided for @thisMonthSavings.
+  ///
+  /// In en, this message translates to:
+  /// **'This Month\'s Savings'**
+  String get thisMonthSavings;
+
+  /// No description provided for @bookSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Book Session'**
+  String get bookSession;
+
+  /// No description provided for @newSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'New Subscription'**
+  String get newSubscription;
+
+  /// No description provided for @manageAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage All'**
+  String get manageAll;
+
+  /// No description provided for @fitnessClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Fitness Club'**
+  String get fitnessClub;
+
+  /// No description provided for @monthlyPackageOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Package - Open'**
+  String get monthlyPackageOpen;
+
+  /// No description provided for @expiresIn15Days.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires in 15 days'**
+  String get expiresIn15Days;
+
+  /// No description provided for @houseCleaning.
+  ///
+  /// In en, this message translates to:
+  /// **'House Cleaning Service'**
+  String get houseCleaning;
+
+  /// No description provided for @weeklyThreeHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly - 3 hours'**
+  String get weeklyThreeHours;
+
+  /// No description provided for @tomorrowTenAM.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow - 10:00 AM'**
+  String get tomorrowTenAM;
+
+  /// No description provided for @availableServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Services'**
+  String get availableServices;
+
+  /// No description provided for @pool.
+  ///
+  /// In en, this message translates to:
+  /// **'Pool'**
+  String get pool;
+
+  /// No description provided for @poolAndSauna.
+  ///
+  /// In en, this message translates to:
+  /// **'Swimming pool and sauna'**
+  String get poolAndSauna;
+
+  /// No description provided for @save600.
+  ///
+  /// In en, this message translates to:
+  /// **'Save 600'**
+  String get save600;
+
+  /// No description provided for @modernEquipmentTrainers.
+  ///
+  /// In en, this message translates to:
+  /// **'Modern equipment and trainers'**
+  String get modernEquipmentTrainers;
+
+  /// No description provided for @mostPopular.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Popular'**
+  String get mostPopular;
+
+  /// No description provided for @monthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
+  String get monthly;
+
+  /// No description provided for @yearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly'**
+  String get yearly;
+
+  /// No description provided for @openAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Access'**
+  String get openAccess;
+
+  /// No description provided for @saunaUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Sauna Use'**
+  String get saunaUse;
+
+  /// No description provided for @personalLockers.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Lockers'**
+  String get personalLockers;
+
+  /// No description provided for @subscribeNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe Now'**
+  String get subscribeNow;
+
+  /// No description provided for @createInvitation.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Invitation'**
+  String get createInvitation;
+
+  /// No description provided for @entityData.
+  ///
+  /// In en, this message translates to:
+  /// **'Entity Data'**
+  String get entityData;
+
+  /// No description provided for @entityName.
+  ///
+  /// In en, this message translates to:
+  /// **'Entity Name'**
+  String get entityName;
+
+  /// No description provided for @enterName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Name'**
+  String get enterName;
+
+  /// No description provided for @phoneNumberOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number - Optional'**
+  String get phoneNumberOptional;
+
+  /// No description provided for @details.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get details;
+
+  /// No description provided for @expectedArrivalWithin.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected arrival within'**
+  String get expectedArrivalWithin;
+
+  /// No description provided for @selectGate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Gate'**
+  String get selectGate;
+
+  /// No description provided for @gate2.
+  ///
+  /// In en, this message translates to:
+  /// **'Gate 2'**
+  String get gate2;
+
+  /// No description provided for @gate3.
+  ///
+  /// In en, this message translates to:
+  /// **'Gate 3'**
+  String get gate3;
+
+  /// No description provided for @additionalNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional Notes'**
+  String get additionalNotes;
+
+  /// No description provided for @visitSpecialNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Any special notes about the visit'**
+  String get visitSpecialNotes;
+
+  /// No description provided for @createInvitationButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Invitation'**
+  String get createInvitationButton;
+
+  /// No description provided for @pleaseEnterEntityName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter entity name'**
+  String get pleaseEnterEntityName;
+
+  /// No description provided for @pleaseEnterValidPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number'**
+  String get pleaseEnterValidPhone;
+
+  /// No description provided for @pleaseSelectArrivalTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select expected arrival time'**
+  String get pleaseSelectArrivalTime;
+
+  /// No description provided for @pleaseSelectValidDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a valid date'**
+  String get pleaseSelectValidDate;
+
+  /// No description provided for @fifteenMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'15 minutes'**
+  String get fifteenMinutes;
+
+  /// No description provided for @thirtyMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'30 minutes'**
+  String get thirtyMinutes;
+
+  /// No description provided for @fortyFiveMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'45 minutes'**
+  String get fortyFiveMinutes;
+
+  /// No description provided for @sixtyMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'60 minutes'**
+  String get sixtyMinutes;
+
+  /// No description provided for @visitorData.
+  ///
+  /// In en, this message translates to:
+  /// **'Visitor Data'**
+  String get visitorData;
+
+  /// No description provided for @visitorName.
+  ///
+  /// In en, this message translates to:
+  /// **'Visitor Name'**
+  String get visitorName;
+
+  /// No description provided for @visitDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit Details'**
+  String get visitDetails;
+
+  /// No description provided for @time.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get time;
+
+  /// No description provided for @visitOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit Options'**
+  String get visitOptions;
+
+  /// No description provided for @multipleEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Multiple Entry'**
+  String get multipleEntry;
+
+  /// No description provided for @multipleEntryDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow entry and exit multiple times'**
+  String get multipleEntryDescription;
+
+  /// No description provided for @longTermVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Long-term Visit'**
+  String get longTermVisit;
+
+  /// No description provided for @longTermVisitDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Valid for several days'**
+  String get longTermVisitDescription;
+
+  /// No description provided for @pleaseEnterVisitorName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter visitor name'**
+  String get pleaseEnterVisitorName;
+
+  /// No description provided for @pleaseEnterPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter phone number'**
+  String get pleaseEnterPhoneNumber;
+
+  /// No description provided for @pleaseSelectTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select time'**
+  String get pleaseSelectTime;
 }
 
 class _AppLocalizationsDelegate

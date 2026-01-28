@@ -7,6 +7,7 @@ import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
 import 'package:ritaj_compound/presentation/services/widgets/complaints_content.dart';
 
 class ComplaintsScreen extends StatelessWidget {
+  static const routeName = '/complaints';
   const ComplaintsScreen({super.key});
 
   @override
