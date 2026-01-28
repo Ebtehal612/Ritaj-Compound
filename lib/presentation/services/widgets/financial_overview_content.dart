@@ -66,7 +66,7 @@ class FinancialOverviewContent extends StatelessWidget {
             buttonText: l10n.payNow,
             buttonColor: Palette.orange.shade500,
             showWarning: true,
-            borderColor: Palette.orange.shade200,
+            borderColor: Colors.grey[100]!,
           ),
           16.verticalSpace,
           _ActionCard(
@@ -77,7 +77,7 @@ class FinancialOverviewContent extends StatelessWidget {
             buttonText: l10n.payImmediately,
             buttonColor: Colors.red,
             showError: true,
-            borderColor: Colors.red[100]!,
+            borderColor: Colors.grey[100]!,
           ),
           24.verticalSpace,
 
@@ -115,7 +115,7 @@ class FinancialOverviewContent extends StatelessWidget {
           _TransactionItem(
             title: l10n.gymSubscription,
             amount: '300',
-            date: l10n.yesterdayAt('10:15 ص'),
+            date: l10n.yesterdayAt('10:15 ${l10n.pm}'),
             status: l10n.completed,
             icon: Icons.fitness_center,
             iconColor: Palette.lightBlue.shade500,
@@ -124,7 +124,7 @@ class FinancialOverviewContent extends StatelessWidget {
           _TransactionItem(
             title: l10n.mallOrder,
             amount: '125',
-            date: l10n.yesterdayAt('6:45 م'),
+            date: l10n.yesterdayAt('6:45 ${l10n.pm}'),
             status: l10n.completed,
             icon: Icons.shopping_basket,
             iconColor: Palette.purple.shade500,
@@ -355,7 +355,7 @@ class _VirtualCard extends StatelessWidget {
           ),
           24.verticalSpace,
           Center(
-            child: CustomText.s20('**** ****', color: Colors.white, bold: true),
+            child: CustomText.s20('* * * *     * * * *     * * * *     * * * *', color: Colors.white, bold: true),
           ),
           24.verticalSpace,
           Row(
@@ -444,7 +444,7 @@ class _TransactionItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText.s14(title, bold: true),
+                CustomText.s14(title, bold: true, color: Colors.grey.shade500),
                 CustomText.s12(date, color: Palette.neutral.color6),
               ],
             ),
@@ -452,7 +452,7 @@ class _TransactionItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              CustomText.s14('- $amount ج.م', color: Colors.red, bold: true),
+              CustomText.s14('$amount EGP', color: Colors.grey.shade500, bold: true),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                 decoration: BoxDecoration(

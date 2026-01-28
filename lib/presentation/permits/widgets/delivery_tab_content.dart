@@ -188,6 +188,7 @@ class _ActiveDeliveryCard extends StatelessWidget {
               const Icon(Icons.qr_code_scanner, color: Colors.teal, size: 20),
             ],
           ),
+          const Divider(),
           15.verticalSpace,
           Row(
             children: [
@@ -210,30 +211,34 @@ class _ActiveDeliveryCard extends StatelessWidget {
               ),
             ],
           ),
-          10.verticalSpace,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CustomText.s11(
-                l10n.expire,
-                color: Palette.neutral.color7,
-              ),
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 14.w, vertical: 4.h),
-                  backgroundColor: Palette.red.shade50,
-                  minimumSize: Size.zero,
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          20.verticalSpace,
+           Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.red,
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
+                      minimumSize: Size.zero,
+                      side: BorderSide(
+                        color: Colors.grey,
+                        width: 1.5,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                    ),
+                    child: CustomText.s12(
+                      l10n.cancelthepermit,
+                      color: Colors.grey,
+                      bold: true,
+                    ),
+                  ),
                 ),
-                child: CustomText.s11(
-                  l10n.cancelthepermit,
-                  color: Colors.red,
-                ),
-              ),
-            ],
-          ),
+              ],
+            ),
         ],
       ),
     );
@@ -269,7 +274,7 @@ class _PreviousDeliveryItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText.s14(name, bold: true),
+                  CustomText.s14(name, bold: true, color: Palette.neutral.color7),
                   CustomText.s12(time, color: Palette.neutral.color7),
                 ],
               ),

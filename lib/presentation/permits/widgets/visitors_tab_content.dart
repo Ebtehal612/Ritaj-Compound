@@ -38,7 +38,6 @@ class VisitorsTabContent extends StatelessWidget {
           const _ActivePermitCard(
             visitorName: 'Mohamed Ali',
             phone: '+20 100 123 4567',
-            gate: 'Main Gate',
             // In hours
           ),
           16.verticalSpace,
@@ -51,8 +50,7 @@ class VisitorsTabContent extends StatelessWidget {
           16.verticalSpace,
           _PreviousVisitorItem(
               name: 'Ahmed Mohamed', time: '${l10n.yesterday} 3:15 ${l10n.pm}'),
-          _PreviousVisitorItem(
-              name: 'Sarah Abdullah', time: l10n.lastWeek),
+          _PreviousVisitorItem(name: 'Sarah Abdullah', time: l10n.lastWeek),
         ],
       ),
     );
@@ -94,7 +92,10 @@ class _QuickPermitCard extends StatelessWidget {
                 onPressed: () {
                   context.push(QuickVisitorsPermit.routeName);
                 },
-                icon: const Icon(Icons.person_add_alt_1,size: 25,),
+                icon: const Icon(
+                  Icons.person_add_alt_1,
+                  size: 25,
+                ),
                 label: Text(l10n.newVisitorPermit),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white.withOpacity(0.2),
@@ -176,6 +177,7 @@ class _ActivePermitCard extends StatelessWidget {
                 const Icon(Icons.share, color: Colors.blueGrey, size: 20),
               ],
             ),
+            const Divider(),
             15.verticalSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -201,25 +203,30 @@ class _ActivePermitCard extends StatelessWidget {
                 ),
               ],
             ),
-            10.verticalSpace,
+            20.verticalSpace,
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CustomText.s11(
-                  l10n.expire,
-                  color: Palette.neutral.color7,
-                ),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 14.w, vertical: 4.h),
-                    backgroundColor: Palette.red.shade50,
-                  ),
-                  child: CustomText.s11(
-                    l10n.cancelthepermit,
-                    color: Colors.red,
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.red,
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
+                      minimumSize: Size.zero,
+                      side: BorderSide(
+                        color: Colors.grey,
+                        width: 1.5,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                    ),
+                    child: CustomText.s12(
+                      l10n.cancelthepermit,
+                      color: Colors.grey,
+                      bold: true,
+                    ),
                   ),
                 ),
               ],
@@ -260,7 +267,8 @@ class _PreviousVisitorItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText.s14(name, bold: true),
+                  CustomText.s14(name,
+                      bold: true, color: Palette.neutral.color7),
                   CustomText.s12(time, color: Palette.neutral.color7),
                 ],
               ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
+import 'package:ritaj_compound/presentation/more/pages/more_screen.dart';
 
 class SubscriptionsScreen extends StatelessWidget {
   static const routeName = '/subscriptions';
@@ -11,7 +13,7 @@ class SubscriptionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -32,11 +34,17 @@ class SubscriptionsScreen extends StatelessWidget {
             ),
             const Spacer(),
             const Icon(Icons.notifications, color: Colors.black),
-            5.horizontalSpace,
-            CircleAvatar(
-              radius: 20.r,
-              backgroundColor: Palette.green.shade700,
-              child: const Icon(Icons.person, color: Colors.white),
+             10.horizontalSpace,
+              GestureDetector(
+              onTap: () {
+                context.push(MoreScreen.routeName);
+                debugPrint('Avatar clicked');
+              },
+              child: CircleAvatar(
+                radius: 20.r,
+                backgroundColor: Palette.green.shade700,
+                child: const Icon(Icons.person, color: Colors.white),
+              ),
             ),
           ],
         ),
@@ -57,7 +65,6 @@ class SubscriptionsScreen extends StatelessWidget {
                 l10n: l10n,
                 title: l10n.fitnessClub,
                 price: '500 ${l10n.egp} / ${l10n.monthly}',
-                status: l10n.active,
                 subtitle: l10n.monthlyPackageOpen,
                 footer: l10n.expiresIn15Days,
                 icon: Icons.fitness_center,
@@ -67,7 +74,6 @@ class SubscriptionsScreen extends StatelessWidget {
                 l10n: l10n,
                 title: l10n.houseCleaning,
                 price: '350 ${l10n.egp} / ${l10n.monthly}',
-                status: l10n.active,
                 subtitle: l10n.weeklyThreeHours,
                 footer: l10n.tomorrowTenAM,
                 icon: Icons.cleaning_services,
@@ -76,7 +82,6 @@ class SubscriptionsScreen extends StatelessWidget {
               _sectionTitle(l10n.availableServices, l10n.viewAll),
               12.verticalSpace,
               _availableServicesSection(l10n),
-               
             ],
           ),
         ),
@@ -114,9 +119,12 @@ class SubscriptionsScreen extends StatelessWidget {
           20.verticalSpace,
           Row(
             children: [
-              Expanded(child: _summaryItem(l10n.monthlyCost, '850 ${l10n.egp}')),
+              Expanded(
+                  child: _summaryItem(l10n.monthlyCost, '850 ${l10n.egp}')),
               const Spacer(),
-              Expanded(child: _summaryItem(l10n.thisMonthSavings, '120 ${l10n.egp}')),
+              Expanded(
+                  child:
+                      _summaryItem(l10n.thisMonthSavings, '120 ${l10n.egp}')),
             ],
           ),
         ],
@@ -188,7 +196,6 @@ class SubscriptionsScreen extends StatelessWidget {
     required AppLocalizations l10n,
     required String title,
     required String price,
-    required String status,
     required String subtitle,
     required String footer,
     required IconData icon,
@@ -219,19 +226,11 @@ class SubscriptionsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText.s16(title, bold: true),
+                    CustomText.s14(title, bold: true),
                     4.verticalSpace,
                     CustomText.s12(subtitle, color: Colors.grey),
                   ],
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  color: Palette.green.shade100,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: CustomText.s12(status, color: Palette.green.shade700),
               ),
             ],
           ),
@@ -251,46 +250,45 @@ class SubscriptionsScreen extends StatelessWidget {
     );
   }
 
- Widget _availableServicesSection(AppLocalizations l10n) {
-  return SizedBox(
-    height: 370.h, 
-    child: ListView.separated(
-      scrollDirection: Axis.horizontal,
-      padding: EdgeInsets.symmetric(horizontal: 4.w),
-      itemCount: 2,
-      separatorBuilder: (_, __) => 16.horizontalSpace,
-      itemBuilder: (context, index) {
-        return SizedBox(
-          width: 260.w,
-          child: index == 0
-              ? _serviceCard(
-                  l10n: l10n,
-                  title: l10n.pool,
-                  subtitle: l10n.poolAndSauna,
-                  monthlyPrice: '300 ${l10n.egp}',
-                  yearlyPrice: '3,000 ${l10n.egp}',
-                  badge: l10n.save600,
-                  icon: Icons.pool,
-                  bgColor: Palette.green.shade700,
-                  lightIconColor: Colors.cyan.shade100,
-                )
-              : _serviceCard(
-                  l10n: l10n,
-                  title: l10n.gym,
-                  subtitle: l10n.modernEquipmentTrainers,
-                  monthlyPrice: '450 ${l10n.egp}',
-                  yearlyPrice: '4,500 ${l10n.egp}',
-                  badge: l10n.mostPopular,
-                  icon: Icons.fitness_center,
-                  bgColor: Colors.deepPurple.shade600,
-                  lightIconColor: Colors.deepPurple.shade100,
-                  flipped: true,
-                )
-        );
-      },
-    ),
-  );
-}
+  Widget _availableServicesSection(AppLocalizations l10n) {
+    return SizedBox(
+      height: 370.h,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(horizontal: 4.w),
+        itemCount: 2,
+        separatorBuilder: (_, __) => 16.horizontalSpace,
+        itemBuilder: (context, index) {
+          return SizedBox(
+              width: 260.w,
+              child: index == 0
+                  ? _serviceCard(
+                      l10n: l10n,
+                      title: l10n.pool,
+                      subtitle: l10n.poolAndSauna,
+                      monthlyPrice: '300 ${l10n.egp}',
+                      yearlyPrice: '3,000 ${l10n.egp}',
+                      badge: l10n.save600,
+                      icon: Icons.pool,
+                      bgColor: Palette.green.shade700,
+                      lightIconColor: Colors.cyan.shade100,
+                    )
+                  : _serviceCard(
+                      l10n: l10n,
+                      title: l10n.gym,
+                      subtitle: l10n.modernEquipmentTrainers,
+                      monthlyPrice: '450 ${l10n.egp}',
+                      yearlyPrice: '4,500 ${l10n.egp}',
+                      badge: l10n.mostPopular,
+                      icon: Icons.fitness_center,
+                      bgColor: Colors.deepPurple.shade600,
+                      lightIconColor: Colors.deepPurple.shade100,
+                      flipped: true,
+                    ));
+        },
+      ),
+    );
+  }
 
   Widget _serviceCard({
     required AppLocalizations l10n,
@@ -321,7 +319,7 @@ class SubscriptionsScreen extends StatelessWidget {
           ],
         ),
         child: Column(
-            mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             /// Top row
@@ -337,7 +335,8 @@ class SubscriptionsScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                   decoration: BoxDecoration(
                     color: Colors.orange,
                     borderRadius: BorderRadius.circular(20.r),
@@ -351,11 +350,18 @@ class SubscriptionsScreen extends StatelessWidget {
               ],
             ),
             12.verticalSpace,
+
             /// Title
-            CustomText.s18(title, bold: true),
+            CustomText.s16(title, bold: true),
             4.verticalSpace,
-            CustomText.s14(subtitle, color: Colors.grey,maxLines: 1,overflow: true,),
+            CustomText.s12(
+              subtitle,
+              color: Colors.grey,
+              maxLines: 1,
+              overflow: true,
+            ),
             12.verticalSpace,
+
             /// Prices
             flipped
                 ? Row(
@@ -373,11 +379,13 @@ class SubscriptionsScreen extends StatelessWidget {
                     ],
                   ),
             12.verticalSpace,
+
             /// Features
             _featureRow(l10n.openAccess),
             _featureRow(l10n.saunaUse),
             _featureRow(l10n.personalLockers),
             12.verticalSpace,
+
             /// Button
             SizedBox(
               width: double.infinity,
@@ -397,10 +405,8 @@ class SubscriptionsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            
           ],
         ),
-        
       ),
     );
   }

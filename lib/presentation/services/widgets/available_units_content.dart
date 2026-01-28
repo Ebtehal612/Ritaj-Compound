@@ -24,10 +24,10 @@ class AvailableUnitsContent extends StatelessWidget {
               Row(
                 children: [
                   CustomText.s14(l10n.sortByPrice,
-                      color: Palette.green.shade500),
+                      color: Palette.green.shade700),
                   4.horizontalSpace,
                   Icon(Icons.keyboard_arrow_down,
-                      size: 18, color: Palette.green.shade500),
+                      size: 18, color: Palette.green.shade700),
                 ],
               ),
             ],
@@ -63,7 +63,7 @@ class AvailableUnitsContent extends StatelessWidget {
                 area: l10n.area('142'),
                 tags: [l10n.gardenView],
                 statusTag: 'متاح', // Arabic for available as per design
-                statusColor: Palette.green.shade500,
+                statusColor: Palette.green.shade700,
                 isAvailable: true,
               ),
               16.verticalSpace,
@@ -291,7 +291,7 @@ class _UnitCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(4.r),
                               ),
                               child: CustomText.s10(tag,
-                                  color: Palette.green.shade600, bold: true),
+                                  color: Palette.green.shade700, bold: true),
                             ))
                         .toList(),
                   ),
@@ -356,7 +356,7 @@ class _UnitCard extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: isReserved
                               ? Palette.orange.shade600
-                              : Palette.green.shade500,
+                              : Palette.green.shade700,
                           foregroundColor: Colors.white,
                           disabledBackgroundColor: Colors.grey[300],
                           shape: RoundedRectangleBorder(

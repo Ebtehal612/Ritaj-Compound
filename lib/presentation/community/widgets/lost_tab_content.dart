@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
-import 'groups_tab_content.dart'; // To reuse PostType and PostModel if possible, but let's re-declare to be safe or import if public
+import 'groups_tab_content.dart'; 
 
 class LostTabContent extends StatefulWidget {
   const LostTabContent({super.key});
@@ -87,7 +87,7 @@ class _LostTabContentState extends State<LostTabContent> {
                       disabledBorder: InputBorder.none,
                       errorBorder: InputBorder.none,
                       hintStyle: TextStyle(
-                        color: Palette.neutral.color5,
+                        color: Palette.neutral.color7,
                         fontSize: 14.sp,
                       ),
                     ),

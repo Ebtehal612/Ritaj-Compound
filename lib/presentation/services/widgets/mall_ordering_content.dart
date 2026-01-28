@@ -124,12 +124,12 @@ class MallOrderingContent extends StatelessWidget {
             rating: '4.8',
             tags: '${l10n.grocery} • 15 - 25 ${l10n.minutes}',
             promo: l10n.freeDelivery,
-            statusColor: Palette.green.shade500,
+            statusColor: Palette.green.shade700,
             statusText: l10n.open,
             actionText: l10n.shopNow,
-            imageColor: Colors.orange.shade100, // Placeholder color
+            imageColor: Colors.orange.shade100, 
             icon: Icons.storefront,
-            actionColor: Palette.green.shade500,
+            actionColor: Palette.green.shade700,
           ),
           16.verticalSpace,
           _StoreCard(
@@ -137,12 +137,12 @@ class MallOrderingContent extends StatelessWidget {
             rating: '4.5',
             tags: '${l10n.pharmacy} • 10 - 20 ${l10n.minutes}',
             promo: l10n.medsAndPrescriptions,
-            statusColor: Palette.green.shade500,
+            statusColor: Palette.green.shade700,
             statusText: l10n.open,
             actionText: l10n.shopNow,
-            imageColor: Colors.blue.shade100,
+            imageColor: Colors.blue.shade700,
             icon: Icons.local_pharmacy,
-            actionColor: Palette.green.shade500,
+            actionColor: Palette.green.shade700,
           ),
           16.verticalSpace,
           _StoreCard(
@@ -155,7 +155,7 @@ class MallOrderingContent extends StatelessWidget {
             actionText: l10n.orderNow,
             imageColor: Colors.red.shade100,
             icon: Icons.restaurant,
-            actionColor: Palette.green.shade500,
+            actionColor: Palette.green.shade700,
           ),
           16.verticalSpace,
           _StoreCard(
@@ -188,7 +188,7 @@ class _CategoryChip extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       decoration: BoxDecoration(
-        color: isSelected ? Palette.green.shade500 : Colors.grey.shade200,
+        color: isSelected ? Palette.green.shade700 : Colors.grey.shade200,
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: CustomText.s14(

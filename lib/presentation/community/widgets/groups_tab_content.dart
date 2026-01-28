@@ -113,7 +113,7 @@ class _GroupsTabContentState extends State<GroupsTabContent> {
                       disabledBorder: InputBorder.none,
                       errorBorder: InputBorder.none,
                       hintStyle: TextStyle(
-                        color: Palette.neutral.color5,
+                        color: Palette.neutral.color7,
                         fontSize: 14.sp,
                       ),
                     ),
@@ -310,12 +310,12 @@ class PostCard extends StatelessWidget {
                     CustomText.s14(post.author, bold: true),
                     CustomText.s12(
                       '${l10n.unitLabel(post.unit)}  •  ${post.time}',
-                      color: Palette.neutral.color5,
+                      color: Palette.neutral.color7,
                     ),
                   ],
                 ),
               ),
-              Icon(Icons.more_vert, color: Palette.neutral.color5, size: 20.sp),
+              Icon(Icons.more_vert, color: Palette.neutral.color7, size: 20.sp),
             ],
           ),
           SizedBox(height: 12.h),
@@ -369,11 +369,11 @@ class PostCard extends StatelessWidget {
               children: [
                 CustomText.s12(
                   l10n.pollVotes(post.votesCount ?? 0),
-                  color: Palette.neutral.color5,
+                  color: Palette.neutral.color7,
                 ),
                 const Spacer(),
                 CustomText.s12(post.pollEndsIn ?? '',
-                    color: Palette.neutral.color5),
+                    color: Palette.neutral.color7),
               ],
             ),
             SizedBox(height: 8.h),
@@ -447,29 +447,29 @@ class PostCard extends StatelessWidget {
                   children: [
                     Icon(
                       post.isLiked ? Icons.favorite : Icons.favorite_border,
-                      color: post.isLiked ? Colors.red : Palette.neutral.color5,
+                      color: post.isLiked ? Colors.red : Palette.neutral.color7,
                       size: 18.sp,
                     ),
                     SizedBox(width: 4.w),
                     CustomText.s12(post.likes.toString(),
-                        color: Palette.neutral.color5),
+                        color: Palette.neutral.color7),
                   ],
                 ),
               ),
               Row(
                 children: [
                   Icon(Icons.chat_bubble_outline,
-                      color: Palette.neutral.color5, size: 18.sp),
+                      color: Palette.neutral.color7, size: 18.sp),
                   SizedBox(width: 4.w),
                   CustomText.s12(post.comments.toString(),
-                      color: Palette.neutral.color5),
+                      color: Palette.neutral.color7),
                 ],
               ),
               Row(children: [
-                Icon(Icons.share, color: Palette.neutral.color5, size: 18.sp),
+                Icon(Icons.share, color: Palette.neutral.color7, size: 18.sp),
                 SizedBox(width: 4.w),
                 CustomText.s12(post.shares.toString(),
-                    color: Palette.neutral.color5),
+                    color: Palette.neutral.color7),
               ])
             ],
           ),

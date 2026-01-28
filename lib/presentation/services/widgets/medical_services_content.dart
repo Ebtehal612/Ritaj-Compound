@@ -84,7 +84,7 @@ class _MedicalServicesContentState extends State<MedicalServicesContent> {
                     icon: Icons.person_search,
                     label: l10n.doctors,
                     color: Palette.lightBlue.shade500,
-                    bgColor: Palette.lightBlue.shade50,
+                    bgColor:Colors.grey.shade100,
                     isSelected: _selectedCategoryIndex == 0,
                     onTap: () => setState(() => _selectedCategoryIndex = 0),
                   ),
@@ -92,8 +92,8 @@ class _MedicalServicesContentState extends State<MedicalServicesContent> {
                   _CategoryItem(
                     icon: Icons.local_hospital,
                     label: l10n.clinics,
-                    color: Palette.green.shade500,
-                    bgColor: Palette.green.shade50,
+                    color: Palette.green.shade700,
+                    bgColor: Colors.grey.shade100,
                     isSelected: _selectedCategoryIndex == 1,
                     onTap: () => setState(() => _selectedCategoryIndex = 1),
                   ),
@@ -102,7 +102,7 @@ class _MedicalServicesContentState extends State<MedicalServicesContent> {
                     icon: Icons.science,
                     label: l10n.lab,
                     color: Palette.purple.shade500,
-                    bgColor: Palette.purple.shade50,
+                    bgColor: Colors.grey.shade100,
                     isSelected: _selectedCategoryIndex == 2,
                     onTap: () => setState(() => _selectedCategoryIndex = 2),
                   ),
@@ -111,7 +111,7 @@ class _MedicalServicesContentState extends State<MedicalServicesContent> {
                     icon: Icons.medical_services,
                     label: l10n.pharmacies,
                     color: Palette.orange.shade500,
-                    bgColor: Palette.orange.shade50,
+                    bgColor:Colors.grey.shade100,
                     isSelected: _selectedCategoryIndex == 3,
                     onTap: () => setState(() => _selectedCategoryIndex = 3),
                   ),
@@ -346,8 +346,8 @@ class _CategoryItem extends StatelessWidget {
               boxShadow: isSelected
                   ? [
                       BoxShadow(
-                        color: color.withValues(alpha: 0.3),
-                        blurRadius: 8,
+                        color: color.withValues(alpha: 0.6),
+                        blurRadius: 11,
                         offset: const Offset(0, 4),
                       )
                     ]
@@ -396,7 +396,7 @@ class _DoctorCard extends StatelessWidget {
 
     // Themed styling based on isClinic (or eventually a proper type)
     final themeColor =
-        isClinic ? Palette.green.shade500 : Palette.lightBlue.shade500;
+        isClinic ? Palette.green.shade700 : Palette.lightBlue.shade500;
 
     return Container(
       margin: EdgeInsets.only(bottom: 12.h),
@@ -508,7 +508,7 @@ class _DoctorCard extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(Icons.location_on,
-                              color: Palette.green.shade500, size: 10),
+                              color: Palette.green.shade700, size: 10),
                           2.horizontalSpace,
                           CustomText.s10(l10n.distance(distance),
                               color: Palette.neutral.color7, bold: true),
@@ -527,7 +527,7 @@ class _DoctorCard extends StatelessWidget {
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: Palette.green.shade500,
+              backgroundColor: Palette.green.shade700,
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
               minimumSize: Size.zero,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
+import 'package:ritaj_compound/presentation/more/pages/more_screen.dart';
 
 class QuickDeliveryPermit extends StatefulWidget {
   static const routeName = '/create-delivery-permit';
@@ -30,7 +32,7 @@ class _QuickDeliveryPermitState extends State<QuickDeliveryPermit> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -45,10 +47,16 @@ class _QuickDeliveryPermitState extends State<QuickDeliveryPermit> {
             bold: true,
           ),
           const Spacer(),
-          CircleAvatar(
-            radius: 20.r,
-            backgroundColor: Palette.green.shade700,
-            child: const Icon(Icons.person, color: Colors.white),
+          GestureDetector(
+            onTap: () {
+              context.push(MoreScreen.routeName);
+              debugPrint('Avatar clicked');
+            },
+            child: CircleAvatar(
+              radius: 20.r,
+              backgroundColor: Palette.green.shade700,
+              child: const Icon(Icons.person, color: Colors.white),
+            ),
           ),
         ]),
       ),

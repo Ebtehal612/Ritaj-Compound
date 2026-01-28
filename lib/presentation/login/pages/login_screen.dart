@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               return Switch(
                                 value: state.languageCode == 'en',
                                 activeColor: Colors.white,
-                                activeTrackColor: Palette.green.shade400,
+                                activeTrackColor: Palette.green.shade700,
                                 inactiveThumbColor: Colors.white,
                                 inactiveTrackColor: Palette.green.shade900,
                                 thumbIcon:

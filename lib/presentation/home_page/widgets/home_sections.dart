@@ -11,7 +11,8 @@ import 'package:ritaj_compound/presentation/home_page/pages/subscription_managem
 import 'package:ritaj_compound/presentation/permits/pages/quick_delivery_permit.dart';
 import 'package:ritaj_compound/presentation/permits/pages/quick_visitors_permit.dart';
 import 'package:ritaj_compound/presentation/services/pages/complaints_screen.dart';
-import 'package:ritaj_compound/presentation/services/pages/financial_overview_screen.dart' show FinancialOverviewScreen;
+import 'package:ritaj_compound/presentation/services/pages/financial_overview_screen.dart'
+    show FinancialOverviewScreen;
 
 // ================== SECTION: QUICK PROCEDURES ==================
 class QuickProceduresSection extends StatelessWidget {
@@ -63,7 +64,9 @@ class QuickProceduresSection extends StatelessWidget {
               label: AppLocalizations.of(context)!.payInstallment,
               iconColor: Colors.green,
               bgColor: Colors.green.shade50,
-              onTap: () {context.push(FinancialOverviewScreen.routeName);},
+              onTap: () {
+                context.push(FinancialOverviewScreen.routeName);
+              },
             ),
           ],
         ),
@@ -84,8 +87,7 @@ class SummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
+    return Center(
       child: Container(
         width: 343.w,
         height: 240.h,
@@ -107,7 +109,7 @@ class SummaryCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -449,7 +451,7 @@ class _ShortcutTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText.s16(title, bold: true),
+                CustomText.s14(title, bold: true),
                 5.verticalSpace,
                 CustomText.s12(subtitle, color: Palette.neutral.color7),
               ],
@@ -492,9 +494,7 @@ class ActiveSubscriptionsSection extends StatelessWidget {
           color: Colors.green,
           title: AppLocalizations.of(context)!.gym,
           subtitle: AppLocalizations.of(context)!.monthlyPackage,
-          status: AppLocalizations.of(context)!.active,
           details: AppLocalizations.of(context)!.expiresInDays(15),
-          manageLabel: AppLocalizations.of(context)!.manage,
         ),
         10.verticalSpace,
         _SubscriptionCard(
@@ -502,9 +502,7 @@ class ActiveSubscriptionsSection extends StatelessWidget {
           color: Colors.blue,
           title: AppLocalizations.of(context)!.cleaningService,
           subtitle: AppLocalizations.of(context)!.weekly,
-          status: AppLocalizations.of(context)!.active,
           details: AppLocalizations.of(context)!.nextSessionTomorrow,
-          manageLabel: AppLocalizations.of(context)!.manage,
         ),
       ],
     );
@@ -516,18 +514,14 @@ class _SubscriptionCard extends StatelessWidget {
   final Color color;
   final String title;
   final String subtitle;
-  final String status;
   final String details;
-  final String manageLabel;
 
   const _SubscriptionCard({
     required this.icon,
     required this.color,
     required this.title,
     required this.subtitle,
-    required this.status,
     required this.details,
-    required this.manageLabel,
   });
 
   @override
@@ -555,6 +549,7 @@ class _SubscriptionCard extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         CircleAvatar(
                           radius: 20.r,
@@ -565,23 +560,14 @@ class _SubscriptionCard extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CustomText.s16(title, bold: true, center: false),
+                            CustomText.s14(title, bold: true, center: false),
                             4.verticalSpace,
                             CustomText.s12(subtitle,
                                 color: Palette.neutral.color7),
                           ],
                         ),
-                        Spacer(),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 12.w, vertical: 6.h),
-                          decoration: BoxDecoration(
-                            color: Palette.green.shade50,
-                            borderRadius: BorderRadius.circular(20.r),
-                          ),
-                          child: CustomText.s12(status,
-                              color: Palette.green.shade800),
-                        ),
+                        const Spacer(),
+                        CustomText.s12(details, color: Palette.neutral.color7)
                       ],
                     ),
                   ],
@@ -589,27 +575,6 @@ class _SubscriptionCard extends StatelessWidget {
               ),
             ],
           ),
-          15.verticalSpace,
-          Padding(
-            padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                CustomText.s12(details, color: Palette.neutral.color7),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    minimumSize: Size.zero,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                  child: CustomText.s14(manageLabel,
-                      color: Palette.green.shade700),
-                ),
-              ],
-            ),
-          )
         ],
       ),
     );

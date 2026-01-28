@@ -251,11 +251,9 @@ class _ExpandableCategory extends StatelessWidget {
             child: Row(
               children: [
                 Icon(
-                  isExpanded
-                      ? Icons.keyboard_arrow_up
-                      : Icons.keyboard_arrow_down,
+                  icon,
                   color: themeColor,
-                  size: 28,
+                  size: 32,
                 ),
                 16.horizontalSpace,
                 Expanded(
@@ -266,9 +264,11 @@ class _ExpandableCategory extends StatelessWidget {
                   ),
                 ),
                 Icon(
-                  icon,
+                  isExpanded
+                      ? Icons.keyboard_arrow_up
+                      : Icons.keyboard_arrow_down,
                   color: themeColor,
-                  size: 32,
+                  size: 28,
                 ),
               ],
             ),
