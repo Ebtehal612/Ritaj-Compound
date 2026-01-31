@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../app/di/injection_container.dart';
 import '../localization/localization_manager.dart';
@@ -101,9 +102,12 @@ class _CustomInterceptor extends Interceptor {
       DioExceptionType.unknown => Failure.unknown(
           message: lz.unknownError,
         ),
-      DioExceptionType.badResponse => _handleBadResponse(
-          response: err.response!,
-        ),
+      DioExceptionType.badResponse => () {
+          debugPrint('DIO ERROR BODY: ${err.response?.data}');
+          return _handleBadResponse(
+            response: err.response!,
+          );
+        }(),
     };
     await failure.whenOrNull<Future<void>>(unauthorized: (_) async {
      // sl<AppRouter>().router.goNamed(LoginScreen.routeName);

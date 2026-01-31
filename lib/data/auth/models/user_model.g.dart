@@ -12,7 +12,6 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       email: json['email'] as String,
       role: $enumDecode(_$UserTypeEnumMap, json['role']),
-      gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
       profilePictureUrl: json['profilePictureUrl'] as String?,
     );
 
@@ -22,16 +21,10 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'name': instance.name,
       'email': instance.email,
       'role': _$UserTypeEnumMap[instance.role]!,
-      'gender': _$GenderEnumMap[instance.gender],
       'profilePictureUrl': instance.profilePictureUrl,
     };
 
 const _$UserTypeEnumMap = {
-  UserType.student: 1,
-  UserType.teacher: 2,
-};
-
-const _$GenderEnumMap = {
-  Gender.male: 0,
-  Gender.female: 1,
+  UserType.resident: 1,
+  UserType.admin: 2,
 };

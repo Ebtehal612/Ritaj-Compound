@@ -26,8 +26,8 @@ class LoginCubit extends Cubit<BaseState<User>> {
     result.fold((failure) {
       emit(BaseState.failure(failure: failure));
     }, (_) async {
-      // We don't change state to success here because we are waiting for OTP entry
-      emit(const BaseState.initial());
+      // Use empty state to signal "Ready for OTP" to navigation listeners
+      emit(const BaseState.empty());
     });
   }
 }

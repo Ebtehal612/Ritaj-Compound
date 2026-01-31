@@ -12,6 +12,7 @@ import '../../core/theme/app_theme.dart';
 import 'package:dio/dio.dart';
 import '../../core/network/network_setup.dart';
 import '../../core/cubits/user_cubit.dart';
+import '../../data/auth/remote/auth_remote_data_source.dart';
 
 
 final sl = GetIt.instance;
@@ -21,13 +22,17 @@ Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => const FlutterSecureStorage());
-  sl.registerLazySingleton(() => Dio());
+  sl.registerLazySingleton(() => createDio());
 
   // Core
   sl.registerLazySingleton<SharedPrefs>(() => SharedPrefs(sl(), sl()));
   sl.registerLazySingleton<AppTheme>(() => AppTheme());
   sl.registerLazySingleton(() => AppRouter());
   sl.registerLazySingleton<LocaleCubit>(() => LocaleCubit());
+
+  // Data Sources
+  sl.registerLazySingleton<AuthRemoteDataSource>(
+      () => AuthRemoteDataSourceImpl(sl()));
 
   // Cubits
   sl.registerLazySingleton<UserCubit>(() => UserCubit(sl()));
@@ -37,5 +42,5 @@ Future<void> init() async {
   sl.registerLazySingleton(() => LoginUseCase(sl()));
 
   //! Repos
-  sl.registerLazySingleton<AuthRepo>(() => const AuthRepoImpl());
+  sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl()));
 }

@@ -35,19 +35,4 @@ extension IsLoadingState on BaseState {
   bool get isLoading => maybeMap(orElse: () => false, loading: (value) => true);
 }
 
-extension SessionNameExtension on LessonType {
-  String get toName {
-    switch (this) {
-      case LessonType.explain:
-        return lz.explanation;
-      case LessonType.homeworkSolution:
-        return lz.homeworkSolution;
-      case LessonType.practice:
-        return lz.practice;
-      case LessonType.revision:
-        return lz.revision;
-      case LessonType.other:
-        return lz.other;
-    }
-  }
-}
+

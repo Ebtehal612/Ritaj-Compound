@@ -1,4 +1,5 @@
 import 'package:fpdart/fpdart.dart';
+import '../remote/auth_remote_data_source.dart';
 import '../../../app/di/injection_container.dart';
 import '../../../core/cubits/user_cubit.dart';
 import '../../../core/network/failure/failure.dart';
@@ -8,37 +9,30 @@ import '../../../core/shared_preferences/shared_prefs.dart';
 import '../../../domain/auth/entities/user.dart';
 import '../../../domain/auth/repo/auth_repo.dart';
 import '../../../domain/auth/use_cases/login_use_case/login_use_case.dart';
-import '../models/user_model.dart';
-import '../../../core/enums/enums.dart';
 
 class AuthRepoImpl implements AuthRepo {
-  const AuthRepoImpl();
+  final AuthRemoteDataSource _remoteDataSource;
+  const AuthRepoImpl(this._remoteDataSource);
 
   @override
   Future<Result<User>> login({required LoginParams params}) async {
     try {
-      // Mock login success
-      final mockUser = UserModel(
-        id: 'mock_id',
-        name: 'Mock User',
-        email: 'mock@example.com',
-        role: UserType.teacher,
-        gender: Gender.male,
-        profilePictureUrl: null,
-      );
+      final userModel = await _remoteDataSource.login(params: params);
 
       sl<SharedPrefs>()
         ..saveBool(key: PrefsKeys.isLogged, value: true)
         ..saveSecuredValue(
           key: PrefsKeys.userDetails,
-          value: mockUser.toJson(),
+          value: userModel.toJson(),
         );
       
       if (sl.isRegistered<UserCubit>()) {
-         sl<UserCubit>().setUser(mockUser.toEntity());
+         sl<UserCubit>().setUser(userModel.toEntity());
       }
       
-      return Right(mockUser.toEntity());
+      return Right(userModel.toEntity());
+    } on Failure catch (e) {
+      return Left(e);
     } catch (e) {
       return Left(Failure.server(message: e.toString()));
     }
@@ -47,8 +41,10 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Result<void>> sendOtp({required String phone}) async {
     try {
-      // Mock OTP success
+      await _remoteDataSource.sendOtp(phone: phone);
       return const Right(null);
+    } on Failure catch (e) {
+      return Left(e);
     } catch (e) {
       return Left(Failure.server(message: e.toString()));
     }

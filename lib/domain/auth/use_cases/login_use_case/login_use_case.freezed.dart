@@ -16,6 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginParams {
+  String get strategy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'credentials')
   String get phone => throw _privateConstructorUsedError;
   String? get otp => throw _privateConstructorUsedError;
 
@@ -35,7 +37,10 @@ abstract class $LoginParamsCopyWith<$Res> {
           LoginParams value, $Res Function(LoginParams) then) =
       _$LoginParamsCopyWithImpl<$Res, LoginParams>;
   @useResult
-  $Res call({String phone, String? otp});
+  $Res call(
+      {String strategy,
+      @JsonKey(name: 'credentials') String phone,
+      String? otp});
 }
 
 /// @nodoc
@@ -53,10 +58,15 @@ class _$LoginParamsCopyWithImpl<$Res, $Val extends LoginParams>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? strategy = null,
     Object? phone = null,
     Object? otp = freezed,
   }) {
     return _then(_value.copyWith(
+      strategy: null == strategy
+          ? _value.strategy
+          : strategy // ignore: cast_nullable_to_non_nullable
+              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -77,7 +87,10 @@ abstract class _$$LoginParamsImplCopyWith<$Res>
       __$$LoginParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String phone, String? otp});
+  $Res call(
+      {String strategy,
+      @JsonKey(name: 'credentials') String phone,
+      String? otp});
 }
 
 /// @nodoc
@@ -93,10 +106,15 @@ class __$$LoginParamsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? strategy = null,
     Object? phone = null,
     Object? otp = freezed,
   }) {
     return _then(_$LoginParamsImpl(
+      strategy: null == strategy
+          ? _value.strategy
+          : strategy // ignore: cast_nullable_to_non_nullable
+              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -112,16 +130,23 @@ class __$$LoginParamsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable(createFactory: false)
 class _$LoginParamsImpl implements _LoginParams {
-  const _$LoginParamsImpl({required this.phone, this.otp});
+  const _$LoginParamsImpl(
+      {this.strategy = 'phone',
+      @JsonKey(name: 'credentials') required this.phone,
+      this.otp});
 
   @override
+  @JsonKey()
+  final String strategy;
+  @override
+  @JsonKey(name: 'credentials')
   final String phone;
   @override
   final String? otp;
 
   @override
   String toString() {
-    return 'LoginParams(phone: $phone, otp: $otp)';
+    return 'LoginParams(strategy: $strategy, phone: $phone, otp: $otp)';
   }
 
   @override
@@ -129,13 +154,15 @@ class _$LoginParamsImpl implements _LoginParams {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginParamsImpl &&
+            (identical(other.strategy, strategy) ||
+                other.strategy == strategy) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.otp, otp) || other.otp == otp));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, phone, otp);
+  int get hashCode => Object.hash(runtimeType, strategy, phone, otp);
 
   /// Create a copy of LoginParams
   /// with the given fields replaced by the non-null parameter values.
@@ -154,10 +181,15 @@ class _$LoginParamsImpl implements _LoginParams {
 }
 
 abstract class _LoginParams implements LoginParams {
-  const factory _LoginParams({required final String phone, final String? otp}) =
-      _$LoginParamsImpl;
+  const factory _LoginParams(
+      {final String strategy,
+      @JsonKey(name: 'credentials') required final String phone,
+      final String? otp}) = _$LoginParamsImpl;
 
   @override
+  String get strategy;
+  @override
+  @JsonKey(name: 'credentials')
   String get phone;
   @override
   String? get otp;

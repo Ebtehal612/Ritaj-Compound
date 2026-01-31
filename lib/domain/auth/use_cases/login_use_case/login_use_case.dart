@@ -19,7 +19,8 @@ class LoginUseCase implements BaseUseCase<User, LoginParams> {
 @Freezed(fromJson: false, toJson: true)
 class LoginParams with _$LoginParams {
   const factory LoginParams({
-    required String phone,
+    @Default('phone') String strategy,
+    @JsonKey(name: 'credentials') required String phone,
     String? otp,
   }) = _LoginParams;
 }

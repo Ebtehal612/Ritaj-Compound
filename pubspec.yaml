@@ -65,6 +65,7 @@ flutter:
     - assets/icons/
     - assets/gifs/
     - assets/videos/
+    - .env
     # - assets/lottie/
 
   fonts:

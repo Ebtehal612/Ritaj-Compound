@@ -79,8 +79,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: BlocListener<LoginCubit, BaseState<User>>(
                   listener: (context, state) {
                     state.whenOrNull(
-                      initial: () {
-                        // After sendOtp succeeds, we go to verification screen
+                      empty: () {
+                        // After sendOtp succeeds (signaled by empty state), we go to verification screen
                          context.pushNamed(VerificationCodeScreen.routeName, extra: _phoneController.text.replaceAll(' ', ''));
                       },
                       loading: () {

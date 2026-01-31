@@ -8,6 +8,7 @@ part of 'login_use_case.dart';
 
 Map<String, dynamic> _$$LoginParamsImplToJson(_$LoginParamsImpl instance) =>
     <String, dynamic>{
-      'phone': instance.phone,
+      'strategy': instance.strategy,
+      'credentials': instance.phone,
       'otp': instance.otp,
     };
