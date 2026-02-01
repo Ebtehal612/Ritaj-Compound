@@ -32,21 +32,28 @@ class VisitorPermitModel with _$VisitorPermitModel {
     // Handle server response format: {message: "Visitor created", visitorId: 48}
     // The server doesn't return the full visitor data, only the ID
     String id = '';
-    if (json.containsKey('visitorId')) {
+    if (json['visitorId'] != null) {
       id = json['visitorId'].toString();
-    } else if (json.containsKey('id')) {
+    } else if (json['id'] != null) {
       id = json['id'].toString();
+    } else if (json['visitor_id'] != null) {
+      id = json['visitor_id'].toString();
     }
+    
+    final name = json['name']?.toString() ?? json['visitor_name']?.toString() ?? '';
+    final phone = json['phone']?.toString() ?? json['visitor_phone']?.toString() ?? json['phone_number']?.toString() ?? '';
+    final gate = json['gate']?.toString() ?? json['gate_name']?.toString() ?? json['entrance_gate']?.toString() ?? '';
+    final time = json['time']?.toString() ?? json['visit_time']?.toString() ?? '';
     
     final result = VisitorPermitModel(
       id: id,
-      name: json['name']?.toString() ?? '',
-      phone: json['phone']?.toString() ?? '',
+      name: name,
+      phone: phone,
       date: json['date'] != null 
           ? DateTime.tryParse(json['date'].toString()) ?? DateTime.now()
           : DateTime.now(),
-      time: json['time']?.toString() ?? '',
-      gate: json['gate']?.toString() ?? '',
+      time: time,
+      gate: gate,
       multipleEntry: json['multipleEntry'] == true || json['multiple_entry'] == true,
       allowVehicle: json['allowVehicle'] == true || json['allow_vehicle'] == true,
       notes: json['notes']?.toString(),

@@ -7,6 +7,8 @@ import 'package:ritaj_compound/core/shared_preferences/prefs_keys.dart';
 import 'package:ritaj_compound/core/shared_preferences/shared_prefs.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
 import 'package:ritaj_compound/presentation/login/pages/login_screen.dart';
+import 'package:ritaj_compound/presentation/permits/cubit/deliveries_cubit.dart';
+import 'package:ritaj_compound/presentation/permits/cubit/visitors_cubit.dart';
 
 class LogoutConfirmationDialog extends StatelessWidget {
   const LogoutConfirmationDialog({super.key});
@@ -116,14 +118,16 @@ class LogoutConfirmationDialog extends StatelessWidget {
 
   void _performLogout(BuildContext context) async {
     try {
-      // Clear user data from shared preferences
       final sharedPrefs = sl<SharedPrefs>();
-      await sharedPrefs.deleteSecuredValue(
-        key: PrefsKeys.userDetails,
-      );
+      await sharedPrefs.deleteSecuredValue(key: PrefsKeys.userDetails);
+      await sharedPrefs.deleteSecuredValue(key: PrefsKeys.token);
+      await sharedPrefs.deleteSecuredValue(key: PrefsKeys.visitorPermitsCache);
+      await sharedPrefs.deleteSecuredValue(key: PrefsKeys.deliveryPermitsCache);
+      await sharedPrefs.saveBool(key: PrefsKeys.isLogged, value: false);
 
-      // Clear any other stored user data
-      // Add more cleanup here if needed
+      // Reset Cubits to clear in-memory state
+      sl<VisitorsCubit>().reset();
+      sl<DeliveriesCubit>().reset();
 
       // Navigate to login screen and clear the navigation stack
       if (context.mounted) {

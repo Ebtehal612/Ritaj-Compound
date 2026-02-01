@@ -463,5 +463,10 @@
   "pleaseSelectTime": "من فضلك اختر الوقت",
   "permitCreatedSuccessfully": "تم إنشاء التصريح بنجاح",
   "noActivePermits": "لا توجد تصاريح نشطة",
-  "datetime":"التاريخ والوقت"
+  "noPreviousVisitors": "لا يوجد زوار سابقون",
+  "noPreviousDeliveries": "لا توجد توصيلات سابقة",
+  "datetime":"التاريخ والوقت",
+  "loading":"جاري التحميل",
+  "retry":"أعد المحاولة",
+  "noPreviousVisitors":"لا يوجد زوار سابقون"
 }

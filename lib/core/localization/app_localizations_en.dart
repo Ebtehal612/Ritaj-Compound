@@ -1473,5 +1473,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noActivePermits => 'No active permits';
 
   @override
+  String get noPreviousVisitors => 'No Previous Visitors';
+
+  @override
+  String get noPreviousDeliveries => 'No previous deliveries';
+
+  @override
   String get datetime => 'Date & Time';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get retry => 'Retry';
 }

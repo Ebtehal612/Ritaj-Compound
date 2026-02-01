@@ -2792,11 +2792,35 @@ abstract class AppLocalizations {
   /// **'No active permits'**
   String get noActivePermits;
 
+  /// No description provided for @noPreviousVisitors.
+  ///
+  /// In en, this message translates to:
+  /// **'No Previous Visitors'**
+  String get noPreviousVisitors;
+
+  /// No description provided for @noPreviousDeliveries.
+  ///
+  /// In en, this message translates to:
+  /// **'No previous deliveries'**
+  String get noPreviousDeliveries;
+
   /// No description provided for @datetime.
   ///
   /// In en, this message translates to:
   /// **'Date & Time'**
   String get datetime;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
 }
 
 class _AppLocalizationsDelegate

@@ -519,5 +519,10 @@
   "pleaseSelectTime": "Please select time",
   "permitCreatedSuccessfully": "Permit created successfully",
   "noActivePermits": "No active permits",
-  "datetime":"Date & Time"
+  "noPreviousVisitors": "No previous visitors",
+  "noPreviousDeliveries": "No previous deliveries",
+  "datetime":"Date & Time",
+  "loading":"Loading...",
+  "retry":"Retry",
+  "noPreviousVisitors":"No Previous Visitors"
 }

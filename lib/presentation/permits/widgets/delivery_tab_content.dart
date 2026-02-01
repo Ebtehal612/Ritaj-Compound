@@ -1,11 +1,18 @@
-import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ritaj_compound/core/states/base_state.dart';
+import 'package:ritaj_compound/domain/permits/entities/delivery_permit.dart';
+import 'package:ritaj_compound/presentation/permits/cubit/deliveries_cubit.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
 import 'package:ritaj_compound/presentation/permits/pages/quick_delivery_permit.dart';
+import 'package:intl/intl.dart';
 
 class DeliveryTabContent extends StatelessWidget {
   const DeliveryTabContent({super.key});
@@ -13,64 +20,139 @@ class DeliveryTabContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    return SingleChildScrollView(
-      padding: EdgeInsets.all(20.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const _QuickDeliveryPermitCard(),
-          24.verticalSpace,
-          Row(
-            children: [
-              CustomText.s16(l10n.activeDeliveries, bold: true),
-              8.horizontalSpace,
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h),
-                decoration: BoxDecoration(
-                  color: Palette.green.shade50,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: CustomText.s12(
-                  '3',
-                  color: Palette.green.shade700,
-                ),
-              ),
-            ],
-          ),
-          16.verticalSpace,
-          _ActiveDeliveryCard(
-            title: l10n.talonOrder,
-            phone: '+20 100 123 4567',
-            expectedArrival: l10n.within15Min,
-            color: Palette.green.shade400,
-          ),
-          16.verticalSpace,
-          _ActiveDeliveryCard(
-            title: l10n.amazon,
-            phone: '+20 100 123 4567',
-            expectedArrival: l10n.within30Min,
-            color: Palette.green.shade400,
-          ),
-          24.verticalSpace,
-          CustomText.s16(l10n.previousDeliveries, bold: true),
-          16.verticalSpace,
-          _PreviousDeliveryItem(
-            name: l10n.noonOrder,
-            time: l10n.enteredYesterday('3:15 ${l10n.pm}'),
-          ),
-          _PreviousDeliveryItem(
-            name: l10n.kosharyGeha,
-            time: l10n.enteredLastWeek,
-          ),
-        ],
+    return RefreshIndicator(
+      onRefresh: () => context.read<DeliveriesCubit>().getActiveDeliveries(),
+      color: Palette.green.shade700,
+      child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: EdgeInsets.all(20.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _QuickDeliveryPermitCard(),
+            24.verticalSpace,
+            _ActiveDeliveriesSection(),
+            24.verticalSpace,
+            _PreviousDeliveriesSection(),
+          ],
+        ),
       ),
     );
   }
 }
 
-class _QuickDeliveryPermitCard extends StatelessWidget {
-  const _QuickDeliveryPermitCard();
+class _ActiveDeliveriesSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return BlocBuilder<DeliveriesCubit, BaseState<List<DeliveryPermit>>>(
+      builder: (context, state) {
+        if (kDebugMode) {
+          print('🎯 DeliveryTabContent: BlocBuilder received state: ${state.runtimeType}');
+        }
+        
+        final cubit = context.read<DeliveriesCubit>();
+        final List<DeliveryPermit> deliveries = cubit.activeDeliveries;
 
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                CustomText.s16(l10n.activeDeliveries, bold: true),
+                if (deliveries.isNotEmpty) ...[
+                  8.horizontalSpace,
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h),
+                    decoration: BoxDecoration(
+                      color: Palette.green.shade50,
+                      borderRadius: BorderRadius.circular(20.r),
+                    ),
+                    child: CustomText.s12(
+                      deliveries.length.toString(),
+                      color: Palette.green.shade700,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+            16.verticalSpace,
+            state.maybeWhen(
+              loading: () => deliveries.isEmpty
+                  ? Center(child: CircularProgressIndicator(color: Palette.green.shade700,))
+                  : _buildList(deliveries, context),
+              success: (_) =>
+                  deliveries.isEmpty ? _buildEmpty(l10n) : _buildList(deliveries, context),
+              empty: () => _buildEmpty(l10n),
+              failure: (f) => deliveries.isEmpty
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: CustomText.s14(f.message, color: Colors.red),
+                      ),
+                    )
+                  : _buildList(deliveries, context),
+              orElse: () => deliveries.isEmpty
+                  ? _buildEmpty(l10n)
+                  : _buildList(deliveries, context),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildEmpty(AppLocalizations l10n) {
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 20.h),
+        child:
+            CustomText.s14(l10n.noActivePermits, color: Palette.neutral.color5),
+      ),
+    );
+  }
+
+  Widget _buildList(List<DeliveryPermit> deliveries, BuildContext context) {
+    if (kDebugMode) {
+      print('🎯 _buildList: Building list with ${deliveries.length} deliveries');
+      for (int i = 0; i < deliveries.length; i++) {
+        final delivery = deliveries[i];
+        print('🎯 Delivery $i:');
+        print('  - ID: "${delivery.id}"');
+        print('  - Name: "${delivery.name}"');
+        print('  - Phone: "${delivery.phone}"');
+        print('  - Expected Arrival: "${delivery.expectedArrival} "');
+        print('  - Gate: "${delivery.gate}"');
+        print('  - Date: ${delivery.date}');
+      }
+    }
+    
+    return Column(
+      children: deliveries
+          .map((delivery) => Padding(
+                padding: EdgeInsets.only(bottom: 16.h),
+                child: _ActiveDeliveryCard(
+                  id: delivery.id,
+                  deliveryName: delivery.name,
+                  phone: delivery.phone,
+                  gate: delivery.gate,
+                  expectedArrival: delivery.expectedArrival,
+                  date: delivery.date,
+                  onCancel: () {
+                    if (kDebugMode) {
+                      print('🗑️ UI: Cancel button pressed for delivery ${delivery.id}');
+                    }
+                    context.read<DeliveriesCubit>().deleteDeliveryPermit(delivery.id);
+                  },
+                ),
+              ))
+          .toList(),
+    );
+  }
+}
+
+class _QuickDeliveryPermitCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -100,7 +182,7 @@ class _QuickDeliveryPermitCard extends StatelessWidget {
             ),
             16.verticalSpace,
             SizedBox(
-              width: double.infinity,
+              width: 295.w,
               child: ElevatedButton.icon(
                 onPressed: () {
                   context.push(QuickDeliveryPermit.routeName);
@@ -118,7 +200,8 @@ class _QuickDeliveryPermitCard extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.r),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 12.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 40.w, vertical: 12.h),
                 ),
               ),
             ),
@@ -130,16 +213,22 @@ class _QuickDeliveryPermitCard extends StatelessWidget {
 }
 
 class _ActiveDeliveryCard extends StatelessWidget {
-  final String title;
+  final String id;
+  final String deliveryName;
   final String phone;
+  final String? gate;
   final String expectedArrival;
-  final Color color;
+  final DateTime date;
+  final VoidCallback? onCancel;
 
   const _ActiveDeliveryCard({
-    required this.title,
+    required this.id,
+    required this.deliveryName,
     required this.phone,
     required this.expectedArrival,
-    required this.color,
+    required this.date,
+    this.gate,
+    this.onCancel,
   });
 
   @override
@@ -158,73 +247,89 @@ class _ActiveDeliveryCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                radius: 24.r,
-                backgroundColor: color.withOpacity(0.1),
-                child: Icon(
-                  Icons.person,
-                  color: color,
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 24.r,
+                  backgroundColor: Palette.green.shade50,
+                  child: Icon(
+                    Icons.local_shipping,
+                    color: Palette.green.shade400,
+                  ),
                 ),
-              ),
-              12.horizontalSpace,
-              Expanded(
-                child: Column(
+                12.horizontalSpace,
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomText.s15(deliveryName, bold: true),
+                      Directionality(
+                          textDirection: ui.TextDirection.ltr,
+                          child: CustomText.s12(phone,
+                              color: Palette.neutral.color7)),
+                    ],
+                  ),
+                ),
+                12.horizontalSpace,
+                const Spacer(),
+                const Icon(Icons.qr_code_scanner, color: Colors.teal, size: 20),
+                12.horizontalSpace,
+                const Icon(Icons.share, color: Colors.blueGrey, size: 20),
+              ],
+            ),
+            const Divider(),
+            15.verticalSpace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText.s15(title, bold: true),
+                    CustomText.s12(l10n.expectedArrival,
+                        color: Palette.neutral.color7),
                     Directionality(
                       textDirection: ui.TextDirection.ltr,
-                      child:
-                          CustomText.s12(phone, color: Palette.neutral.color7),
+                      child: Directionality(
+                        textDirection: ui.TextDirection.ltr,
+                        child: CustomText.s14(
+                            ' $expectedArrival - ${DateFormat('dd MMM').format(date)}',
+                            bold: true),
+                      ),
                     ),
                   ],
                 ),
-              ),
-              const Icon(Icons.share, color: Colors.blueGrey, size: 20),
-              12.horizontalSpace,
-              const Icon(Icons.qr_code_scanner, color: Colors.teal, size: 20),
-            ],
-          ),
-          const Divider(),
-          15.verticalSpace,
-          Row(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText.s12(l10n.expectedArrival,
-                      color: Palette.neutral.color7),
-                  CustomText.s14(expectedArrival, bold: true),
-                ],
-              ),
-              const Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText.s12(l10n.entrancegate,
-                      color: Palette.neutral.color7),
-                  CustomText.s14(l10n.mainGate, bold: true),
-                ],
-              ),
-            ],
-          ),
-          20.verticalSpace,
-           Row(
+                const Spacer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText.s12(l10n.entrancegate,
+                        color: Palette.neutral.color7),
+                    CustomText.s14(
+                      (gate == null || gate!.isEmpty) ? l10n.mainGate : gate!,
+                      bold: true,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            20.verticalSpace,
+            Row(
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: onCancel,
                     style: OutlinedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: Colors.red,
                       padding: EdgeInsets.symmetric(vertical: 10.h),
                       minimumSize: Size.zero,
-                      side: BorderSide(
-                        color: Colors.grey,
+                      side: const BorderSide(
+                        color: Colors.red,
                         width: 1.5,
                       ),
                       shape: RoundedRectangleBorder(
@@ -233,15 +338,53 @@ class _ActiveDeliveryCard extends StatelessWidget {
                     ),
                     child: CustomText.s12(
                       l10n.cancelthepermit,
-                      color: Colors.grey,
+                      color: Colors.red,
                       bold: true,
                     ),
                   ),
                 ),
               ],
             ),
-        ],
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class _PreviousDeliveriesSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return BlocBuilder<DeliveriesCubit, BaseState<List<DeliveryPermit>>>(
+      builder: (context, state) {
+        final deliveriesCubit = context.read<DeliveriesCubit>();
+        final previousDeliveries = deliveriesCubit.previousDeliveries;
+        
+        if (kDebugMode && previousDeliveries.isNotEmpty) {
+          print('🎯 PreviousDeliveriesSection: ${previousDeliveries.length} previous deliveries');
+        }
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomText.s16(l10n.previousDeliveries, bold: true),
+            16.verticalSpace,
+            if (previousDeliveries.isEmpty)
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.h),
+                  child: CustomText.s14(l10n.noPreviousDeliveries, color: Palette.neutral.color5),
+                ),
+              )
+            else
+              ...previousDeliveries.take(5).map((delivery) => _PreviousDeliveryItem(
+                name: delivery.name,
+                time: '${DateFormat('dd MMM').format(delivery.date)} - ${delivery.expectedArrival} ',
+              )),
+          ],
+        );
+      },
     );
   }
 }
@@ -268,14 +411,15 @@ class _PreviousDeliveryItem extends StatelessWidget {
             CircleAvatar(
               radius: 20.r,
               backgroundColor: Palette.neutral.color3,
-              child: const Icon(Icons.person, color: Colors.grey),
+              child: const Icon(Icons.local_shipping, color: Colors.grey),
             ),
             12.horizontalSpace,
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText.s14(name, bold: true, color: Palette.neutral.color7),
+                  CustomText.s14(name,
+                      bold: true, color: Palette.neutral.color7),
                   CustomText.s12(time, color: Palette.neutral.color7),
                 ],
               ),

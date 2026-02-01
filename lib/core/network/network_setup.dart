@@ -48,13 +48,16 @@ class _CustomInterceptor extends Interceptor {
     Response response,
     ResponseInterceptorHandler handler,
   ) async {
-    final token = response.data['token'];
-    if (token != null) {
-      await _storage.saveSecuredValue(key: PrefsKeys.token, value: token);
+    if (response.data is Map) {
+      final token = response.data['token'];
+      if (token != null) {
+        await _storage.saveSecuredValue(key: PrefsKeys.token, value: token);
+      }
     }
 
     // Don't modify response data for permits endpoints
-    if (response.requestOptions.path.contains('/visitors')) {
+    if (response.requestOptions.path.contains('/visitors') || 
+        response.requestOptions.path.contains('/deliveries')) {
       return handler.next(response);
     }
 

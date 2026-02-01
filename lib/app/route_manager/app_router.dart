@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ritaj_compound/domain/permits/entities/visitor_permit.dart';
 import 'package:ritaj_compound/presentation/home_page/pages/home_page_screen.dart';
 import 'package:ritaj_compound/presentation/home_page/pages/news_events_screen.dart';
 import 'package:ritaj_compound/presentation/home_page/pages/subscription_management_screen.dart';
@@ -149,7 +150,7 @@ class AppRouter {
                 name: QuickVisitorsPermit.routeName,
                 path: QuickVisitorsPermit.routeName,
                 pageBuilder: (context, state) => _buildPageWithTransition(
-                  const QuickVisitorsPermit(),
+                  QuickVisitorsPermit(initialPermit: state.extra as VisitorPermit?),
                   state,
                 ),
               ),

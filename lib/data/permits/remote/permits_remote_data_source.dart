@@ -1,12 +1,19 @@
+import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import '../../../core/network/failure/failure.dart';
 import '../models/visitor_permit_model.dart';
+import '../models/delivery_permit_model.dart';
+
 
 abstract class PermitsRemoteDataSource {
   Future<VisitorPermitModel> createVisitorPermit({required VisitorPermitModel permit});
   Future<List<VisitorPermitModel>> getActivePermits();
   Future<void> deleteVisitorPermit({required String id});
+
+  Future<DeliveryPermitModel> createDeliveryPermit({required DeliveryPermitModel permit});
+  Future<List<DeliveryPermitModel>> getActiveDeliveries();
+  Future<void> deleteDeliveryPermit({required String id});
 }
 
 class PermitsRemoteDataSourceImpl implements PermitsRemoteDataSource {
@@ -75,7 +82,16 @@ class PermitsRemoteDataSourceImpl implements PermitsRemoteDataSource {
         print('✅ CREATE PERMIT - Server response: ${response.data}');
       }
       
-      final responseData = response.data;
+      var responseData = response.data;
+      
+      // If response is a String, try to decode it
+      if (responseData is String) {
+        try {
+          responseData = jsonDecode(responseData);
+        } catch (_) {
+          // If not valid JSON string, keep it as is
+        }
+      }
       
       // Ensure we have a Map
       if (responseData is! Map<String, dynamic>) {
@@ -183,6 +199,10 @@ class PermitsRemoteDataSourceImpl implements PermitsRemoteDataSource {
       final List data = _findList(responseData);
       
       if (kDebugMode) {
+        print('🎯 getActivePermits: FULL SERVER RESPONSE: $responseData');
+        if (responseData is Map) {
+          print('🎯 getActivePermits: Server response keys: ${responseData.keys.toList()}');
+        }
         print('🎯 getActivePermits: Found list with ${data.length} elements');
         if (data.isNotEmpty) {
           print('🎯 getActivePermits: First element type: ${data.first.runtimeType}');
@@ -214,6 +234,137 @@ class PermitsRemoteDataSourceImpl implements PermitsRemoteDataSource {
   Future<void> deleteVisitorPermit({required String id}) async {
     try {
       await _dio.delete('/visitors/$id');
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  @override
+  Future<DeliveryPermitModel> createDeliveryPermit({required DeliveryPermitModel permit}) async {
+    try {
+      if (kDebugMode) {
+        print('🚀 Creating delivery permit: ${permit.toJson()}');
+      }
+      
+      final response = await _dio.post('/deliveries', data: permit.toJson());
+      
+      if (kDebugMode) {
+        print('✅ CREATE DELIVERY - Server response: ${response.data}');
+      }
+      
+      var responseData = response.data;
+      
+      // If response is a String, try to decode it
+      if (responseData is String) {
+        try {
+          responseData = jsonDecode(responseData);
+        } catch (_) {
+          // If not valid JSON string, keep it as is
+        }
+      }
+      
+      if (responseData is! Map<String, dynamic>) {
+        throw Failure.server(message: 'Expected JSON object, got ${responseData.runtimeType}');
+      }
+      
+      if (responseData.containsKey('error')) {
+        throw Failure.server(message: responseData['error'].toString());
+      }
+      
+      // Server returns: {message: "Delivery created", deliveryId: 48}
+      // We need to combine this with the original permit data
+      String serverId = '';
+      if (responseData.containsKey('deliveryId')) {
+        serverId = responseData['deliveryId'].toString();
+      } else if (responseData.containsKey('id')) {
+        serverId = responseData['id'].toString();
+      }
+      
+      if (serverId.isEmpty) {
+        throw Failure.server(message: 'Server did not return delivery ID');
+      }
+      
+      // Create the complete permit object with server ID and original data
+      final createdPermit = DeliveryPermitModel(
+        id: serverId,
+        name: permit.name,
+        phone: permit.phone,
+        date: permit.date,
+        expectedArrival: permit.expectedArrival,
+        gate: permit.gate,
+        notes: permit.notes,
+      );
+      
+      if (kDebugMode) {
+        print('🎯 ===== DELIVERY PERMIT CREATED SUCCESSFULLY =====');
+        print('🆔 Server-generated ID: ${createdPermit.id}');
+        print('👤 Delivery Name: ${createdPermit.name}');
+        print('📱 Phone: ${createdPermit.phone}');
+        print('📅 Date: ${createdPermit.date}');
+        print('⏰ Expected Arrival: ${createdPermit.expectedArrival}');
+        print('🚪 Gate: ${createdPermit.gate}');
+        print('===============================================');
+      }
+      
+      return createdPermit;
+    } catch (e) {
+      if (kDebugMode) {
+        print('❌ Error creating delivery permit: $e');
+      }
+      throw _handleError(e);
+    }
+  }
+
+  @override
+  Future<List<DeliveryPermitModel>> getActiveDeliveries() async {
+    try {
+      if (kDebugMode) {
+        print('🔍 Fetching active deliveries from server...');
+      }
+      
+      final response = await _dio.get('/deliveries');
+      
+      if (kDebugMode) {
+        print('✅ Server response status: ${response.statusCode}');
+        print('✅ Server response: ${response.data}');
+      }
+      
+      final responseData = response.data;
+      
+      List _findList(dynamic json) {
+        if (json is List) return json;
+        if (json is Map<String, dynamic>) {
+          for (var k in ['data', 'deliveries', 'permits', 'items', 'results', 'message']) {
+            if (json.containsKey(k)) {
+              var val = json[k];
+              if (val is List) return val;
+              if (val is Map<String, dynamic>) {
+                var found = _findList(val);
+                if (found.isNotEmpty) return found;
+              }
+            }
+          }
+        }
+        return [];
+      }
+
+      final List data = _findList(responseData);
+      
+      return data.map((e) {
+        if (e is! Map<String, dynamic>) {
+          throw Failure.server(message: 'Expected JSON object in array, got ${e.runtimeType}');
+        }
+        return DeliveryPermitModel.fromJson(e);
+      }).toList();
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  @override
+  Future<void> deleteDeliveryPermit({required String id}) async {
+    try {
+      await _dio.delete('/deliveries/$id');
     } catch (e) {
       throw _handleError(e);
     }

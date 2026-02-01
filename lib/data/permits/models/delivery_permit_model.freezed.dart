@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'visitor_permit_model.dart';
+part of 'delivery_permit_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,53 +15,49 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$VisitorPermitModel {
+mixin _$DeliveryPermitModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
-  String get time => throw _privateConstructorUsedError;
+  String get expectedArrival => throw _privateConstructorUsedError;
   String get gate => throw _privateConstructorUsedError;
-  bool get multipleEntry => throw _privateConstructorUsedError;
-  bool get allowVehicle => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
 
-  /// Create a copy of VisitorPermitModel
+  /// Create a copy of DeliveryPermitModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $VisitorPermitModelCopyWith<VisitorPermitModel> get copyWith =>
+  $DeliveryPermitModelCopyWith<DeliveryPermitModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VisitorPermitModelCopyWith<$Res> {
-  factory $VisitorPermitModelCopyWith(
-          VisitorPermitModel value, $Res Function(VisitorPermitModel) then) =
-      _$VisitorPermitModelCopyWithImpl<$Res, VisitorPermitModel>;
+abstract class $DeliveryPermitModelCopyWith<$Res> {
+  factory $DeliveryPermitModelCopyWith(
+          DeliveryPermitModel value, $Res Function(DeliveryPermitModel) then) =
+      _$DeliveryPermitModelCopyWithImpl<$Res, DeliveryPermitModel>;
   @useResult
   $Res call(
       {String id,
       String name,
       String phone,
       DateTime date,
-      String time,
+      String expectedArrival,
       String gate,
-      bool multipleEntry,
-      bool allowVehicle,
       String? notes});
 }
 
 /// @nodoc
-class _$VisitorPermitModelCopyWithImpl<$Res, $Val extends VisitorPermitModel>
-    implements $VisitorPermitModelCopyWith<$Res> {
-  _$VisitorPermitModelCopyWithImpl(this._value, this._then);
+class _$DeliveryPermitModelCopyWithImpl<$Res, $Val extends DeliveryPermitModel>
+    implements $DeliveryPermitModelCopyWith<$Res> {
+  _$DeliveryPermitModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of VisitorPermitModel
+  /// Create a copy of DeliveryPermitModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -70,10 +66,8 @@ class _$VisitorPermitModelCopyWithImpl<$Res, $Val extends VisitorPermitModel>
     Object? name = null,
     Object? phone = null,
     Object? date = null,
-    Object? time = null,
+    Object? expectedArrival = null,
     Object? gate = null,
-    Object? multipleEntry = null,
-    Object? allowVehicle = null,
     Object? notes = freezed,
   }) {
     return _then(_value.copyWith(
@@ -93,22 +87,14 @@ class _$VisitorPermitModelCopyWithImpl<$Res, $Val extends VisitorPermitModel>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
+      expectedArrival: null == expectedArrival
+          ? _value.expectedArrival
+          : expectedArrival // ignore: cast_nullable_to_non_nullable
               as String,
       gate: null == gate
           ? _value.gate
           : gate // ignore: cast_nullable_to_non_nullable
               as String,
-      multipleEntry: null == multipleEntry
-          ? _value.multipleEntry
-          : multipleEntry // ignore: cast_nullable_to_non_nullable
-              as bool,
-      allowVehicle: null == allowVehicle
-          ? _value.allowVehicle
-          : allowVehicle // ignore: cast_nullable_to_non_nullable
-              as bool,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -118,11 +104,11 @@ class _$VisitorPermitModelCopyWithImpl<$Res, $Val extends VisitorPermitModel>
 }
 
 /// @nodoc
-abstract class _$$VisitorPermitModelImplCopyWith<$Res>
-    implements $VisitorPermitModelCopyWith<$Res> {
-  factory _$$VisitorPermitModelImplCopyWith(_$VisitorPermitModelImpl value,
-          $Res Function(_$VisitorPermitModelImpl) then) =
-      __$$VisitorPermitModelImplCopyWithImpl<$Res>;
+abstract class _$$DeliveryPermitModelImplCopyWith<$Res>
+    implements $DeliveryPermitModelCopyWith<$Res> {
+  factory _$$DeliveryPermitModelImplCopyWith(_$DeliveryPermitModelImpl value,
+          $Res Function(_$DeliveryPermitModelImpl) then) =
+      __$$DeliveryPermitModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -130,22 +116,20 @@ abstract class _$$VisitorPermitModelImplCopyWith<$Res>
       String name,
       String phone,
       DateTime date,
-      String time,
+      String expectedArrival,
       String gate,
-      bool multipleEntry,
-      bool allowVehicle,
       String? notes});
 }
 
 /// @nodoc
-class __$$VisitorPermitModelImplCopyWithImpl<$Res>
-    extends _$VisitorPermitModelCopyWithImpl<$Res, _$VisitorPermitModelImpl>
-    implements _$$VisitorPermitModelImplCopyWith<$Res> {
-  __$$VisitorPermitModelImplCopyWithImpl(_$VisitorPermitModelImpl _value,
-      $Res Function(_$VisitorPermitModelImpl) _then)
+class __$$DeliveryPermitModelImplCopyWithImpl<$Res>
+    extends _$DeliveryPermitModelCopyWithImpl<$Res, _$DeliveryPermitModelImpl>
+    implements _$$DeliveryPermitModelImplCopyWith<$Res> {
+  __$$DeliveryPermitModelImplCopyWithImpl(_$DeliveryPermitModelImpl _value,
+      $Res Function(_$DeliveryPermitModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of VisitorPermitModel
+  /// Create a copy of DeliveryPermitModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -154,13 +138,11 @@ class __$$VisitorPermitModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? phone = null,
     Object? date = null,
-    Object? time = null,
+    Object? expectedArrival = null,
     Object? gate = null,
-    Object? multipleEntry = null,
-    Object? allowVehicle = null,
     Object? notes = freezed,
   }) {
-    return _then(_$VisitorPermitModelImpl(
+    return _then(_$DeliveryPermitModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -177,22 +159,14 @@ class __$$VisitorPermitModelImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
+      expectedArrival: null == expectedArrival
+          ? _value.expectedArrival
+          : expectedArrival // ignore: cast_nullable_to_non_nullable
               as String,
       gate: null == gate
           ? _value.gate
           : gate // ignore: cast_nullable_to_non_nullable
               as String,
-      multipleEntry: null == multipleEntry
-          ? _value.multipleEntry
-          : multipleEntry // ignore: cast_nullable_to_non_nullable
-              as bool,
-      allowVehicle: null == allowVehicle
-          ? _value.allowVehicle
-          : allowVehicle // ignore: cast_nullable_to_non_nullable
-              as bool,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -203,17 +177,15 @@ class __$$VisitorPermitModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VisitorPermitModelImpl extends _VisitorPermitModel
+class _$DeliveryPermitModelImpl extends _DeliveryPermitModel
     with DiagnosticableTreeMixin {
-  const _$VisitorPermitModelImpl(
+  const _$DeliveryPermitModelImpl(
       {required this.id,
       required this.name,
       required this.phone,
       required this.date,
-      required this.time,
+      required this.expectedArrival,
       required this.gate,
-      this.multipleEntry = false,
-      this.allowVehicle = false,
       this.notes})
       : super._();
 
@@ -226,36 +198,28 @@ class _$VisitorPermitModelImpl extends _VisitorPermitModel
   @override
   final DateTime date;
   @override
-  final String time;
+  final String expectedArrival;
   @override
   final String gate;
-  @override
-  @JsonKey()
-  final bool multipleEntry;
-  @override
-  @JsonKey()
-  final bool allowVehicle;
   @override
   final String? notes;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'VisitorPermitModel(id: $id, name: $name, phone: $phone, date: $date, time: $time, gate: $gate, multipleEntry: $multipleEntry, allowVehicle: $allowVehicle, notes: $notes)';
+    return 'DeliveryPermitModel(id: $id, name: $name, phone: $phone, date: $date, expectedArrival: $expectedArrival, gate: $gate, notes: $notes)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'VisitorPermitModel'))
+      ..add(DiagnosticsProperty('type', 'DeliveryPermitModel'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('phone', phone))
       ..add(DiagnosticsProperty('date', date))
-      ..add(DiagnosticsProperty('time', time))
+      ..add(DiagnosticsProperty('expectedArrival', expectedArrival))
       ..add(DiagnosticsProperty('gate', gate))
-      ..add(DiagnosticsProperty('multipleEntry', multipleEntry))
-      ..add(DiagnosticsProperty('allowVehicle', allowVehicle))
       ..add(DiagnosticsProperty('notes', notes));
   }
 
@@ -263,46 +227,41 @@ class _$VisitorPermitModelImpl extends _VisitorPermitModel
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VisitorPermitModelImpl &&
+            other is _$DeliveryPermitModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.time, time) || other.time == time) &&
+            (identical(other.expectedArrival, expectedArrival) ||
+                other.expectedArrival == expectedArrival) &&
             (identical(other.gate, gate) || other.gate == gate) &&
-            (identical(other.multipleEntry, multipleEntry) ||
-                other.multipleEntry == multipleEntry) &&
-            (identical(other.allowVehicle, allowVehicle) ||
-                other.allowVehicle == allowVehicle) &&
             (identical(other.notes, notes) || other.notes == notes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, phone, date, time,
-      gate, multipleEntry, allowVehicle, notes);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, phone, date, expectedArrival, gate, notes);
 
-  /// Create a copy of VisitorPermitModel
+  /// Create a copy of DeliveryPermitModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$VisitorPermitModelImplCopyWith<_$VisitorPermitModelImpl> get copyWith =>
-      __$$VisitorPermitModelImplCopyWithImpl<_$VisitorPermitModelImpl>(
+  _$$DeliveryPermitModelImplCopyWith<_$DeliveryPermitModelImpl> get copyWith =>
+      __$$DeliveryPermitModelImplCopyWithImpl<_$DeliveryPermitModelImpl>(
           this, _$identity);
 }
 
-abstract class _VisitorPermitModel extends VisitorPermitModel {
-  const factory _VisitorPermitModel(
+abstract class _DeliveryPermitModel extends DeliveryPermitModel {
+  const factory _DeliveryPermitModel(
       {required final String id,
       required final String name,
       required final String phone,
       required final DateTime date,
-      required final String time,
+      required final String expectedArrival,
       required final String gate,
-      final bool multipleEntry,
-      final bool allowVehicle,
-      final String? notes}) = _$VisitorPermitModelImpl;
-  const _VisitorPermitModel._() : super._();
+      final String? notes}) = _$DeliveryPermitModelImpl;
+  const _DeliveryPermitModel._() : super._();
 
   @override
   String get id;
@@ -313,20 +272,16 @@ abstract class _VisitorPermitModel extends VisitorPermitModel {
   @override
   DateTime get date;
   @override
-  String get time;
+  String get expectedArrival;
   @override
   String get gate;
   @override
-  bool get multipleEntry;
-  @override
-  bool get allowVehicle;
-  @override
   String? get notes;
 
-  /// Create a copy of VisitorPermitModel
+  /// Create a copy of DeliveryPermitModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VisitorPermitModelImplCopyWith<_$VisitorPermitModelImpl> get copyWith =>
+  _$$DeliveryPermitModelImplCopyWith<_$DeliveryPermitModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -4,4 +4,6 @@ enum PrefsKeys {
   isLogged,
   firstTime,
   userDetails,
+  visitorPermitsCache,
+  deliveryPermitsCache,
 }

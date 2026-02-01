@@ -11,12 +11,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ritaj_compound/app/di/injection_container.dart';
 import 'package:ritaj_compound/core/states/base_state.dart';
 import 'package:ritaj_compound/domain/permits/entities/visitor_permit.dart';
-import 'package:ritaj_compound/presentation/permits/cubit/permits_cubit.dart';
+import 'package:ritaj_compound/presentation/permits/cubit/visitors_cubit.dart';
 import 'package:ritaj_compound/presentation/permits/cubit/create_visitor_permit_cubit.dart';
 
 class QuickVisitorsPermit extends StatefulWidget {
   static const routeName = '/create-visit-permit';
-  const QuickVisitorsPermit({super.key});
+  final VisitorPermit? initialPermit;
+  const QuickVisitorsPermit({super.key, this.initialPermit});
   @override
   State<QuickVisitorsPermit> createState() => _QuickVisitorsPermitState();
 }
@@ -35,6 +36,19 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
   String? selectedGate;
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.initialPermit != null) {
+      _nameController.text = widget.initialPermit!.name;
+      _phoneController.text = widget.initialPermit!.phone;
+      _notesController.text = widget.initialPermit!.notes ?? '';
+      multipleEntry = widget.initialPermit!.multipleEntry;
+      allowVehicle = widget.initialPermit!.allowVehicle;
+      selectedGate = widget.initialPermit!.gate;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
@@ -44,7 +58,7 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
           create: (context) => sl<CreateVisitorPermitCubit>(),
         ),
         BlocProvider.value(
-          value: sl<PermitsCubit>(),
+          value: sl<VisitorsCubit>(),
         ),
       ],
       child: BlocListener<CreateVisitorPermitCubit, BaseState<VisitorPermit>>(
@@ -56,7 +70,7 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
               }
 
               // Add the server-created permit to the permits list
-              context.read<PermitsCubit>().addPermitLocally(createdPermit);
+              context.read<VisitorsCubit>().addServerPermit(createdPermit);
 
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -66,7 +80,7 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
               );
 
               // Refresh from server to get the latest state
-              context.read<PermitsCubit>().getActivePermits();
+              context.read<VisitorsCubit>().getActivePermits();
               
               Navigator.of(context).pop();
             },

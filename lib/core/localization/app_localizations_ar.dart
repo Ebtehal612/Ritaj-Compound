@@ -1469,5 +1469,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noActivePermits => 'لا توجد تصاريح نشطة';
 
   @override
+  String get noPreviousVisitors => 'لا يوجد زوار سابقون';
+
+  @override
+  String get noPreviousDeliveries => 'لا توجد توصيلات سابقة';
+
+  @override
   String get datetime => 'التاريخ والوقت';
+
+  @override
+  String get loading => 'جاري التحميل';
+
+  @override
+  String get retry => 'أعد المحاولة';
 }

@@ -8,32 +8,33 @@ import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
 import 'package:ritaj_compound/presentation/permits/pages/quick_visitors_permit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ritaj_compound/app/di/injection_container.dart';
 import 'package:ritaj_compound/core/states/base_state.dart';
 import 'package:ritaj_compound/domain/permits/entities/visitor_permit.dart';
-import 'package:ritaj_compound/presentation/permits/cubit/permits_cubit.dart';
+import 'package:ritaj_compound/presentation/permits/cubit/visitors_cubit.dart';
 import 'package:intl/intl.dart';
 
 class VisitorsTabContent extends StatelessWidget {
+  const VisitorsTabContent({super.key});
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    return SingleChildScrollView(
-      padding: EdgeInsets.all(20.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _QuickPermitCard(),
-          24.verticalSpace,
-          _ActivePermitsSection(),
-          24.verticalSpace,
-          CustomText.s16(l10n.previousVisitors, bold: true),
-          16.verticalSpace,
-          _PreviousVisitorItem(
-              name: 'Ahmed Mohamed',
-              time: '${l10n.yesterday} 3:15 ${l10n.pm}'),
-          _PreviousVisitorItem(name: 'Sarah Abdullah', time: l10n.lastWeek),
-        ],
+    return RefreshIndicator(
+      onRefresh: () => context.read<VisitorsCubit>().getActivePermits(),
+      color: Palette.green.shade700,
+      child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: EdgeInsets.all(20.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _QuickPermitCard(),
+            24.verticalSpace,
+            _ActivePermitsSection(),
+            24.verticalSpace,
+            _PreviousVisitorsSection(),
+          ],
+        ),
       ),
     );
   }
@@ -43,26 +44,14 @@ class _ActivePermitsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    return BlocBuilder<PermitsCubit, BaseState<List<VisitorPermit>>>(
+    return BlocBuilder<VisitorsCubit, BaseState<List<VisitorPermit>>>(
       builder: (context, state) {
         if (kDebugMode) {
           print('🎯 VisitorsTabContent: BlocBuilder received state: ${state.runtimeType}');
         }
         
-        final List<VisitorPermit> permits = state.maybeWhen(
-          success: (data) {
-            if (kDebugMode) {
-              print('🎯 VisitorsTabContent: Success state with ${data.length} permits');
-            }
-            return data;
-          },
-          orElse: () {
-            if (kDebugMode) {
-              print('🎯 VisitorsTabContent: Other state, returning empty list');
-            }
-            return [];
-          },
-        );
+        final cubit = context.read<VisitorsCubit>();
+        final List<VisitorPermit> permits = cubit.activePermits;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,17 +79,19 @@ class _ActivePermitsSection extends StatelessWidget {
             16.verticalSpace,
             state.maybeWhen(
               loading: () => permits.isEmpty
-                  ? CustomText.s14(l10n.noActivePermits)
+                  ? Center(child: CircularProgressIndicator(color: Palette.green.shade700,))
                   : _buildList(permits, context),
-              success: (data) =>
-                  data.isEmpty ? _buildEmpty(l10n) : _buildList(data, context),
+              success: (_) =>
+                  permits.isEmpty ? _buildEmpty(l10n) : _buildList(permits, context),
               empty: () => _buildEmpty(l10n),
-              failure: (f) => Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: CustomText.s14(f.message, color: Colors.red),
-                ),
-              ),
+              failure: (f) => permits.isEmpty
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: CustomText.s14(f.message, color: Colors.red),
+                      ),
+                    )
+                  : _buildList(permits, context),
               orElse: () => permits.isEmpty
                   ? _buildEmpty(l10n)
                   : _buildList(permits, context),
@@ -151,12 +142,75 @@ class _ActivePermitsSection extends StatelessWidget {
                     if (kDebugMode) {
                       print('🗑️ UI: Cancel button pressed for permit ${permit.id}');
                     }
-                    context.read<PermitsCubit>().deleteVisitorPermit(permit.id);
+                    context.read<VisitorsCubit>().deleteVisitorPermit(permit.id);
                   },
                 ),
               ))
           .toList(),
     );
+  }
+}
+
+class _PreviousVisitorsSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return BlocBuilder<VisitorsCubit, BaseState<List<VisitorPermit>>>(
+      builder: (context, state) {
+        final permitsCubit = context.read<VisitorsCubit>();
+        final previousPermits = permitsCubit.previousPermits;
+        
+        if (kDebugMode && previousPermits.isNotEmpty) {
+          print('🎯 PreviousVisitorsSection: ${previousPermits.length} previous permits');
+        }
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomText.s16(l10n.previousVisitors, bold: true),
+            16.verticalSpace,
+            if (previousPermits.isEmpty)
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.h),
+                  child: CustomText.s14(
+                    l10n.noPreviousVisitors,
+                    color: Palette.neutral.color5,
+                  ),
+                ),
+              )
+            else
+              ...previousPermits.take(5).map((permit) => _PreviousVisitorItem(
+                id: permit.id,
+                name: permit.name,
+                time: _formatPreviousVisitTime(permit.date, l10n),
+                onDelete: () {
+                  if (kDebugMode) {
+                    print('🗑️ UI: Delete previous visitor ${permit.id}');
+                  }
+                  context.read<VisitorsCubit>().deleteVisitorPermit(permit.id);
+                },
+              )),
+          ],
+        );
+      },
+    );
+  }
+
+  String _formatPreviousVisitTime(DateTime date, AppLocalizations l10n) {
+    final now = DateTime.now();
+    final difference = now.difference(date).inDays;
+    
+    if (difference == 1) {
+      return '${l10n.yesterday} ${DateFormat('HH:mm').format(date)}';
+    } else if (difference < 7) {
+      return '${difference} ${difference == 1 ? 'day' : 'days'} ago';
+    } else if (difference < 30) {
+      final weeks = (difference / 7).floor();
+      return '${weeks} ${weeks == 1 ? 'week' : 'weeks'} ago';
+    } else {
+      return DateFormat('MMM dd, yyyy').format(date);
+    }
   }
 }
 
@@ -299,9 +353,7 @@ class _ActivePermitCard extends StatelessWidget {
                   children: [
                     CustomText.s12(l10n.datetime,
                         color: Palette.neutral.color7),
-                    CustomText.s14(
-                        '$time - ${DateFormat('dd MMM').format(date)}',
-                        bold: true),
+                        Directionality( textDirection: ui.TextDirection.ltr, child: CustomText.s14('$time - ${DateFormat('MMM dd').format(date)}' , bold: true)),
                   ],
                 ),
                 const Spacer(),
@@ -354,10 +406,17 @@ class _ActivePermitCard extends StatelessWidget {
 }
 
 class _PreviousVisitorItem extends StatelessWidget {
+  final String id;
   final String name;
   final String time;
+  final VoidCallback? onDelete;
 
-  const _PreviousVisitorItem({required this.name, required this.time});
+  const _PreviousVisitorItem({
+    required this.id,
+    required this.name, 
+    required this.time,
+    this.onDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -395,6 +454,15 @@ class _PreviousVisitorItem extends StatelessWidget {
                 style: const TextStyle(color: Colors.teal),
               ),
             ),
+            if (onDelete != null) ...[
+              8.horizontalSpace,
+              IconButton(
+                onPressed: onDelete,
+                icon: const Icon(Icons.delete_outline, color: Colors.red, size: 20),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+              ),
+            ],
           ],
         ),
       ),

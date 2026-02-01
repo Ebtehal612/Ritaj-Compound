@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
+import 'package:ritaj_compound/core/states/base_state.dart' show BaseState;
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/app_bars/custom_app_bar.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
+import 'package:ritaj_compound/domain/permits/entities/delivery_permit.dart';
+import 'package:ritaj_compound/domain/permits/entities/visitor_permit.dart';
 import 'package:ritaj_compound/presentation/more/pages/more_screen.dart';
+import 'package:ritaj_compound/presentation/permits/cubit/deliveries_cubit.dart';
 import 'package:ritaj_compound/presentation/permits/widgets/delivery_tab_content.dart';
 import 'package:ritaj_compound/presentation/permits/widgets/visitors_tab_content.dart';
 import 'package:ritaj_compound/app/di/injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ritaj_compound/presentation/permits/cubit/permits_cubit.dart';
+import 'package:ritaj_compound/presentation/permits/cubit/visitors_cubit.dart';
 
 class PermitsScreen extends StatefulWidget {
   const PermitsScreen({super.key});
@@ -24,7 +28,8 @@ class _PermitsScreenState extends State<PermitsScreen> {
   @override
   void initState() {
     super.initState();
-    sl<PermitsCubit>().getActivePermits();
+    sl<VisitorsCubit>().getActivePermits();
+    sl<DeliveriesCubit>().getActiveDeliveries();
   }
 
   @override
@@ -107,13 +112,48 @@ class _PermitsScreenState extends State<PermitsScreen> {
               ),
             ),
             Expanded(
-              child: BlocProvider.value(
-                value: sl<PermitsCubit>(),
-                child: TabBarView(
-                  children: [
-                    VisitorsTabContent(),
-                    DeliveryTabContent(),
+              child: MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: sl<VisitorsCubit>()),
+                  BlocProvider.value(value: sl<DeliveriesCubit>()),
+                ],
+                child: MultiBlocListener(
+                  listeners: [
+                    BlocListener<VisitorsCubit, BaseState<List<VisitorPermit>>>(
+                      listener: (context, state) {
+                        state.whenOrNull(
+                          failure: (f) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(f.message),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                    BlocListener<DeliveriesCubit, BaseState<List<DeliveryPermit>>>(
+                      listener: (context, state) {
+                        state.whenOrNull(
+                          failure: (f) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(f.message),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ],
+                  child: const TabBarView(
+                    children: [
+                      VisitorsTabContent(),
+                      DeliveryTabContent(),
+                    ],
+                  ),
                 ),
               ),
             ),

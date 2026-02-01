@@ -5,7 +5,14 @@ import 'package:intl/intl.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ritaj_compound/app/di/injection_container.dart';
+import 'package:ritaj_compound/core/states/base_state.dart';
+import 'package:ritaj_compound/domain/permits/entities/delivery_permit.dart';
+import 'package:ritaj_compound/presentation/permits/cubit/create_delivery_permit_cubit.dart';
+import 'package:ritaj_compound/presentation/permits/cubit/deliveries_cubit.dart';
 import 'package:ritaj_compound/presentation/more/pages/more_screen.dart';
+
 
 class QuickDeliveryPermit extends StatefulWidget {
   static const routeName = '/create-delivery-permit';
@@ -60,51 +67,89 @@ class _QuickDeliveryPermitState extends State<QuickDeliveryPermit> {
           ),
         ]),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _sectionTitle(l10n.entityData),
-            _inputField(
-              label: l10n.entityName,
-              controller: _nameController,
-              hint: l10n.enterName,
-            ),
-            _inputField(
-              label: l10n.phoneNumberOptional,
-              controller: _phoneController,
-              hint: '01012345678',
-              keyboardType: TextInputType.phone,
-            ),
-            20.verticalSpace,
-            _sectionTitle(l10n.details),
-            Row(
-              children: [
-                Expanded(child: _arrivalDurationField(l10n)),
-                12.horizontalSpace,
-                Expanded(
-                  child: _pickerField(
-                    label: l10n.visitDate,
-                    value: DateFormat('yyyy-MM-dd').format(selectedDate),
-                    icon: Icons.calendar_today,
-                    onTap: _pickDate,
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => sl<CreateDeliveryPermitCubit>(),
+          ),
+          BlocProvider.value(
+            value: sl<DeliveriesCubit>(),
+          ),
+        ],
+        child: BlocListener<CreateDeliveryPermitCubit, BaseState<DeliveryPermit>>(
+          listener: (context, state) {
+            state.maybeWhen(
+              success: (createdPermit) {
+                // Add to list and navigate back
+                context.read<DeliveriesCubit>().addServerPermit(createdPermit);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: Palette.green.shade700,
+                    content: Text(l10n.permitCreatedSuccessfully ??
+                        'Permit created successfully'),
                   ),
+                );
+                context.pop();
+              },
+              failure: (failure) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: Colors.red,
+                    content: Text(failure.message),
+                  ),
+                );
+              },
+              orElse: () {},
+            );
+          },
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(16.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _sectionTitle(l10n.entityData),
+                _inputField(
+                  label: l10n.entityName,
+                  controller: _nameController,
+                  hint: l10n.enterName,
                 ),
+                _inputField(
+                  label: l10n.phoneNumberOptional,
+                  controller: _phoneController,
+                  hint: '01012345678',
+                  keyboardType: TextInputType.phone,
+                ),
+                20.verticalSpace,
+                _sectionTitle(l10n.details),
+                Row(
+                  children: [
+                    Expanded(child: _arrivalDurationField(l10n)),
+                    12.horizontalSpace,
+                    Expanded(
+                      child: _pickerField(
+                        label: l10n.visitDate,
+                        value: DateFormat('yyyy-MM-dd').format(selectedDate),
+                        icon: Icons.calendar_today,
+                        onTap: _pickDate,
+                      ),
+                    ),
+                  ],
+                ),
+                16.verticalSpace,
+                _dropdownField(l10n),
+                20.verticalSpace,
+                _sectionTitle(l10n.additionalNotes),
+                _notesField(l10n),
+                30.verticalSpace,
+                _submitButton(l10n),
               ],
             ),
-            16.verticalSpace,
-            _dropdownField(l10n),
-            20.verticalSpace,
-            _sectionTitle(l10n.additionalNotes),
-            _notesField(l10n),
-            30.verticalSpace,
-            _submitButton(l10n),
-          ],
+          ),
         ),
       ),
     );
   }
+
 
   // ---------------- Widgets ----------------
 
@@ -248,69 +293,99 @@ class _QuickDeliveryPermitState extends State<QuickDeliveryPermit> {
   }
 
   Widget _submitButton(AppLocalizations l10n) {
-    return SizedBox(
-      width: double.infinity,
-      height: 50.h,
-      child: ElevatedButton.icon(
-        onPressed: () {
-          final name = _nameController.text.trim();
-          final phone = _phoneController.text.trim();
-          final notes = _notesController.text.trim();
+    return BlocBuilder<CreateDeliveryPermitCubit, BaseState<DeliveryPermit>>(
+      builder: (context, state) {
+        return SizedBox(
+          width: double.infinity,
+          height: 50.h,
+          child: ElevatedButton.icon(
+            onPressed: state.maybeWhen(
+              loading: () => null,
+              orElse: () => () {
+                final name = _nameController.text.trim();
+                final phone = _phoneController.text.trim();
+                final notes = _notesController.text.trim();
 
-          if (name.isEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.red,
-                content: Text(l10n.pleaseEnterEntityName),
-              ),
-            );
-            return;
-          }
+                if (name.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text(l10n.pleaseEnterEntityName),
+                    ),
+                  );
+                  return;
+                }
 
-          if (phone.isNotEmpty && phone.length < 11) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(l10n.pleaseEnterValidPhone),
-                backgroundColor: Colors.red,
+                if (phone.isNotEmpty && phone.length < 11) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(l10n.pleaseEnterValidPhone),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                  return;
+                }
+                if (expectedArrivalMinutes == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text(l10n.pleaseSelectArrivalTime),
+                    ),
+                  );
+                  return;
+                }
+                if (selectedDate.isBefore(
+                  DateTime.now().subtract(const Duration(days: 1)),
+                )) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text(l10n.pleaseSelectValidDate),
+                    ),
+                  );
+                  return;
+                }
+                
+                final deliveryPermit = DeliveryPermit(
+                  id: '',
+                  name: name,
+                  phone: phone,
+                  date: selectedDate,
+                  expectedArrival: '$expectedArrivalMinutes min',
+                  gate: selectedGate ?? l10n.mainGate,
+                  notes: notes,
+                );
+
+                context.read<CreateDeliveryPermitCubit>().createDeliveryPermit(deliveryPermit);
+              },
+            ),
+            icon: state.maybeWhen(
+              loading: () => const SizedBox(
+                height: 20,
+                width: 20,
+                child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
               ),
-            );
-            return;
-          }
-          if (expectedArrivalMinutes == null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.red,
-                content: Text(l10n.pleaseSelectArrivalTime),
+              orElse: () => const Icon(Icons.send, color: Colors.white),
+            ),
+            label: CustomText.s16(
+              state.maybeWhen(
+                loading: () => l10n.loading,
+                orElse: () => l10n.createInvitationButton,
               ),
-            );
-            return;
-          }
-          if (selectedDate.isBefore(
-            DateTime.now().subtract(const Duration(days: 1)),
-          )) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.red,
-                content: Text(l10n.pleaseSelectValidDate),
+              color: Colors.white,
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Palette.green.shade700,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.r),
               ),
-            );
-            return;
-          }
-          debugPrint('Name: $name');
-          debugPrint('Phone: $phone');
-          debugPrint('Notes: $notes');
-        },
-        icon: const Icon(Icons.send, color: Colors.white),
-        label: CustomText.s16(l10n.createInvitationButton, color: Colors.white),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Palette.green.shade700,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.r),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
+
 
   // ---------------- Pickers ----------------
 
