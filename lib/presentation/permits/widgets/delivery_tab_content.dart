@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
@@ -176,7 +177,7 @@ class _ActiveDeliveryCard extends StatelessWidget {
                   children: [
                     CustomText.s15(title, bold: true),
                     Directionality(
-                      textDirection: TextDirection.ltr,
+                      textDirection: ui.TextDirection.ltr,
                       child:
                           CustomText.s12(phone, color: Palette.neutral.color7),
                     ),

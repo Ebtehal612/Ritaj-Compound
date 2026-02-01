@@ -516,5 +516,8 @@
   "longTermVisitDescription": "Valid for several days",
   "pleaseEnterVisitorName": "Please enter visitor name",
   "pleaseEnterPhoneNumber": "Please enter phone number",
-  "pleaseSelectTime": "Please select time"
+  "pleaseSelectTime": "Please select time",
+  "permitCreatedSuccessfully": "Permit created successfully",
+  "noActivePermits": "No active permits",
+  "datetime":"Date & Time"
 }

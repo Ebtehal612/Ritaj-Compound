@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
@@ -188,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(fontWeight: FontWeight.bold)),
                         SizedBox(height: 8.h),
                         Directionality(
-                          textDirection: TextDirection.ltr,
+                          textDirection: ui.TextDirection.ltr,
                           child: TextFormField(
                             controller: _phoneController,
                             keyboardType: TextInputType.phone,

@@ -53,12 +53,19 @@ class _CustomInterceptor extends Interceptor {
       await _storage.saveSecuredValue(key: PrefsKeys.token, value: token);
     }
 
-    if (response.data['message'] != null) {
-      response.data = response.data['message'];
-    } else if (response.data['path'] != null) {
-      response.data = response.data['path'];
-    } else {
-      response.data = response.data['data'];
+    // Don't modify response data for permits endpoints
+    if (response.requestOptions.path.contains('/visitors')) {
+      return handler.next(response);
+    }
+
+    if (response.data is Map) {
+      if (response.data['message'] != null) {
+        response.data = response.data['message'];
+      } else if (response.data['path'] != null) {
+        response.data = response.data['path'];
+      } else if (response.data.containsKey('data')) {
+        response.data = response.data['data'];
+      }
     }
     return handler.next(response);
   }

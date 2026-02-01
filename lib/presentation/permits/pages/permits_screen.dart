@@ -8,6 +8,9 @@ import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
 import 'package:ritaj_compound/presentation/more/pages/more_screen.dart';
 import 'package:ritaj_compound/presentation/permits/widgets/delivery_tab_content.dart';
 import 'package:ritaj_compound/presentation/permits/widgets/visitors_tab_content.dart';
+import 'package:ritaj_compound/app/di/injection_container.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ritaj_compound/presentation/permits/cubit/permits_cubit.dart';
 
 class PermitsScreen extends StatefulWidget {
   const PermitsScreen({super.key});
@@ -18,6 +21,12 @@ class PermitsScreen extends StatefulWidget {
 }
 
 class _PermitsScreenState extends State<PermitsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    sl<PermitsCubit>().getActivePermits();
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -98,11 +107,14 @@ class _PermitsScreenState extends State<PermitsScreen> {
               ),
             ),
             Expanded(
-              child: TabBarView(
-                children: [
-                  VisitorsTabContent(),
-                  DeliveryTabContent(),
-                ],
+              child: BlocProvider.value(
+                value: sl<PermitsCubit>(),
+                child: TabBarView(
+                  children: [
+                    VisitorsTabContent(),
+                    DeliveryTabContent(),
+                  ],
+                ),
               ),
             ),
           ],

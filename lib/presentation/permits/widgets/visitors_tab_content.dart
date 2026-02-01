@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
+import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
 import 'package:ritaj_compound/presentation/permits/pages/quick_visitors_permit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ritaj_compound/app/di/injection_container.dart';
+import 'package:ritaj_compound/core/states/base_state.dart';
+import 'package:ritaj_compound/domain/permits/entities/visitor_permit.dart';
+import 'package:ritaj_compound/presentation/permits/cubit/permits_cubit.dart';
+import 'package:intl/intl.dart';
 
 class VisitorsTabContent extends StatelessWidget {
   @override
@@ -17,42 +25,137 @@ class VisitorsTabContent extends StatelessWidget {
         children: [
           _QuickPermitCard(),
           24.verticalSpace,
-          Row(
-            children: [
-              CustomText.s16(l10n.activePermits, bold: true),
-              8.horizontalSpace,
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h),
-                decoration: BoxDecoration(
-                  color: Palette.green.shade50,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: CustomText.s12(
-                  '3',
-                  color: Palette.green.shade700,
-                ),
-              ),
-            ],
-          ),
-          16.verticalSpace,
-          const _ActivePermitCard(
-            visitorName: 'Mohamed Ali',
-            phone: '+20 100 123 4567',
-            // In hours
-          ),
-          16.verticalSpace,
-          const _ActivePermitCard(
-            visitorName: 'Fathi Hassan',
-            phone: '+20 101 987 6543',
-          ),
+          _ActivePermitsSection(),
           24.verticalSpace,
           CustomText.s16(l10n.previousVisitors, bold: true),
           16.verticalSpace,
           _PreviousVisitorItem(
-              name: 'Ahmed Mohamed', time: '${l10n.yesterday} 3:15 ${l10n.pm}'),
+              name: 'Ahmed Mohamed',
+              time: '${l10n.yesterday} 3:15 ${l10n.pm}'),
           _PreviousVisitorItem(name: 'Sarah Abdullah', time: l10n.lastWeek),
         ],
       ),
+    );
+  }
+}
+
+class _ActivePermitsSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return BlocBuilder<PermitsCubit, BaseState<List<VisitorPermit>>>(
+      builder: (context, state) {
+        if (kDebugMode) {
+          print('🎯 VisitorsTabContent: BlocBuilder received state: ${state.runtimeType}');
+        }
+        
+        final List<VisitorPermit> permits = state.maybeWhen(
+          success: (data) {
+            if (kDebugMode) {
+              print('🎯 VisitorsTabContent: Success state with ${data.length} permits');
+            }
+            return data;
+          },
+          orElse: () {
+            if (kDebugMode) {
+              print('🎯 VisitorsTabContent: Other state, returning empty list');
+            }
+            return [];
+          },
+        );
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                CustomText.s16(l10n.activePermits, bold: true),
+                if (permits.isNotEmpty) ...[
+                  8.horizontalSpace,
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h),
+                    decoration: BoxDecoration(
+                      color: Palette.green.shade50,
+                      borderRadius: BorderRadius.circular(20.r),
+                    ),
+                    child: CustomText.s12(
+                      permits.length.toString(),
+                      color: Palette.green.shade700,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+            16.verticalSpace,
+            state.maybeWhen(
+              loading: () => permits.isEmpty
+                  ? CustomText.s14(l10n.noActivePermits)
+                  : _buildList(permits, context),
+              success: (data) =>
+                  data.isEmpty ? _buildEmpty(l10n) : _buildList(data, context),
+              empty: () => _buildEmpty(l10n),
+              failure: (f) => Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: CustomText.s14(f.message, color: Colors.red),
+                ),
+              ),
+              orElse: () => permits.isEmpty
+                  ? _buildEmpty(l10n)
+                  : _buildList(permits, context),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildEmpty(AppLocalizations l10n) {
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 20.h),
+        child:
+            CustomText.s14(l10n.noActivePermits, color: Palette.neutral.color5),
+      ),
+    );
+  }
+
+  Widget _buildList(List<VisitorPermit> permits, BuildContext context) {
+    if (kDebugMode) {
+      print('🎯 _buildList: Building list with ${permits.length} permits');
+      for (int i = 0; i < permits.length; i++) {
+        final permit = permits[i];
+        print('🎯 Permit $i:');
+        print('  - ID: "${permit.id}"');
+        print('  - Name: "${permit.name}"');
+        print('  - Phone: "${permit.phone}"');
+        print('  - Time: "${permit.time}"');
+        print('  - Gate: "${permit.gate}"');
+        print('  - Date: ${permit.date}');
+      }
+    }
+    
+    return Column(
+      children: permits
+          .map((permit) => Padding(
+                padding: EdgeInsets.only(bottom: 16.h),
+                child: _ActivePermitCard(
+                  id: permit.id,
+                  visitorName: permit.name,
+                  phone: permit.phone,
+                  gate: permit.gate,
+                  time: permit.time,
+                  date: permit.date,
+                  onCancel: () {
+                    if (kDebugMode) {
+                      print('🗑️ UI: Cancel button pressed for permit ${permit.id}');
+                    }
+                    context.read<PermitsCubit>().deleteVisitorPermit(permit.id);
+                  },
+                ),
+              ))
+          .toList(),
     );
   }
 }
@@ -118,14 +221,22 @@ class _QuickPermitCard extends StatelessWidget {
 }
 
 class _ActivePermitCard extends StatelessWidget {
+  final String id;
   final String visitorName;
   final String phone;
   final String? gate;
+  final String time;
+  final DateTime date;
+  final VoidCallback? onCancel;
 
   const _ActivePermitCard({
+    required this.id,
     required this.visitorName,
     required this.phone,
+    required this.time,
+    required this.date,
     this.gate,
+    this.onCancel,
   });
 
   @override
@@ -165,7 +276,7 @@ class _ActivePermitCard extends StatelessWidget {
                     children: [
                       CustomText.s15(visitorName, bold: true),
                       Directionality(
-                          textDirection: TextDirection.ltr,
+                          textDirection: ui.TextDirection.ltr,
                           child: CustomText.s12(phone,
                               color: Palette.neutral.color7)),
                     ],
@@ -186,9 +297,10 @@ class _ActivePermitCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText.s12(l10n.visittime,
+                    CustomText.s12(l10n.datetime,
                         color: Palette.neutral.color7),
-                    CustomText.s14('2:30 ${AppLocalizations.of(context)!.pm}',
+                    CustomText.s14(
+                        '$time - ${DateFormat('dd MMM').format(date)}',
                         bold: true),
                   ],
                 ),
@@ -198,7 +310,10 @@ class _ActivePermitCard extends StatelessWidget {
                   children: [
                     CustomText.s12(l10n.entrancegate,
                         color: Palette.neutral.color7),
-                    CustomText.s14(l10n.mainGate, bold: true),
+                    CustomText.s14(
+                      (gate == null || gate!.isEmpty) ? l10n.mainGate : gate!,
+                      bold: true,
+                    ),
                   ],
                 ),
               ],
@@ -208,14 +323,14 @@ class _ActivePermitCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: onCancel,
                     style: OutlinedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: Colors.red,
                       padding: EdgeInsets.symmetric(vertical: 10.h),
                       minimumSize: Size.zero,
-                      side: BorderSide(
-                        color: Colors.grey,
+                      side: const BorderSide(
+                        color: Colors.red,
                         width: 1.5,
                       ),
                       shape: RoundedRectangleBorder(
@@ -224,7 +339,7 @@ class _ActivePermitCard extends StatelessWidget {
                     ),
                     child: CustomText.s12(
                       l10n.cancelthepermit,
-                      color: Colors.grey,
+                      color: Colors.red,
                       bold: true,
                     ),
                   ),

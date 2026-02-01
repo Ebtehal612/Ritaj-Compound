@@ -2779,6 +2779,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please select time'**
   String get pleaseSelectTime;
+
+  /// No description provided for @permitCreatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Permit created successfully'**
+  String get permitCreatedSuccessfully;
+
+  /// No description provided for @noActivePermits.
+  ///
+  /// In en, this message translates to:
+  /// **'No active permits'**
+  String get noActivePermits;
+
+  /// No description provided for @datetime.
+  ///
+  /// In en, this message translates to:
+  /// **'Date & Time'**
+  String get datetime;
 }
 
 class _AppLocalizationsDelegate

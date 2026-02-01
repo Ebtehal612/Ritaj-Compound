@@ -7,3 +7,7 @@ abstract class BaseUseCase<R, P> {
 abstract class BaseUseCaseNoParams<R> {
   Future<Result<R>> call();
 }
+
+class NoParams {
+  const NoParams();
+}

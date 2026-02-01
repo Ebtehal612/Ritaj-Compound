@@ -1461,4 +1461,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseSelectTime => 'من فضلك اختر الوقت';
+
+  @override
+  String get permitCreatedSuccessfully => 'تم إنشاء التصريح بنجاح';
+
+  @override
+  String get noActivePermits => 'لا توجد تصاريح نشطة';
+
+  @override
+  String get datetime => 'التاريخ والوقت';
 }

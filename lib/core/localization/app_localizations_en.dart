@@ -1465,4 +1465,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseSelectTime => 'Please select time';
+
+  @override
+  String get permitCreatedSuccessfully => 'Permit created successfully';
+
+  @override
+  String get noActivePermits => 'No active permits';
+
+  @override
+  String get datetime => 'Date & Time';
 }

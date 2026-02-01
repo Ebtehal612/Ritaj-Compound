@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
@@ -106,7 +107,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                   SizedBox(height: 20.h),
                   // Pinput
                   Directionality(
-                    textDirection: TextDirection.ltr,
+                    textDirection: ui.TextDirection.ltr,
                     child: Pinput(
                       controller: _pinController,
                       length: 4,

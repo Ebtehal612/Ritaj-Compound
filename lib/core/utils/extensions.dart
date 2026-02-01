@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toastification/toastification.dart';
-
-import '../enums/enums.dart';
-import '../localization/localization_manager.dart';
 import '../states/base_state.dart';
 import '../widgets/text/custom_text.dart';
 

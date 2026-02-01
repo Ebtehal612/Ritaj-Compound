@@ -460,5 +460,8 @@
   "longTermVisitDescription": "صالحة لعدة ايام",
   "pleaseEnterVisitorName": "من فضلك أدخل اسم الزائر",
   "pleaseEnterPhoneNumber": "من فضلك أدخل رقم الهاتف",
-  "pleaseSelectTime": "من فضلك اختر الوقت"
+  "pleaseSelectTime": "من فضلك اختر الوقت",
+  "permitCreatedSuccessfully": "تم إنشاء التصريح بنجاح",
+  "noActivePermits": "لا توجد تصاريح نشطة",
+  "datetime":"التاريخ والوقت"
 }
