@@ -1,13 +1,33 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ritaj_compound/core/localization/app_localizations.dart';
 import 'package:ritaj_compound/core/theme/palette.dart';
 import 'package:ritaj_compound/core/widgets/text/custom_text.dart';
 import 'package:ritaj_compound/presentation/more/widgets/more_sidebar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ritaj_compound/app/di/injection_container.dart';
+import 'package:ritaj_compound/core/states/base_state.dart';
+import 'package:ritaj_compound/domain/profile/entities/profile.dart';
+import 'package:ritaj_compound/presentation/profile/cubit/profile_cubit.dart';
+import 'package:intl/intl.dart';
 
 class MoreScreen extends StatelessWidget {
   static const routeName = '/more';
   const MoreScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => sl<ProfileCubit>()..getProfile(),
+      child: const _MoreScreenContent(),
+    );
+  }
+}
+
+class _MoreScreenContent extends StatelessWidget {
+  const _MoreScreenContent();
 
   @override
   Widget build(BuildContext context) {
@@ -40,157 +60,188 @@ class MoreScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Profile Header Card
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(20.w),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Palette.green.shade700,
-                    Palette.green.shade900,
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(16.r),
-              ),
+      body: BlocBuilder<ProfileCubit, BaseState<Profile>>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            loading: () => const Center(child: CircularProgressIndicator()),
+            failure: (failure) => Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Profile Image
-                  Row(
-                    children: [
-                      Container(
-                        width: 80.w,
-                        height: 80.w,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 3),
-                        ),
-                        child: ClipOval(
-                          child: Image.asset(
-                            'assets/images/profile.png',
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                color: Colors.white,
-                                child: Icon(
-                                  Icons.person,
-                                  size: 40.w,
-                                  color: Palette.green.shade700,
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      20.horizontalSpace,
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomText.s20(
-                              l10n.ahmadMohammadAli,
-                              color: Colors.white,
-                              bold: true,
-                              overflow: true,
-                            ),
-                            4.verticalSpace,
-                            CustomText.s14(
-                              l10n.unitOwner,
-                              color: Colors.white70,
-                            ),
-                            8.verticalSpace,
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 12.w, vertical: 4.h),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.2),
-                                borderRadius: BorderRadius.circular(12.r),
-                              ),
-                              child: CustomText.s12(
-                                'A-402',
-                                color: Colors.white,
-                                bold: true,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-
+                  CustomText.s14(failure.message),
                   16.verticalSpace,
-                  // Stats Row
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _buildStatItem('1', l10n.ownedApartments),
-                      _buildStatItem('2', l10n.issues),
-                      _buildStatItem('3', l10n.serviceRequests),
-                    ],
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<ProfileCubit>().getProfile();
+                    },
+                    child: CustomText.s14('Retry'),
                   ),
                 ],
               ),
             ),
-            24.verticalSpace,
+            success: (profile) => RefreshIndicator(
+              onRefresh: () async {
+                context.read<ProfileCubit>().getProfile();
+              },
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: EdgeInsets.all(16.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Profile Header Card
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(20.w),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Palette.green.shade700,
+                            Palette.green.shade900,
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: Column(
+                        children: [
+                          // Profile Image
+                          Row(
+                            children: [
+                              Container(
+                                width: 80.w,
+                                height: 80.w,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: Colors.white, width: 3),
+                                ),
+                                child: ClipOval(
+                                  child: Image.asset(
+                                    'assets/images/profile.png',
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Container(
+                                        color: Colors.white,
+                                        child: Icon(
+                                          Icons.person,
+                                          size: 40.w,
+                                          color: Palette.green.shade700,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                              20.horizontalSpace,
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CustomText.s20(
+                                      profile.name.isNotEmpty ? profile.name : 'User',
+                                      color: Colors.white,
+                                      bold: true,
+                                      overflow: true,
+                                    ),
+                                    4.verticalSpace,
+                                    CustomText.s14(
+                                      l10n.unitOwner,
+                                      color: Colors.white70,
+                                    ),
+                                    8.verticalSpace,
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 12.w, vertical: 4.h),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withOpacity(0.2),
+                                        borderRadius: BorderRadius.circular(12.r),
+                                      ),
+                                      child: CustomText.s12(
+                                        'A-402',
+                                        color: Colors.white,
+                                        bold: true,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
 
-            // Personal Information Section
-            _buildSectionTitle(l10n.personalInfo),
-            12.verticalSpace,
-            _buildInfoCard([
-              _buildInfoItem(Icons.phone, l10n.phoneNumber,
-                  l10n.phoneNumberValue, Colors.blue),
-              _buildInfoItem(Icons.email, l10n.emailAddress, l10n.emailValue,
-                  Colors.green),
-              _buildInfoItem(Icons.credit_card, l10n.nationalIdNumber,
-                  l10n.nationalIdValue, Colors.purple),
-              _buildInfoItem(
-                  Icons.cake, l10n.birthDate, l10n.january15, Colors.orange),
-            ]),
+                          16.verticalSpace,
+                          // Stats Row
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              _buildStatItem('1', l10n.ownedApartments),
+                              _buildStatItem('0', l10n.issues),
+                              _buildStatItem('0', l10n.serviceRequests),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    24.verticalSpace,
 
-            24.verticalSpace,
+                    // Personal Information Section
+                    _buildSectionTitle(l10n.personalInfo),
+                    12.verticalSpace,
+                    _buildInfoCard([
+                      _buildInfoItem(Icons.phone, l10n.phoneNumber,
+                          profile.phone.isNotEmpty ? '+20 ${profile.phone}' : l10n.phoneNumberValue, Colors.blue),
+                      _buildInfoItem(Icons.email, l10n.emailAddress, 
+                          profile.email.isNotEmpty ? profile.email : l10n.emailValue,
+                          Colors.green),
+                      _buildInfoItem(Icons.credit_card, l10n.nationalIdNumber,
+                          profile.nationalId.isNotEmpty ? profile.nationalId : l10n.nationalIdValue, Colors.purple),
+                      _buildInfoItem(
+                          Icons.cake, l10n.birthDate, 
+                          profile.birthDate != null ? DateFormat('yyyy-MM-dd').format(profile.birthDate!) : l10n.january15, Colors.orange),
+                    ]),
 
-            // Unit Details Section
-            _buildSectionTitle(l10n.unitDetails),
-            12.verticalSpace,
-            _buildInfoCard([
-              _buildInfoItem(
-                  Icons.home, l10n.unitNumber, l10n.unitValue, Colors.teal),
-              _buildInfoItem(Icons.stairs, l10n.floorNumber, l10n.fourthFloor,
-                  Colors.indigo),
-              _buildInfoItem(Icons.square_foot, l10n.unitArea, l10n.areaValue,
-                  Colors.green),
-              _buildInfoItem(
-                  Icons.location_on, l10n.location, l10n.riyadh, Colors.purple),
-              _buildInfoItem(Icons.calendar_today, l10n.handoverDate,
-                  l10n.march15, Colors.orange),
-            ]),
+                    24.verticalSpace,
 
-            24.verticalSpace,
+                    // Unit Details Section
+                    _buildSectionTitle(l10n.unitDetails),
+                    12.verticalSpace,
+                    _buildInfoCard([
+                      _buildInfoItem(
+                          Icons.home, l10n.unitNumber, l10n.unitValue, Colors.teal),
+                      _buildInfoItem(Icons.stairs, l10n.floorNumber, l10n.fourthFloor,
+                          Colors.indigo),
+                      _buildInfoItem(Icons.square_foot, l10n.unitArea, l10n.areaValue,
+                          Colors.green),
+                      _buildInfoItem(
+                          Icons.location_on, l10n.location, l10n.riyadh, Colors.purple),
+                      _buildInfoItem(Icons.calendar_today, l10n.handoverDate,
+                          l10n.march15, Colors.orange),
+                    ]),
 
-            // Family Members Section
-            _buildSectionTitle(l10n.familyMembers),
-            12.verticalSpace,
-            _buildFamilyMemberCard(l10n.fatimaAhmadAli, l10n.wife, true),
-            8.verticalSpace,
-            _buildFamilyMemberCard(l10n.mohammadAhmadAli, l10n.sonAge, true),
+                    24.verticalSpace,
 
-            24.verticalSpace,
+                    // Family Members Section
+                    _buildSectionTitle(l10n.familyMembers),
+                    12.verticalSpace,
+                    _buildFamilyMemberCard(l10n.fatimaAhmadAli, l10n.wife, true),
+                    8.verticalSpace,
+                    _buildFamilyMemberCard(l10n.mohammadAhmadAli, l10n.sonAge, true),
 
-            // Vehicles Section
-            _buildSectionTitle(l10n.vehicles),
-            12.verticalSpace,
-            _buildVehicleCard(l10n.toyotaCamry, l10n.plateNumber1),
-            8.verticalSpace,
-            _buildVehicleCard(l10n.hondaMotorcycle, l10n.plateNumber2),
+                    24.verticalSpace,
 
-            32.verticalSpace,
-          ],
-        ),
+                    // Vehicles Section
+                    _buildSectionTitle(l10n.vehicles),
+                    12.verticalSpace,
+                    _buildVehicleCard(l10n.toyotaCamry, l10n.plateNumber1),
+                    8.verticalSpace,
+                    _buildVehicleCard(l10n.hondaMotorcycle, l10n.plateNumber2),
+
+                    32.verticalSpace,
+                  ],
+                ),
+              ),
+            ),
+            orElse: () => const Center(child: CircularProgressIndicator()),
+          );
+        },
       ),
     );
   }
@@ -270,10 +321,13 @@ class MoreScreen extends StatelessWidget {
                   color: Colors.grey[600],
                 ),
                 2.verticalSpace,
-                CustomText.s14(
-                  value,
-                  bold: true,
-                  color: Colors.black87,
+                Directionality(
+                  textDirection: ui.TextDirection.ltr,
+                  child: CustomText.s14(
+                    value,
+                    bold: true,
+                    color: Colors.black87,
+                  ),
                 ),
               ],
             ),
@@ -344,7 +398,7 @@ class MoreScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.r),
             ),
             child: CustomText.s10(
-              isActive ? 'نشط' : 'غير نشط',
+              isActive ? 'Active' : 'Inactive',
               color: isActive ? Colors.green : Colors.grey,
               bold: true,
             ),
@@ -378,7 +432,7 @@ class MoreScreen extends StatelessWidget {
               color: Colors.blue.withOpacity(0.1),
             ),
             child: Icon(
-              vehicleName.contains('دراجة')
+              vehicleName.contains('Motorcycle')
                   ? Icons.motorcycle
                   : Icons.directions_car,
               color: Colors.blue,

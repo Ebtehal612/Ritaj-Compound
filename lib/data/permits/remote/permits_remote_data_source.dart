@@ -249,6 +249,8 @@ class PermitsRemoteDataSourceImpl implements PermitsRemoteDataSource {
       final response = await _dio.post('/deliveries', data: permit.toJson());
       
       if (kDebugMode) {
+        print('✅ CREATE DELIVERY - Server response status: ${response.statusCode}');
+        print('✅ CREATE DELIVERY - Server response data type: ${response.data.runtimeType}');
         print('✅ CREATE DELIVERY - Server response: ${response.data}');
       }
       
@@ -256,14 +258,26 @@ class PermitsRemoteDataSourceImpl implements PermitsRemoteDataSource {
       
       // If response is a String, try to decode it
       if (responseData is String) {
+        if (kDebugMode) {
+          print('🔍 Response is String, attempting to decode: $responseData');
+        }
         try {
           responseData = jsonDecode(responseData);
-        } catch (_) {
-          // If not valid JSON string, keep it as is
+          if (kDebugMode) {
+            print('✅ Successfully decoded JSON: $responseData');
+          }
+        } catch (e) {
+          if (kDebugMode) {
+            print('❌ Failed to decode JSON string: $e');
+          }
+          throw Failure.server(message: 'Invalid JSON response: $responseData');
         }
       }
       
       if (responseData is! Map<String, dynamic>) {
+        if (kDebugMode) {
+          print('❌ Response is not a Map: ${responseData.runtimeType} - $responseData');
+        }
         throw Failure.server(message: 'Expected JSON object, got ${responseData.runtimeType}');
       }
       
@@ -281,6 +295,9 @@ class PermitsRemoteDataSourceImpl implements PermitsRemoteDataSource {
       }
       
       if (serverId.isEmpty) {
+        if (kDebugMode) {
+          print('❌ Server did not return delivery ID. Response keys: ${responseData.keys.toList()}');
+        }
         throw Failure.server(message: 'Server did not return delivery ID');
       }
       
@@ -310,6 +327,11 @@ class PermitsRemoteDataSourceImpl implements PermitsRemoteDataSource {
     } catch (e) {
       if (kDebugMode) {
         print('❌ Error creating delivery permit: $e');
+        print('❌ Error type: ${e.runtimeType}');
+        if (e is DioException) {
+          print('❌ DioException response: ${e.response?.data}');
+          print('❌ DioException status: ${e.response?.statusCode}');
+        }
       }
       throw _handleError(e);
     }

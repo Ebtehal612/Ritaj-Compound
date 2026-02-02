@@ -55,9 +55,11 @@ class _CustomInterceptor extends Interceptor {
       }
     }
 
-    // Don't modify response data for permits endpoints
+    // Don't modify response data for permits, profile, and auth endpoints
     if (response.requestOptions.path.contains('/visitors') || 
-        response.requestOptions.path.contains('/deliveries')) {
+        response.requestOptions.path.contains('/deliveries') ||
+        response.requestOptions.path.contains('/profile') ||
+        response.requestOptions.path.contains('/auth')) {
       return handler.next(response);
     }
 

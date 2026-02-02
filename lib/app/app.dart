@@ -5,6 +5,7 @@ import 'package:toastification/toastification.dart';
 import '../core/localization/app_localizations.dart';
 import '../core/localization/localization_manager.dart';
 import '../core/theme/app_theme.dart';
+import '../core/cubits/user_cubit.dart';
 import 'di/injection_container.dart';
 import 'route_manager/app_router.dart';
 
@@ -18,8 +19,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: sl<LocaleCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(value: sl<LocaleCubit>()),
+        BlocProvider.value(value: sl<UserCubit>()),
+      ],
       child: BlocBuilder<LocaleCubit, Locale>(
         builder: (context, state) {
           return ScreenUtilInit(

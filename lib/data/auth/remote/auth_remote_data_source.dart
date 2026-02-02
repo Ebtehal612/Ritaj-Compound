@@ -7,6 +7,7 @@ import '../models/user_model.dart';
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final Dio _dio;
   AuthRemoteDataSourceImpl(this._dio);
+  
   @override
   Future<UserModel> login({required LoginParams params}) async {
     // Temporary bypass for testing: allow any 4-digit OTP
@@ -22,7 +23,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     try {
       final response = await _dio.post('/auth/login', data: params.toJson());
-
       return UserModel.fromJson(response.data);
     } on DioException catch (e) {
       throw e.error as Failure;

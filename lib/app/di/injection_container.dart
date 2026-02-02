@@ -4,6 +4,8 @@ import 'package:ritaj_compound/app/route_manager/app_router.dart';
 import 'package:ritaj_compound/data/auth/repo/auth_repo_impl.dart';
 import 'package:ritaj_compound/data/permits/remote/permits_remote_data_source.dart';
 import 'package:ritaj_compound/data/permits/repo/permits_repo_impl.dart';
+import 'package:ritaj_compound/data/profile/data_source/profile_remote_data_source.dart';
+import 'package:ritaj_compound/data/profile/repositories/profile_repository_impl.dart';
 import 'package:ritaj_compound/domain/auth/repo/auth_repo.dart';
 import 'package:ritaj_compound/domain/auth/use_cases/login_use_case/login_use_case.dart';
 import 'package:ritaj_compound/domain/permits/repo/permits_repo.dart';
@@ -13,6 +15,8 @@ import 'package:ritaj_compound/domain/permits/use_cases/delete_delivery_permit_u
 import 'package:ritaj_compound/domain/permits/use_cases/delete_visitor_permit_use_case.dart';
 import 'package:ritaj_compound/domain/permits/use_cases/get_active_deliveries_use_case.dart';
 import 'package:ritaj_compound/domain/permits/use_cases/get_active_permits_use_case.dart';
+import 'package:ritaj_compound/domain/profile/repositories/profile_repository.dart';
+import 'package:ritaj_compound/domain/profile/use_cases/get_profile_use_case.dart';
 import 'package:ritaj_compound/presentation/login/cubit/login_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/localization/localization_manager.dart';
@@ -28,6 +32,8 @@ import '../../presentation/permits/cubit/visitors_cubit.dart';
 import '../../presentation/permits/cubit/create_visitor_permit_cubit.dart';
 import '../../presentation/permits/cubit/deliveries_cubit.dart';
 import '../../presentation/permits/cubit/create_delivery_permit_cubit.dart';
+import '../../presentation/profile/cubit/profile_cubit.dart';
+
 
 
 
@@ -53,17 +59,15 @@ Future<void> init() async {
       () => PermitsRemoteDataSourceImpl(sl()));
   sl.registerLazySingleton<PermitsLocalDataSource>(
       () => PermitsLocalDataSourceImpl(sl()));
+  sl.registerLazySingleton<ProfileRemoteDataSource>(
+      () => ProfileRemoteDataSourceImpl(sl()));
 
-  // Cubits
-  sl.registerLazySingleton<UserCubit>(() => UserCubit(sl()));
-  sl.registerLazySingleton(() => LoginCubit(sl(), sl()));
-  sl.registerLazySingleton(() => VisitorsCubit(sl(), sl(), sl()));
-  sl.registerLazySingleton(() => DeliveriesCubit(sl(), sl(), sl()));
-  sl.registerFactory(() => CreateVisitorPermitCubit(sl()));
-  sl.registerFactory(() => CreateDeliveryPermitCubit(sl()));
+  // Repositories
+  sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl()));
+  sl.registerLazySingleton<PermitsRepo>(() => PermitsRepoImpl(sl(), sl()));
+  sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(remoteDataSource: sl()));
 
-
-  //! UseCases
+  // Use Cases
   sl.registerLazySingleton(() => LoginUseCase(sl()));
   sl.registerLazySingleton(() => CreateVisitorPermitUseCase(sl()));
   sl.registerLazySingleton(() => GetActivePermitsUseCase(sl()));
@@ -73,9 +77,14 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetActiveDeliveriesUseCase(sl()));
   sl.registerLazySingleton(() => GetCachedDeliveriesUseCase(sl()));
   sl.registerLazySingleton(() => DeleteDeliveryPermitUseCase(sl()));
+  sl.registerLazySingleton(() => GetProfileUseCase(sl()));
 
-
-  //! Repos
-  sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl()));
-  sl.registerLazySingleton<PermitsRepo>(() => PermitsRepoImpl(sl(), sl()));
+  // Cubits
+  sl.registerLazySingleton<UserCubit>(() => UserCubit(sl()));
+  sl.registerLazySingleton(() => LoginCubit(sl(), sl()));
+  sl.registerLazySingleton(() => VisitorsCubit(sl(), sl(), sl()));
+  sl.registerLazySingleton(() => DeliveriesCubit(sl(), sl(), sl()));
+  sl.registerLazySingleton(() => ProfileCubit(sl()));
+  sl.registerFactory(() => CreateVisitorPermitCubit(sl()));
+  sl.registerFactory(() => CreateDeliveryPermitCubit(sl()));
 }
