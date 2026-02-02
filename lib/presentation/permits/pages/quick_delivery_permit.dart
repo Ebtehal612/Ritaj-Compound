@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +17,8 @@ import 'package:ritaj_compound/presentation/more/pages/more_screen.dart';
 
 class QuickDeliveryPermit extends StatefulWidget {
   static const routeName = '/create-delivery-permit';
-  const QuickDeliveryPermit({super.key});
+  final DeliveryPermit? initialPermit;
+  const QuickDeliveryPermit({super.key, this.initialPermit});
   @override
   State<QuickDeliveryPermit> createState() => _QuickDeliveryPermitState();
 }
@@ -35,6 +37,26 @@ class _QuickDeliveryPermitState extends State<QuickDeliveryPermit> {
   String? selectedGate;
 
   int? expectedArrivalMinutes;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialPermit != null) {
+      _nameController.text = widget.initialPermit!.name;
+      _phoneController.text = widget.initialPermit!.phone;
+      _notesController.text = widget.initialPermit!.notes ?? '';
+      selectedGate = widget.initialPermit!.gate;
+      
+      // Parse expected arrival minutes from string like "30 min"
+      final arrivalStr = widget.initialPermit!.expectedArrival;
+      if (arrivalStr.isNotEmpty) {
+        final match = RegExp(r'(\d+)').firstMatch(arrivalStr);
+        if (match != null) {
+          expectedArrivalMinutes = int.tryParse(match.group(1)!);
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +102,14 @@ class _QuickDeliveryPermitState extends State<QuickDeliveryPermit> {
           listener: (context, state) {
             state.maybeWhen(
               success: (createdPermit) {
+                // If this was an "Invite Again", delete the old permit first
+                if (widget.initialPermit != null) {
+                  if (kDebugMode) {
+                    print('🗑️ UI: Deleting old delivery permit ${widget.initialPermit!.id} due to "Invite Again"');
+                  }
+                  context.read<DeliveriesCubit>().deleteDeliveryPermit(widget.initialPermit!.id);
+                }
+
                 // Add to list and navigate back
                 context.read<DeliveriesCubit>().addServerPermit(createdPermit);
                 ScaffoldMessenger.of(context).showSnackBar(

@@ -1482,4 +1482,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get retry => 'أعد المحاولة';
+
+  @override
+  String get weekAgo => 'قبل اسبوع';
+
+  @override
+  String get weeksAgo => 'قبل اسابيع';
+
+  @override
+  String get today => 'اليوم';
 }

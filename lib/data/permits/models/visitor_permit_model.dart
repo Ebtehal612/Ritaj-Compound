@@ -45,13 +45,25 @@ class VisitorPermitModel with _$VisitorPermitModel {
     final gate = json['gate']?.toString() ?? json['gate_name']?.toString() ?? json['entrance_gate']?.toString() ?? '';
     final time = json['time']?.toString() ?? json['visit_time']?.toString() ?? '';
     
+    // Handle date parsing with specific check for invalid strings like "-:"
+    DateTime parseDate() {
+      if (json['visit_date'] != null) {
+        final visitDate = json['visit_date'].toString();
+        if (visitDate != '-:' && visitDate.isNotEmpty) {
+          return DateTime.tryParse(visitDate) ?? DateTime.now();
+        }
+      }
+      if (json['date'] != null) {
+        return DateTime.tryParse(json['date'].toString()) ?? DateTime.now();
+      }
+      return DateTime.now();
+    }
+
     final result = VisitorPermitModel(
       id: id,
       name: name,
       phone: phone,
-      date: json['date'] != null 
-          ? DateTime.tryParse(json['date'].toString()) ?? DateTime.now()
-          : DateTime.now(),
+      date: parseDate(),
       time: time,
       gate: gate,
       multipleEntry: json['multipleEntry'] == true || json['multiple_entry'] == true,

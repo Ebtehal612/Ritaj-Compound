@@ -190,6 +190,12 @@ class _PreviousVisitorsSection extends StatelessWidget {
                   }
                   context.read<VisitorsCubit>().deleteVisitorPermit(permit.id);
                 },
+                onInvite: () {
+                  context.push(
+                    QuickVisitorsPermit.routeName,
+                    extra: permit,
+                  );
+                },
               )),
           ],
         );
@@ -199,15 +205,19 @@ class _PreviousVisitorsSection extends StatelessWidget {
 
   String _formatPreviousVisitTime(DateTime date, AppLocalizations l10n) {
     final now = DateTime.now();
-    final difference = now.difference(date).inDays;
+    final today = DateTime(now.year, now.month, now.day);
+    final visitDate = DateTime(date.year, date.month, date.day);
+    final difference = today.difference(visitDate).inDays;
     
-    if (difference == 1) {
-      return '${l10n.yesterday} ${DateFormat('HH:mm').format(date)}';
+    if (difference == 0) {
+      return l10n.today; // Should not happen given categorization logic, but as fallback
+    } else if (difference == 1) {
+      return '${l10n.yesterday} ${DateFormat('hh:mm a').format(date)}';
     } else if (difference < 7) {
-      return '${difference} ${difference == 1 ? 'day' : 'days'} ago';
+      return l10n.daysAgo(difference);
     } else if (difference < 30) {
       final weeks = (difference / 7).floor();
-      return '${weeks} ${weeks == 1 ? 'week' : 'weeks'} ago';
+      return '$weeks ${weeks == 1 ? l10n.weekAgo : l10n.weeksAgo}'; // Ensure keys exist
     } else {
       return DateFormat('MMM dd, yyyy').format(date);
     }
@@ -410,12 +420,14 @@ class _PreviousVisitorItem extends StatelessWidget {
   final String name;
   final String time;
   final VoidCallback? onDelete;
+  final VoidCallback? onInvite;
 
   const _PreviousVisitorItem({
     required this.id,
     required this.name, 
     required this.time,
     this.onDelete,
+    this.onInvite,
   });
 
   @override
@@ -448,7 +460,7 @@ class _PreviousVisitorItem extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: onInvite,
               child: Text(
                 l10n.inviteAgain,
                 style: const TextStyle(color: Colors.teal),

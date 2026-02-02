@@ -468,5 +468,8 @@
   "datetime":"التاريخ والوقت",
   "loading":"جاري التحميل",
   "retry":"أعد المحاولة",
-  "noPreviousVisitors":"لا يوجد زوار سابقون"
+  "noPreviousVisitors":"لا يوجد زوار سابقون",
+  "weekAgo":"قبل اسبوع",
+  "weeksAgo":"قبل اسابيع",
+  "today":"اليوم"
 }

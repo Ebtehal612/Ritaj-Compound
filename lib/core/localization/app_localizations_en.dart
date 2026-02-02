@@ -1486,4 +1486,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get retry => 'Retry';
+
+  @override
+  String get weekAgo => 'Week ago';
+
+  @override
+  String get weeksAgo => 'Weeks ago';
+
+  @override
+  String get today => 'Today';
 }

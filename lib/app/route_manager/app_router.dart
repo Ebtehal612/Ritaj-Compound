@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ritaj_compound/domain/permits/entities/delivery_permit.dart';
 import 'package:ritaj_compound/domain/permits/entities/visitor_permit.dart';
 import 'package:ritaj_compound/presentation/home_page/pages/home_page_screen.dart';
 import 'package:ritaj_compound/presentation/home_page/pages/news_events_screen.dart';
@@ -162,7 +163,7 @@ class AppRouter {
                 name: QuickDeliveryPermit.routeName,
                 path: QuickDeliveryPermit.routeName,
                 pageBuilder: (context, state) => _buildPageWithTransition(
-                  const QuickDeliveryPermit(),
+                  QuickDeliveryPermit(initialPermit: state.extra as DeliveryPermit?),
                   state,
                 ),
               ),

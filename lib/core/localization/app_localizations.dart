@@ -2821,6 +2821,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Retry'**
   String get retry;
+
+  /// No description provided for @weekAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'Week ago'**
+  String get weekAgo;
+
+  /// No description provided for @weeksAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'Weeks ago'**
+  String get weeksAgo;
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
 }
 
 class _AppLocalizationsDelegate

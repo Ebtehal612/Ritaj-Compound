@@ -111,13 +111,15 @@ class DeliveriesCubit extends Cubit<BaseState<List<DeliveryPermit>>> {
 
     // Active: Today and Future
     _activeDeliveries = _allDeliveries.where((delivery) {
-      final deliveryDate = DateTime(delivery.date.year, delivery.date.month, delivery.date.day);
+      final localDate = delivery.date.toLocal();
+      final deliveryDate = DateTime(localDate.year, localDate.month, localDate.day);
       return !deliveryDate.isBefore(todayStart);
     }).toList();
 
     // Previous: Strictly before today
     _previousDeliveries = _allDeliveries.where((delivery) {
-      final deliveryDate = DateTime(delivery.date.year, delivery.date.month, delivery.date.day);
+      final localDate = delivery.date.toLocal();
+      final deliveryDate = DateTime(localDate.year, localDate.month, localDate.day);
       return deliveryDate.isBefore(todayStart);
     }).toList();
 

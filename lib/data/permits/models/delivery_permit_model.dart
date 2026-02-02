@@ -59,9 +59,11 @@ class DeliveryPermitModel with _$DeliveryPermitModel {
       id: id,
       name: name,
       phone: phone,
-      date: json['date'] != null 
-          ? DateTime.tryParse(json['date'].toString()) ?? DateTime.now()
-          : DateTime.now(),
+      date: json['delivery_date'] != null 
+          ? DateTime.tryParse(json['delivery_date'].toString()) ?? DateTime.now()
+          : (json['date'] != null 
+              ? DateTime.tryParse(json['date'].toString()) ?? DateTime.now()
+              : DateTime.now()),
       expectedArrival: arrival.contains('min') ? arrival : (arrival.isNotEmpty ? '$arrival min' : ''),
       gate: gate,
       notes: json['notes']?.toString(),

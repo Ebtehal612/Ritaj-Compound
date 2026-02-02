@@ -69,6 +69,14 @@ class _QuickVisitorsPermitState extends State<QuickVisitorsPermit> {
                 print('🎉 UI: Permit created successfully with server ID: ${createdPermit.id}');
               }
 
+              // If this was an "Invite Again", delete the old permit first
+              if (widget.initialPermit != null) {
+                if (kDebugMode) {
+                  print('🗑️ UI: Deleting old permit ${widget.initialPermit!.id} due to "Invite Again"');
+                }
+                context.read<VisitorsCubit>().deleteVisitorPermit(widget.initialPermit!.id);
+              }
+
               // Add the server-created permit to the permits list
               context.read<VisitorsCubit>().addServerPermit(createdPermit);
 

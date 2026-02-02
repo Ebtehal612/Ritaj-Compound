@@ -524,5 +524,8 @@
   "datetime":"Date & Time",
   "loading":"Loading...",
   "retry":"Retry",
-  "noPreviousVisitors":"No Previous Visitors"
+  "noPreviousVisitors":"No Previous Visitors",
+  "weekAgo":"Week ago",
+  "weeksAgo":"Weeks ago",
+  "today":"Today"
 }

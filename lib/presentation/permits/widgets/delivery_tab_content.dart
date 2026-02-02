@@ -48,9 +48,10 @@ class _ActiveDeliveriesSection extends StatelessWidget {
     return BlocBuilder<DeliveriesCubit, BaseState<List<DeliveryPermit>>>(
       builder: (context, state) {
         if (kDebugMode) {
-          print('🎯 DeliveryTabContent: BlocBuilder received state: ${state.runtimeType}');
+          print(
+              '🎯 DeliveryTabContent: BlocBuilder received state: ${state.runtimeType}');
         }
-        
+
         final cubit = context.read<DeliveriesCubit>();
         final List<DeliveryPermit> deliveries = cubit.activeDeliveries;
 
@@ -80,10 +81,14 @@ class _ActiveDeliveriesSection extends StatelessWidget {
             16.verticalSpace,
             state.maybeWhen(
               loading: () => deliveries.isEmpty
-                  ? Center(child: CircularProgressIndicator(color: Palette.green.shade700,))
+                  ? Center(
+                      child: CircularProgressIndicator(
+                      color: Palette.green.shade700,
+                    ))
                   : _buildList(deliveries, context),
-              success: (_) =>
-                  deliveries.isEmpty ? _buildEmpty(l10n) : _buildList(deliveries, context),
+              success: (_) => deliveries.isEmpty
+                  ? _buildEmpty(l10n)
+                  : _buildList(deliveries, context),
               empty: () => _buildEmpty(l10n),
               failure: (f) => deliveries.isEmpty
                   ? Center(
@@ -115,7 +120,8 @@ class _ActiveDeliveriesSection extends StatelessWidget {
 
   Widget _buildList(List<DeliveryPermit> deliveries, BuildContext context) {
     if (kDebugMode) {
-      print('🎯 _buildList: Building list with ${deliveries.length} deliveries');
+      print(
+          '🎯 _buildList: Building list with ${deliveries.length} deliveries');
       for (int i = 0; i < deliveries.length; i++) {
         final delivery = deliveries[i];
         print('🎯 Delivery $i:');
@@ -127,7 +133,7 @@ class _ActiveDeliveriesSection extends StatelessWidget {
         print('  - Date: ${delivery.date}');
       }
     }
-    
+
     return Column(
       children: deliveries
           .map((delivery) => Padding(
@@ -141,9 +147,12 @@ class _ActiveDeliveriesSection extends StatelessWidget {
                   date: delivery.date,
                   onCancel: () {
                     if (kDebugMode) {
-                      print('🗑️ UI: Cancel button pressed for delivery ${delivery.id}');
+                      print(
+                          '🗑️ UI: Cancel button pressed for delivery ${delivery.id}');
                     }
-                    context.read<DeliveriesCubit>().deleteDeliveryPermit(delivery.id);
+                    context
+                        .read<DeliveriesCubit>()
+                        .deleteDeliveryPermit(delivery.id);
                   },
                 ),
               ))
@@ -360,9 +369,10 @@ class _PreviousDeliveriesSection extends StatelessWidget {
       builder: (context, state) {
         final deliveriesCubit = context.read<DeliveriesCubit>();
         final previousDeliveries = deliveriesCubit.previousDeliveries;
-        
+
         if (kDebugMode && previousDeliveries.isNotEmpty) {
-          print('🎯 PreviousDeliveriesSection: ${previousDeliveries.length} previous deliveries');
+          print(
+              '🎯 PreviousDeliveriesSection: ${previousDeliveries.length} previous deliveries');
         }
 
         return Column(
@@ -374,14 +384,37 @@ class _PreviousDeliveriesSection extends StatelessWidget {
               Center(
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 20.h),
-                  child: CustomText.s14(l10n.noPreviousDeliveries, color: Palette.neutral.color5),
+                  child: CustomText.s14(l10n.noPreviousDeliveries,
+                      color: Palette.neutral.color5),
                 ),
               )
             else
-              ...previousDeliveries.take(5).map((delivery) => _PreviousDeliveryItem(
-                name: delivery.name,
-                time: '${DateFormat('dd MMM').format(delivery.date)} - ${delivery.expectedArrival} ',
-              )),
+              ...previousDeliveries.take(5).map((delivery) =>
+                  _PreviousDeliveryItem(
+                    id: delivery.id,
+                    name: delivery.name,
+                    time: DateFormat('dd MMM').format(delivery.date),
+                    onDelete: () {
+                      if (kDebugMode) {
+                        print('🗑️ UI: Delete previous visitor ${delivery.id}');
+                      }
+                      context
+                          .read<DeliveriesCubit>()
+                          .deleteDeliveryPermit(delivery.id);
+                    },
+                    onInvite: () {
+                      if (kDebugMode) {
+                        print(
+                            '🔄 UI: Invite again for delivery ${delivery.name}');
+                      }
+                      // Navigate to create delivery permit page with pre-filled data
+                      context.push(
+                        QuickDeliveryPermit.routeName,
+                        extra:
+                            delivery, // Pass the delivery data to pre-fill the form
+                      );
+                    },
+                  )),
           ],
         );
       },
@@ -390,10 +423,19 @@ class _PreviousDeliveriesSection extends StatelessWidget {
 }
 
 class _PreviousDeliveryItem extends StatelessWidget {
+  final String id;
   final String name;
   final String time;
+  final VoidCallback? onInvite;
+  final VoidCallback? onDelete;
 
-  const _PreviousDeliveryItem({required this.name, required this.time});
+  const _PreviousDeliveryItem({
+    required this.id,
+    required this.name,
+    required this.time,
+    this.onDelete,
+    this.onInvite,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -406,33 +448,40 @@ class _PreviousDeliveryItem extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(12.r),
         ),
-        child: Row(
-          children: [
-            CircleAvatar(
-              radius: 20.r,
-              backgroundColor: Palette.neutral.color3,
-              child: const Icon(Icons.local_shipping, color: Colors.grey),
+        child: Row(children: [
+          CircleAvatar(
+            radius: 20.r,
+            backgroundColor: Palette.neutral.color3,
+            child: const Icon(Icons.local_shipping, color: Colors.grey),
+          ),
+          12.horizontalSpace,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText.s14(name, bold: true, color: Palette.neutral.color7),
+                CustomText.s12(time, color: Palette.neutral.color7),
+              ],
             ),
-            12.horizontalSpace,
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText.s14(name,
-                      bold: true, color: Palette.neutral.color7),
-                  CustomText.s12(time, color: Palette.neutral.color7),
-                ],
-              ),
+          ),
+          TextButton(
+            onPressed: onInvite,
+            child: Text(
+              l10n.inviteAgain,
+              style: const TextStyle(color: Colors.teal),
             ),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                l10n.inviteAgain,
-                style: const TextStyle(color: Colors.teal),
-              ),
+          ),
+          if (onDelete != null) ...[
+            8.horizontalSpace,
+            IconButton(
+              onPressed: onDelete,
+              icon:
+                  const Icon(Icons.delete_outline, color: Colors.red, size: 20),
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(),
             ),
           ],
-        ),
+        ]),
       ),
     );
   }

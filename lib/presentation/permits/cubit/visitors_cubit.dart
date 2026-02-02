@@ -90,20 +90,25 @@ class VisitorsCubit extends Cubit<BaseState<List<VisitorPermit>>> {
   }
 
   void _categorizePermitsByDate() {
-    final today = DateTime.now();
-    final todayStart = DateTime(today.year, today.month, today.day);
-    final todayEnd = todayStart.add(const Duration(days: 1));
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    // final todayEnd = today.add(const Duration(days: 1)); // Not strictly needed if we just check dates
 
     // Active: Today and Future
+    // "If the date coming from the server is today, put it in the 'Active Permissions' section."
     _activePermits = _allPermits.where((permit) {
-      final permitDate = DateTime(permit.date.year, permit.date.month, permit.date.day);
-      return !permitDate.isBefore(todayStart);
+      final localDate = permit.date.toLocal();
+      final permitDate = DateTime(localDate.year, localDate.month, localDate.day);
+      // If permitDate is today or after today (future)
+      return !permitDate.isBefore(today);
     }).toList();
 
     // Previous: Strictly before today
+    // "If it's older than today, put it in the 'Previous Visitors' section."
     _previousPermits = _allPermits.where((permit) {
-      final permitDate = DateTime(permit.date.year, permit.date.month, permit.date.day);
-      return permitDate.isBefore(todayStart);
+      final localDate = permit.date.toLocal();
+      final permitDate = DateTime(localDate.year, localDate.month, localDate.day);
+      return permitDate.isBefore(today);
     }).toList();
 
     // Sort previous permits by date (newest first)
@@ -111,7 +116,7 @@ class VisitorsCubit extends Cubit<BaseState<List<VisitorPermit>>> {
 
     if (kDebugMode) {
       print('🗓️ Date categorization:');
-      print('  Today range: $todayStart to $todayEnd');
+      print('  Today (cutoff): $today');
       print('  Active permits: ${_activePermits.length}');
       for (var permit in _activePermits) {
         print('    - ${permit.name}: ${permit.date}');
